@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/c
 
 export function BadgesSection() {
   return (
-    <Card className="w-full border-none shadow-none">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Badge</CardTitle>
         <CardDescription className="text-md">Displays a badge or a component that looks like a badge.</CardDescription>

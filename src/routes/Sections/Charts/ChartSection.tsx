@@ -5,7 +5,7 @@ import { PieChartDemo1 } from "./PieChartDemo1";
 
 export default function ChartSection() {
   return (
-    <Card className="w-full border-none shadow-none">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Charts</CardTitle>
         <CardDescription>Beautiful charts. Built using Recharts. Copy and paste into your apps. </CardDescription>

@@ -1,10 +1,11 @@
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { Loader2, MailOpen, User } from "lucide-preact";
+import toast from "react-hot-toast";
 
 export function ButtonsSection() {
   return (
-    <Card className="w-full border-none shadow-none">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Buttons</CardTitle>
         <CardDescription className="text-md">
@@ -24,6 +25,16 @@ export function ButtonsSection() {
         <Button variant="link">Button</Button>
 
         <Button variant="destructive">Button</Button>
+
+        <Button
+          onClick={() => {
+            toast.loading("Making Transaction");
+            toast.success("Transaction Success");
+            toast.error("Transaction Success");
+          }}
+        >
+          Toast
+        </Button>
 
         <Button>
           <MailOpen /> Login with Email

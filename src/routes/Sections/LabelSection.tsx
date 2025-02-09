@@ -4,7 +4,7 @@ import { Label } from "@ui/label";
 
 export function LabelSection() {
   return (
-    <Card className="w-full border-none shadow-none">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Label</CardTitle>
         <CardDescription className="text-md">Renders an accessible label associated with controls.</CardDescription>

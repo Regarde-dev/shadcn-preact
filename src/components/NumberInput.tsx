@@ -1,6 +1,7 @@
 import { forwardRef, HTMLAttributes } from "preact/compat";
 import { useEffect, useState } from "preact/hooks";
-import { cn } from "./share/cn";
+import { Input } from "./ui/input";
+import { cn } from "./ui/share/cn";
 
 type NumberInputProps = HTMLAttributes<HTMLInputElement> & {
   onNumberChange: (v: number) => void;
@@ -30,7 +31,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(({ cla
   }, [value]);
 
   return (
-    <input
+    <Input
       ref={ref}
       onInput={(e) => {
         e.preventDefault();

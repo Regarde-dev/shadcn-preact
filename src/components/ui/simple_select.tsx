@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-preact";
 import { PropsWithChildren, useEffect, useMemo, useState } from "preact/compat";
-import { Button, ButtonText } from "./button";
+import { Button } from "./button";
 import { Show } from "./show";
 
 type SelectProps = PropsWithChildren & {
@@ -10,7 +10,7 @@ type SelectProps = PropsWithChildren & {
   title?: string;
 };
 
-export function SelectorMinimal(props: SelectProps) {
+export function SimpleSelect(props: SelectProps) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(props.value || "");
   const data = useMemo(() => props.data, [props.data]);
@@ -30,7 +30,7 @@ export function SelectorMinimal(props: SelectProps) {
         onClick={() => setOpen(!open)}
         className="z-20 relative"
       >
-        <ButtonText value={select_title} />
+        <span>{select_title}</span>
         <ChevronDown
           width={18}
           height={18}
@@ -73,7 +73,7 @@ function InternalOption(props: { value: string; title: string; selected: boolean
         variant="ghost"
         onClick={props.onSelect}
       >
-        <ButtonText value={props.title} />
+        <span>{props.title}</span>
       </Button>
     </div>
   );

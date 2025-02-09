@@ -16,7 +16,7 @@ import { Copy } from "lucide-preact";
 
 export function DialogSection() {
   return (
-    <Card className="w-full border-none shadow-none">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Dialog</CardTitle>
         <CardDescription className="text-md">

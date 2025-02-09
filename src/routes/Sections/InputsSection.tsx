@@ -1,3 +1,4 @@
+import { TokenInput } from "@/components/TokenInput";
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { Input } from "@ui/input";
@@ -5,7 +6,7 @@ import { Label } from "@ui/label";
 
 export function InputsSection() {
   return (
-    <Card className="w-full max-w-[500px] shadow-none border-none">
+    <Card className="w-full max-w-[500px]">
       <CardHeader>
         <CardTitle className="text-2xl">Inputs</CardTitle>
         <CardDescription className="text-md">
@@ -15,7 +16,7 @@ export function InputsSection() {
 
       <CardContent className="flex flex-col gap-10">
         <Input
-          type="email"
+          type="email1"
           placeholder="Email"
           className="max-w-sm"
         />
@@ -44,6 +45,16 @@ export function InputsSection() {
             type="text"
             className="max-w-sm"
             placeholder="Raul..."
+          />
+        </div>
+
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="tokens01">Input with Tokenizer</Label>
+          <TokenInput
+            id="tokens01"
+            variant="default"
+            onTokensChange={console.log}
+            value={["Pasta", "Compra", "Fix", "Bug", "Priority"]}
           />
         </div>
       </CardContent>

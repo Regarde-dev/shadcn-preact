@@ -1,4 +1,4 @@
-@use "./components/ui/index.scss";
+@use "./components/ui/base.scss";
 
 @tailwind base;
 @tailwind components;
@@ -29,8 +29,14 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  background-origin: 0 0;
+  &.dark {
+    background: repeat url("./assets/dot-pattern-black.png");
+  }
+  &:not(.dark) {
+    background: repeat url("./assets/dot-pattern.png");
+  }
 }
 
 #app-root {

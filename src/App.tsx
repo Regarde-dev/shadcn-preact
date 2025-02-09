@@ -8,9 +8,9 @@ export function App() {
       <Toaster
         position="bottom-right"
         toastOptions={{
-          duration: 3000,
+          duration: 2500,
           style: {
-            border: "2px solid #000",
+            border: "1px solid var(--border)",
           },
         }}
       />

@@ -21,7 +21,7 @@ const notifications = [
 
 export function CardsSection() {
   return (
-    <Card className="w-full border-none shadow-none">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Cards</CardTitle>
         <CardDescription className="text-md">Displays a card with header, content, and footer. </CardDescription>

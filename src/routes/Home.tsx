@@ -1,4 +1,4 @@
-import { LoadingSpinner } from "@ui/LoadingSpinner";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { lazy, Suspense } from "preact/compat";
 import { Header } from "../components/Header";
 import { Login01 } from "./Blocks/Login01";
@@ -45,11 +45,11 @@ export default function HomePage() {
 
         <h1 className="w-full text-center text-xl font-bold">Blocks</h1>
 
-        <div className="w-full h-screen overflow-auto bg-muted p-6 md:p-10 flex flex-col justify-center items-center">
+        <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
           <Login01 className="w-full max-w-lg" />
         </div>
 
-        <div className="w-full h-screen overflow-auto bg-muted p-6 md:p-10 flex flex-col justify-center items-center">
+        <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
           <Login04 className="w-full max-w-3xl" />
         </div>
       </div>

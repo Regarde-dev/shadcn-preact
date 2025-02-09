@@ -4,7 +4,7 @@ import { Checkbox } from "@ui/checkbox";
 
 export function CheckboxSection() {
   return (
-    <Card className="w-full border-none shadow-none">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Checkbox</CardTitle>
         <CardDescription className="text-md">

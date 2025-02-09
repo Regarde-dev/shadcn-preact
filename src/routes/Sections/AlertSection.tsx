@@ -4,7 +4,7 @@ import { AlertCircle, Terminal } from "lucide-preact";
 
 export function AlertSection() {
   return (
-    <Card className="w-full border-none shadow-none">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl">Alert</CardTitle>
         <CardDescription className="text-md">Displays a callout for user attention.</CardDescription>

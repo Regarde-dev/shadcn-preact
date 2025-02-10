@@ -13,6 +13,7 @@ import { DialogSection } from "./Sections/DialogSection";
 import { InputsSection } from "./Sections/InputsSection";
 import { LabelSection } from "./Sections/LabelSection";
 import { SwitchSection } from "./Sections/SwitchSection";
+import { TextareaSection } from "./Sections/TextareaSection";
 
 const ChartSection = lazy(() => import("./Sections/Charts/ChartSection"));
 
@@ -33,6 +34,8 @@ export default function HomePage() {
         <AlertSection />
 
         <InputsSection />
+
+        <TextareaSection />
 
         <LabelSection />
 

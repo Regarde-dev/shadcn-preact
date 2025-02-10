@@ -49,10 +49,10 @@ function HeaderRightSide() {
           variant="outline"
           className="px-3"
           onClick={() => {
-            setTheme(theme === "ligth" ? "dark" : "ligth");
+            setTheme(theme === "light" ? "dark" : "light");
           }}
         >
-          {theme === "ligth" && <Sun className="w-4 h-4 text-primary" />}
+          {theme === "light" && <Sun className="w-4 h-4 text-primary" />}
           {theme === "dark" && <Moon className="w-4 h-4 text-primary" />}
         </Button>
       </div>

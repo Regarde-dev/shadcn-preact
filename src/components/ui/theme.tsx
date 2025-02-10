@@ -1,22 +1,26 @@
 import { createContext } from "preact";
 import { PropsWithChildren, useContext, useEffect, useState } from "preact/compat";
 
+type ThemeOption = "light" | "dark";
+
 const ThemeContext = createContext<{
-  theme: "ligth" | "dark";
-  setTheme: (v: "ligth" | "dark") => void;
+  theme: ThemeOption;
+  setTheme: (v: ThemeOption) => void;
 }>({
   setTheme: () => {},
-  theme: "ligth",
+  theme: getThemeFromLocalStorage(),
 });
 
 export const ThemeProvider = (props: PropsWithChildren) => {
-  const [theme, setTheme] = useState<"ligth" | "dark">("ligth");
+  const [theme, setTheme] = useState<ThemeOption>("light");
 
   useEffect(() => {
-    if (theme === "ligth") {
+    if (theme === "light") {
       document.body.classList.remove("dark");
+      setThemeFromLocalStorage("light");
     } else if (theme === "dark") {
       document.body.classList.add("dark");
+      setThemeFromLocalStorage("dark");
     }
   }, [theme]);
 
@@ -31,3 +35,11 @@ export const useTheme = () => {
 
   return c;
 };
+
+function getThemeFromLocalStorage(): ThemeOption {
+  return (localStorage.getItem("--theme--") || "light") as ThemeOption;
+}
+
+function setThemeFromLocalStorage(t: ThemeOption) {
+  return localStorage.setItem("--theme--", t);
+}

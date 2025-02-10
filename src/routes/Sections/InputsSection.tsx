@@ -53,7 +53,6 @@ export function InputsSection() {
           <TokenInput
             id="tokens01"
             variant="default"
-            onTokensChange={console.log}
             value={["Pasta", "Compra", "Fix", "Bug", "Priority"]}
           />
         </div>

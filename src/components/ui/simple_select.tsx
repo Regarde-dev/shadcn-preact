@@ -20,26 +20,23 @@ export function SimpleSelect(props: SelectProps) {
   }, [props.value]);
 
   const select_title = useMemo(() => {
-    return data.find((item) => item.value === value)?.title || props.title || "Seleccionar";
+    return data.find((item) => item.value === value)?.title || props.title || "Select";
   }, [data, value, props.title]);
 
   return (
-    <div className="relative w-fit min-w-[200px] p-0 *:w-full *:justify-between">
+    <div className="relative w-fit bg-transparent border-none outline-none min-w-[200px] p-0 *:w-full *:justify-between">
       <Button
         variant="outline"
         onClick={() => setOpen(!open)}
         className="z-20 relative"
       >
-        <span>{select_title}</span>
-        <ChevronDown
-          width={18}
-          height={18}
-        />
+        <span className="text-primary text-sm">{select_title}</span>
+        <ChevronDown className="w-4 h-4 text-primary" />
       </Button>
 
       <Show when={open}>
         <>
-          <div className="absolute top-10 z-20 flex w-full flex-col rounded border border-gray-300 bg-white shadow">
+          <div className="absolute top-10 z-20 flex w-full flex-col rounded-md border border-border bg-background shadow p-1">
             {props.data.map((item) => (
               <InternalOption
                 key={item.value}
@@ -55,7 +52,7 @@ export function SimpleSelect(props: SelectProps) {
             ))}
           </div>
           <div
-            className="fixed top-0 left-0 h-screen w-screen z-10 bg-white/50"
+            className="fixed top-0 left-0 h-screen w-screen z-10 bg-transparent"
             onClick={() => setOpen(false)}
           ></div>
         </>
@@ -68,13 +65,13 @@ function InternalOption(props: { value: string; title: string; selected: boolean
   if (props.selected) return null;
 
   return (
-    <div className="*:w-full *:justify-start">
-      <Button
-        variant="ghost"
-        onClick={props.onSelect}
-      >
-        <span>{props.title}</span>
-      </Button>
-    </div>
+    <Button
+      size="sm"
+      variant="ghost"
+      onClick={props.onSelect}
+      className="justify-start items-center"
+    >
+      {props.title}
+    </Button>
   );
 }

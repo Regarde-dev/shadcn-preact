@@ -2,6 +2,8 @@ import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@ui/card";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
+import { SimpleSelect } from "@ui/simple_select";
+import { Switch } from "@ui/switch";
 import { BellRing, Check } from "lucide-preact";
 
 const notifications = [
@@ -34,7 +36,7 @@ export function CardsSection() {
             <CardDescription>Deploy your new project in one-click.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form>
+            <div>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="name">Name</Label>
@@ -45,22 +47,31 @@ export function CardsSection() {
                 </div>
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="framework">Framework</Label>
-                  {/*
-                        <Select>
-                          <SelectTrigger id="framework">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent position="popper">
-                            <SelectItem value="next">Next.js</SelectItem>
-                            <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                            <SelectItem value="astro">Astro</SelectItem>
-                            <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      */}
+                  <SimpleSelect
+                    title="Select"
+                    data={[
+                      {
+                        value: "next",
+                        title: "Next.js",
+                      },
+                      {
+                        value: "sveltekit",
+                        title: "SvelteKit",
+                      },
+                      {
+                        value: "astro",
+                        title: "Astro",
+                      },
+                      {
+                        value: "nuxt",
+                        title: "Nuxt.js",
+                      },
+                    ]}
+                    onChange={() => {}}
+                  ></SimpleSelect>
                 </div>
               </div>
-            </form>
+            </div>
           </CardContent>
 
           <CardFooter className="flex justify-between">
@@ -75,12 +86,13 @@ export function CardsSection() {
             <CardDescription>You have 3 unread messages.</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
-            <div className=" flex items-center space-x-4 rounded-md border p-4">
+            <div className="flex-row flex items-center space-x-4 rounded-md border p-4">
               <BellRing />
               <div className="flex-1 space-y-1">
                 <p className="text-sm font-medium leading-none">Push Notifications</p>
                 <p className="text-sm text-muted-foreground">Send notifications to device.</p>
               </div>
+              <Switch />
             </div>
             <div>
               {notifications.map((notification, index) => (

@@ -12,6 +12,7 @@ import { CheckboxSection } from "./Sections/CheckBoxSection";
 import { DialogSection } from "./Sections/DialogSection";
 import { InputsSection } from "./Sections/InputsSection";
 import { LabelSection } from "./Sections/LabelSection";
+import { SwitchSection } from "./Sections/SwitchSection";
 
 const ChartSection = lazy(() => import("./Sections/Charts/ChartSection"));
 
@@ -24,6 +25,8 @@ export default function HomePage() {
         <ButtonsSection />
 
         <BadgesSection />
+
+        <SwitchSection />
 
         <CardsSection />
 

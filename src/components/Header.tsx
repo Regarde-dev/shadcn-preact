@@ -31,7 +31,7 @@ function HeaderLeftSide() {
         </Button>
         <Badge
           variant="default"
-          className="absolute top-0 -right-12"
+          className="absolute top-0 -right-11"
         >
           0.0.1
         </Badge>
@@ -47,10 +47,8 @@ function HeaderRightSide() {
       <div className="flex px-2 flex-1 flex-row justify-end items-center gap-4">
         <Button
           variant="outline"
-          className="px-3"
-          onClick={() => {
-            setTheme(theme === "light" ? "dark" : "light");
-          }}
+          size="icon"
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         >
           {theme === "light" && <Sun className="w-4 h-4 text-primary" />}
           {theme === "dark" && <Moon className="w-4 h-4 text-primary" />}

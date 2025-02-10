@@ -1,5 +1,7 @@
 import { Badge } from "@ui/badge";
 import { Button } from "@ui/button";
+import { useTheme } from "@ui/theme";
+import { Moon, Sun } from "lucide-preact";
 
 export function Header() {
   return (
@@ -39,9 +41,21 @@ function HeaderLeftSide() {
 }
 
 function HeaderRightSide() {
+  const { setTheme, theme } = useTheme();
   return (
     <div className="flex h-full flex-row items-center justify-center flex-1">
-      <div className="flex px-2 flex-1 flex-row justify-end items-center gap-4"></div>
+      <div className="flex px-2 flex-1 flex-row justify-end items-center gap-4">
+        <Button
+          variant="outline"
+          className="px-3"
+          onClick={() => {
+            setTheme(theme === "ligth" ? "dark" : "ligth");
+          }}
+        >
+          {theme === "ligth" && <Sun className="w-4 h-4 text-primary" />}
+          {theme === "dark" && <Moon className="w-4 h-4 text-primary" />}
+        </Button>
+      </div>
     </div>
   );
 }

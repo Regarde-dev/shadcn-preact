@@ -1,9 +1,10 @@
+import { ThemeProvider } from "@ui/theme";
 import { Toaster } from "react-hot-toast";
 import HomePage from "./routes/Home";
 
 export function App() {
   return (
-    <>
+    <ThemeProvider>
       <HomePage />
       <Toaster
         position="bottom-right"
@@ -14,6 +15,6 @@ export function App() {
           },
         }}
       />
-    </>
+    </ThemeProvider>
   );
 }

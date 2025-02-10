@@ -31,11 +31,11 @@
 body {
   display: block;
   background-origin: 0 0;
+  background-color: var(--primary);
+  background: repeat url("./assets/dot-pattern.png");
+  transition: all ease-in-out 0.1s;
   &.dark {
     background: repeat url("./assets/dot-pattern-black.png");
-  }
-  &:not(.dark) {
-    background: repeat url("./assets/dot-pattern.png");
   }
 }
 

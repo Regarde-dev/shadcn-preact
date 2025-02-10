@@ -43,7 +43,7 @@ export default function HomePage() {
           <ChartSection />
         </Suspense>
 
-        <h1 className="w-full text-center text-xl font-bold">Blocks</h1>
+        <h2 className="w-full text-center text-xl font-bold text-primary">Blocks</h2>
 
         <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
           <Login01 className="w-full max-w-lg" />

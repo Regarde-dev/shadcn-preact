@@ -1,6 +1,7 @@
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { Toggle } from "@ui/toggle";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@ui/tooltip";
 import { Bold, Italic, Loader2, MailOpen, Underline, User } from "lucide-preact";
 import toast from "react-hot-toast";
 
@@ -26,6 +27,18 @@ export function ButtonsSection() {
         <Button variant="link">Button</Button>
 
         <Button variant="destructive">Button</Button>
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button variant="outline">Hover</Button>
+            </TooltipTrigger>
+
+            <TooltipContent>
+              <p>Add to library</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
 
         <Toggle aria-label="Toggle italic">
           <Bold className="h-4 w-4" />

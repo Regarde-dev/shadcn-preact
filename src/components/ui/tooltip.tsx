@@ -1,5 +1,7 @@
 import { createContext, createRef, PropsWithChildren } from "preact/compat";
 import { useContext, useEffect, useState } from "preact/hooks";
+import { cn } from "./share/cn";
+import { debounce } from "./share/debounce";
 
 type TooltipContextT = {
   isOpen: boolean;
@@ -16,7 +18,6 @@ export function TooltipProvider({ children }: TooltipProviderProps) {
   const tooltip_ref = createRef<HTMLDivElement>();
 
   const open = () => setIsOpen(true);
-
   const close = () => setIsOpen(false);
 
   useEffect(() => {
@@ -88,16 +89,24 @@ export function useTooltip() {
   return context;
 }
 
+export function Tooltip({ children }: PropsWithChildren) {
+  return children;
+}
+
 export function TooltipTrigger({ children }: PropsWithChildren) {
   const { open, close } = useTooltip();
 
+  const openDebounced = debounce(open, 800);
+  const closeDebounced = debounce(close, 300);
+
   return (
     <div
-      onMouseEnter={open}
-      onMouseLeave={close}
-      onFocus={open}
-      onFocusOut={close}
-      className="bg-transparent p-0 m-0 w-fit relative border-none border-0"
+      onMouseEnter={openDebounced}
+      onFocus={openDebounced}
+      onMouseLeave={closeDebounced}
+      onFocusOut={closeDebounced}
+      onBlur={closeDebounced}
+      className="bg-transparent p-0 m-0 w-fit relative border-none border-0 outline-none"
     >
       {children}
     </div>
@@ -105,10 +114,14 @@ export function TooltipTrigger({ children }: PropsWithChildren) {
 }
 
 export function TooltipContent({ children }: PropsWithChildren) {
+  const { isOpen } = useTooltip();
   return (
     <div
       data-tooltip-content
-      className="fixed top-[-9999px] text-nowrap h-fit opacity-0 py-[2px] bg-black px-4 text-white text-sm border border-gray-200 shadow w-fit rounded-lg justify-center items-center flex"
+      data-state={isOpen ? "open" : "closed"}
+      className={cn(
+        "fixed z-50 overflow-hidden rounded-md bg-primary px-3 py-1.5 text-xs text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+      )}
     >
       {children}
     </div>

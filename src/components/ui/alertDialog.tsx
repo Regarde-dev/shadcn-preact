@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren } from "preact/compat";
-import { useCallback, useContext, useEffect, useState } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 import { Button } from "./button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "./card";
 import { Modal } from "./modal";
@@ -16,8 +16,8 @@ type AlertDialogProviderProps = PropsWithChildren & { open?: boolean; onChange?:
 export function AlertDialog({ open: controlledIsOpen = false, children, onChange }: AlertDialogProviderProps) {
   const [open, setOpen] = useState(controlledIsOpen);
 
-  const openDialog = () => useCallback(() => setOpen(true), []);
-  const closeDialog = () => useCallback(() => setOpen(false), []);
+  const openDialog = () => setOpen(true);
+  const closeDialog = () => setOpen(false);
 
   useEffect(() => {
     if (onChange) {

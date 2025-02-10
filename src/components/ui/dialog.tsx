@@ -1,5 +1,5 @@
 import { createContext, createRef, forwardRef, HTMLAttributes, PropsWithChildren } from "preact/compat";
-import { useCallback, useContext, useEffect, useState } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
 
 import { X } from "lucide-preact";
 import { Card, CardDescription, CardHeader, CardTitle } from "./card";
@@ -18,8 +18,8 @@ type DialogProviderProps = PropsWithChildren & { open?: boolean; onChange?: (ope
 export function Dialog({ open: controlledIsOpen = false, children, onChange }: DialogProviderProps) {
   const [open, setOpen] = useState(controlledIsOpen);
 
-  const openDialog = () => useCallback(() => setOpen(true), []);
-  const closeDialog = () => useCallback(() => setOpen(false), []);
+  const openDialog = () => setOpen(true);
+  const closeDialog = () => setOpen(false);
 
   useEffect(() => {
     if (onChange) {

@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren } from "preact/compat";
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useCallback, useContext, useEffect, useState } from "preact/hooks";
 import { Button } from "./button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "./card";
 import { Modal } from "./modal";
@@ -13,11 +13,11 @@ const AlertContext = createContext<{
 
 type AlertDialogProviderProps = PropsWithChildren & { open?: boolean; onChange?: (open: boolean) => void };
 
-export function AlertDialog({ open: handleOpen = false, children, onChange }: AlertDialogProviderProps) {
-  const [open, setOpen] = useState(handleOpen);
+export function AlertDialog({ open: controlledIsOpen = false, children, onChange }: AlertDialogProviderProps) {
+  const [open, setOpen] = useState(controlledIsOpen);
 
-  const openDialog = () => setOpen(true);
-  const closeDialog = () => setOpen(false);
+  const openDialog = () => useCallback(() => setOpen(true), []);
+  const closeDialog = () => useCallback(() => setOpen(false), []);
 
   useEffect(() => {
     if (onChange) {
@@ -26,8 +26,8 @@ export function AlertDialog({ open: handleOpen = false, children, onChange }: Al
   }, [open]);
 
   useEffect(() => {
-    setOpen(handleOpen);
-  }, [handleOpen]);
+    setOpen(controlledIsOpen);
+  }, [controlledIsOpen]);
 
   return <AlertContext.Provider value={{ open, openDialog, closeDialog }}>{children}</AlertContext.Provider>;
 }
@@ -35,7 +35,7 @@ export function AlertDialog({ open: handleOpen = false, children, onChange }: Al
 export function useAlertDialog() {
   const context = useContext(AlertContext);
   if (!context) {
-    throw new Error("useAlertDialog debe ser usado dentro de un AlertDialogProvider");
+    throw new Error("useAlertDialog should be used inside of an AlertDialogProvider");
   }
   return context;
 }

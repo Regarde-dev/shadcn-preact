@@ -1,6 +1,7 @@
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
-import { Loader2, MailOpen, User } from "lucide-preact";
+import { Toggle } from "@ui/toggle";
+import { Bold, Italic, Loader2, MailOpen, Underline, User } from "lucide-preact";
 import toast from "react-hot-toast";
 
 export function ButtonsSection() {
@@ -26,6 +27,29 @@ export function ButtonsSection() {
 
         <Button variant="destructive">Button</Button>
 
+        <Toggle aria-label="Toggle italic">
+          <Bold className="h-4 w-4" />
+        </Toggle>
+
+        <Toggle
+          variant="outline"
+          aria-label="Toggle italic"
+        >
+          <Italic />
+        </Toggle>
+
+        <Toggle aria-label="Toggle italic">
+          <Italic />
+          Italic
+        </Toggle>
+
+        <Toggle
+          aria-label="Toggle italic"
+          disabled
+        >
+          <Underline className="h-4 w-4" />
+        </Toggle>
+
         <Button
           onClick={() => {
             toast.loading("Making Transaction");
@@ -33,7 +57,7 @@ export function ButtonsSection() {
             toast.error("Transaction Success");
           }}
         >
-          Toast
+          Toast Me
         </Button>
 
         <Button>

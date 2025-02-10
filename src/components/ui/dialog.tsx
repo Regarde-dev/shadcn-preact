@@ -1,5 +1,5 @@
 import { createContext, createRef, forwardRef, HTMLAttributes, PropsWithChildren } from "preact/compat";
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useCallback, useContext, useEffect, useState } from "preact/hooks";
 
 import { X } from "lucide-preact";
 import { Card, CardDescription, CardHeader, CardTitle } from "./card";
@@ -15,11 +15,11 @@ const DialogContext = createContext<{
 
 type DialogProviderProps = PropsWithChildren & { open?: boolean; onChange?: (open: boolean) => void };
 
-export function Dialog({ open: handleOpen = false, children, onChange }: DialogProviderProps) {
-  const [open, setOpen] = useState(handleOpen);
+export function Dialog({ open: controlledIsOpen = false, children, onChange }: DialogProviderProps) {
+  const [open, setOpen] = useState(controlledIsOpen);
 
-  const openDialog = () => setOpen(true);
-  const closeDialog = () => setOpen(false);
+  const openDialog = () => useCallback(() => setOpen(true), []);
+  const closeDialog = () => useCallback(() => setOpen(false), []);
 
   useEffect(() => {
     if (onChange) {
@@ -28,8 +28,8 @@ export function Dialog({ open: handleOpen = false, children, onChange }: DialogP
   }, [open]);
 
   useEffect(() => {
-    setOpen(handleOpen);
-  }, [handleOpen]);
+    setOpen(controlledIsOpen);
+  }, [controlledIsOpen]);
 
   return <DialogContext.Provider value={{ open, openDialog, closeDialog }}>{children}</DialogContext.Provider>;
 }

@@ -14,11 +14,17 @@ type CheckboxProps = HTMLAttributes<HTMLButtonElement> & {
 
 const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
   ({ className, checked, defaultChecked, required, onCheckedChange, ...props }, ref) => {
-    const [internalIsChecked, setIsChecked] = useState<CheckedState>(checked || defaultChecked || false);
+    const [internalIsChecked, setIsChecked] = useState<CheckedState>(
+      checked !== undefined ? checked : defaultChecked || false
+    );
 
     useLayoutEffect(() => {
-      onCheckedChange && onCheckedChange(internalIsChecked);
+      if (onCheckedChange) onCheckedChange(internalIsChecked);
     }, [internalIsChecked]);
+
+    useLayoutEffect(() => {
+      setIsChecked(checked);
+    }, [checked]);
 
     return (
       <>

@@ -1,13 +1,11 @@
-@use "./components/ui/base.scss";
+@use "./components/ui/base.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
-
 :root {
-  font-family: "Geist", serif;
+  font-family: "Geist", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   font-size: 16px;

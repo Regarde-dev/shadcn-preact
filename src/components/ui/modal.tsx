@@ -37,12 +37,13 @@ type ModalContentProps = PropsWithChildren<
 
 const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(({ className, ...props }, ref) => {
   useEffect(() => {
+    // TODO: FIX this for not break sticky components
     document.body.classList.add("overflow-hidden");
-    $app_root_container.classList.add("overflow-hidden");
+    // $app_root_container.classList.add("overflow-hidden");
 
     return () => {
       document.body.classList.remove("overflow-hidden");
-      $app_root_container.classList.remove("overflow-hidden");
+      // $app_root_container.classList.remove("overflow-hidden");
     };
   }, []);
 

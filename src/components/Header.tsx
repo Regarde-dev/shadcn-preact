@@ -5,7 +5,7 @@ import { Moon, Sun } from "lucide-preact";
 
 export function Header() {
   return (
-    <header className="w-full max-w-[720px] self-center sticky p-2 px-1 top-0 header-height flex bg-background z-10 flex-row rounded border border-primary shadow-md items-center justify-between">
+    <header className="w-full max-w-screen-lg self-center sticky p-2 top-1 header-height rounded-md flex bg-background z-30 flex-row border border-primary/30 shadow-md items-center justify-between">
       <HeaderLeftSide />
       <HeaderRightSide />
     </header>
@@ -30,10 +30,10 @@ function HeaderLeftSide() {
           </a>
         </Button>
         <Badge
-          variant="default"
-          className="absolute top-0 -right-11"
+          variant="secondary"
+          className="absolute top-0 left-[102%]"
         >
-          0.0.1
+          0.0.17
         </Badge>
       </div>
     </div>

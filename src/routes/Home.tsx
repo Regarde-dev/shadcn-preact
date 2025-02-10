@@ -45,7 +45,13 @@ export default function HomePage() {
 
         <DialogSection />
 
-        <Suspense fallback={<LoadingSpinner show />}>
+        <Suspense
+          fallback={
+            <div className="w-full flex flex-row justify-center items-center p-4">
+              <LoadingSpinner show />
+            </div>
+          }
+        >
           <ChartSection />
         </Suspense>
 

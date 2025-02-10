@@ -1,5 +1,5 @@
 import { forwardRef, HTMLAttributes } from "preact/compat";
-import { useEffect, useState } from "preact/hooks";
+import { useLayoutEffect, useState } from "preact/hooks";
 import { Input } from "./ui/input";
 import { cn } from "./ui/share/cn";
 
@@ -11,11 +11,11 @@ type NumberInputProps = HTMLAttributes<HTMLInputElement> & {
 export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(({ className, ...props }, ref) => {
   const [value, setValue] = useState<string>(props.initial_value.toString());
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setValue(props.initial_value.toString());
   }, [props.initial_value]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const timeOut = setTimeout(() => {
       if (value === "-") return;
       const parseRes = parseFloat(value);
@@ -38,6 +38,10 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(({ cla
         setValue(e.currentTarget.value);
       }}
       onFocusOut={(e) => {
+        e.preventDefault();
+        setValue(e.currentTarget.value);
+      }}
+      onBlur={(e) => {
         e.preventDefault();
         setValue(e.currentTarget.value);
       }}

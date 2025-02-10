@@ -1,5 +1,5 @@
 import { createContext, createRef, PropsWithChildren } from "preact/compat";
-import { useContext, useEffect, useState } from "preact/hooks";
+import { useContext, useLayoutEffect, useState } from "preact/hooks";
 import { cn } from "./share/cn";
 import { debounce } from "./share/debounce";
 
@@ -20,7 +20,7 @@ export function TooltipProvider({ children }: TooltipProviderProps) {
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!tooltip_ref.current) return;
 
     const $tooltipWrapper = tooltip_ref.current;
@@ -96,8 +96,8 @@ export function Tooltip({ children }: PropsWithChildren) {
 export function TooltipTrigger({ children }: PropsWithChildren) {
   const { open, close } = useTooltip();
 
-  const openDebounced = debounce(open, 800);
-  const closeDebounced = debounce(close, 300);
+  const openDebounced = debounce(open, 100);
+  const closeDebounced = debounce(close, 150);
 
   return (
     <div

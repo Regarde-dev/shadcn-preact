@@ -2,6 +2,7 @@
   "$schema": "https://json.schemastore.org/package.json",
   "name": "preact-shadcn",
   "private": true,
+  "version": "0.0.17",
   "type": "module",
   "scripts": {
     "dev": "vite --force",
@@ -37,7 +38,7 @@
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "sass-embedded": "^1.83.4",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "3.4.17",
     "typescript": "^5.7.3",
     "vite": "^6.1.0"
   }

@@ -19,16 +19,25 @@ export function SimpleSelect(props: SelectProps) {
     setValue(props.value || "");
   }, [props.value]);
 
+  useEffect(() => {
+    // TODO: FIX this for not break sticky components
+    if (open) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [open]);
+
   const select_title = useMemo(() => {
     return data.find((item) => item.value === value)?.title || props.title || "Select";
   }, [data, value, props.title]);
 
   return (
-    <div className="relative w-fit bg-transparent border-none outline-none min-w-[200px] p-0 *:w-full *:justify-between">
+    <div className="relative focus:border-red-200 w-fit bg-transparent border-none outline-none min-w-[200px] p-0 *:w-full *:justify-between">
       <Button
         variant="outline"
         onClick={() => setOpen(!open)}
-        className="z-20 relative"
+        className="relative"
       >
         <span className="text-primary text-sm">{select_title}</span>
         <ChevronDown className="w-4 h-4 text-primary" />
@@ -36,7 +45,7 @@ export function SimpleSelect(props: SelectProps) {
 
       <Show when={open}>
         <>
-          <div className="absolute top-10 z-20 flex w-full flex-col rounded-md border border-border bg-background shadow p-1">
+          <div className="absolute top-10 z-[3px] flex w-full flex-col rounded-md border border-border bg-background shadow p-1">
             {props.data.map((item) => (
               <InternalOption
                 key={item.value}
@@ -51,10 +60,6 @@ export function SimpleSelect(props: SelectProps) {
               />
             ))}
           </div>
-          <div
-            className="fixed top-0 left-0 h-screen w-screen z-10 bg-transparent"
-            onClick={() => setOpen(false)}
-          ></div>
         </>
       </Show>
     </div>

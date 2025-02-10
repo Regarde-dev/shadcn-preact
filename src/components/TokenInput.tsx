@@ -62,6 +62,7 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
               <Show when={isFocus}>
                 <span
                   className={cn(
+                    "animate-caret-blink",
                     props.variant === "secondary"
                       ? "text-primary"
                       : props.variant === "intercalate"

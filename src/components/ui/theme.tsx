@@ -8,11 +8,11 @@ const ThemeContext = createContext<{
   setTheme: (v: ThemeOption) => void;
 }>({
   setTheme: () => {},
-  theme: getThemeFromLocalStorage(),
+  theme: "light",
 });
 
 export const ThemeProvider = (props: PropsWithChildren) => {
-  const [theme, setTheme] = useState<ThemeOption>("light");
+  const [theme, setTheme] = useState<ThemeOption>(getThemeFromLocalStorage());
 
   useEffect(() => {
     if (theme === "light") {

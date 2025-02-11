@@ -1,9 +1,5 @@
 @use "./components/ui/base.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   font-family: "Geist", sans-serif;
   font-optical-sizing: auto;
@@ -22,13 +18,7 @@
 body {
   display: block;
   background-origin: 0 0;
-  background-color: var(--primary);
-  background: repeat url("./assets/dot-pattern.png");
-  transition: all ease-in-out 0.1s;
-
-  &.dark {
-    background: repeat url("./assets/dot-pattern-black.png");
-  }
+  background-color: var(--background);
 }
 
 #app-root {

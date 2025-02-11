@@ -19,50 +19,52 @@ const ChartSection = lazy(() => import("./Sections/Charts/ChartSection"));
 
 export default function HomePage() {
   return (
-    <div className="flex flex-1 min-h-screen h-auto w-full flex-col items-start justify-start relative">
+    <div className="flex flex-1 min-h-screen h-auto w-full flex-col items-center justify-start relative bg-background">
       <Header />
 
-      <div className="w-full flex flex-1 px-2 flex-col items-start justify-start relative py-10 gap-6">
-        <ButtonsSection />
+      <div className="w-full flex flex-1 flex-col items-center border-b border-dashed border-accent justify-start mb-4 relative">
+        <div className="max-w-screen-2xl flex px-4 flex-col w-full border-x border-dashed border-accent py-4 gap-4">
+          <ButtonsSection />
 
-        <BadgesSection />
+          <BadgesSection />
 
-        <SwitchSection />
+          <SwitchSection />
 
-        <CardsSection />
+          <CardsSection />
 
-        <AlertSection />
+          <AlertSection />
 
-        <InputsSection />
+          <InputsSection />
 
-        <TextareaSection />
+          <TextareaSection />
 
-        <LabelSection />
+          <LabelSection />
 
-        <CheckboxSection />
+          <CheckboxSection />
 
-        <AlertDialogSection />
+          <AlertDialogSection />
 
-        <DialogSection />
+          <DialogSection />
 
-        <Suspense
-          fallback={
-            <div className="w-full flex flex-row justify-center items-center p-4">
-              <LoadingSpinner show />
-            </div>
-          }
-        >
-          <ChartSection />
-        </Suspense>
+          <Suspense
+            fallback={
+              <div className="w-full flex flex-row justify-center items-center p-4">
+                <LoadingSpinner show />
+              </div>
+            }
+          >
+            <ChartSection />
+          </Suspense>
 
-        <h2 className="w-full text-center text-xl font-bold text-primary">Blocks</h2>
+          <h2 className="w-full text-center text-xl font-bold text-primary">Blocks</h2>
 
-        <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
-          <Login01 className="w-full max-w-lg" />
-        </div>
+          <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
+            <Login01 className="w-full max-w-lg" />
+          </div>
 
-        <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
-          <Login04 className="w-full max-w-3xl" />
+          <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
+            <Login04 className="w-full max-w-3xl" />
+          </div>
         </div>
       </div>
     </div>

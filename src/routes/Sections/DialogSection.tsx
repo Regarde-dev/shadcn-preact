@@ -31,7 +31,7 @@ export function DialogSection() {
             <Button variant="outline">Edit Profile</Button>
           </DialogTrigger>
 
-          <DialogContent className="sm:max-w-[425px]">
+          <DialogContent className="">
             <DialogHeader>
               <DialogTitle>Edit profile</DialogTitle>
               <DialogDescription>Make changes to your profile here. Click save when you're done.</DialogDescription>

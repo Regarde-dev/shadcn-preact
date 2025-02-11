@@ -49,7 +49,7 @@ export function CheckboxSection() {
           </label>
         </div>
 
-        <Card className="w-[350px]">
+        <Card className="max-w-[350px]">
           <CardHeader>
             <CardTitle>Sidebar</CardTitle>
             <CardDescription>Select the items you want to display in the sidebar.</CardDescription>

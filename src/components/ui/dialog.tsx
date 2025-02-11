@@ -83,7 +83,7 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
             <Card
               ref={ref}
               className={cn(
-                "w-screen py-1 relative min-w-[520px] [&>:not(:first-child):not(:last-child)]:px-6 ",
+                "w-screen py-1 relative max-w-[520px] [&>:not(:first-child):not(:last-child)]:px-6 ",
                 className
               )}
               {...props}

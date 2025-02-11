@@ -34,7 +34,7 @@ export function TextareaSection() {
           <Button>Send message</Button>
         </div>
 
-        <div className="w-2/3 space-y-3 border border-border p-4 max-w-[500px] rounded-lg shadow-md">
+        <div className="w-full space-y-3 border border-border p-4 max-w-[500px] rounded-lg shadow-md">
           <h3 className={"text-sm font-medium"}>Bio</h3>
           <Textarea
             placeholder="Tell us a little bit about yourself"

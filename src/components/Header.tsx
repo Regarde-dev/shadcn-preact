@@ -5,8 +5,8 @@ import { Moon, Sun } from "lucide-preact";
 
 export function Header() {
   return (
-    <header className="w-full border-b border-dashed border-accent items-center header-height flex flex-row justify-center border-grid sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="w-full h-full flex flex-row flex-1 max-w-screen-2xl border-x px-2 border-dashed border-accent py-2">
+    <header className="w-full border-b border-dashed border-accent items-center h-14 flex flex-row justify-center border-grid sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="w-full h-full flex flex-row flex-1 max-w-screen-2xl 2xl:border-x px-0 md:px-2 border-dashed border-accent py-1 md:py-2">
         <HeaderLeftSide />
         <HeaderRightSide />
       </div>
@@ -17,15 +17,15 @@ export function Header() {
 function HeaderLeftSide() {
   return (
     <div className="flex h-full flex-1 flex-row items-center max-md:border-none justify-start">
-      <div className="flex max-w-fit flex-1 flex-row items-center justify-start gap-2 py-1 relative">
+      <div className="flex max-w-fit flex-1 flex-row items-center justify-start gap-2 py-1 relative px-2">
         <a
-          className="mr-4 flex items-center gap-2 lg:mr-6"
+          className="flex items-center gap-2"
           href="/"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 256"
-            className="h-6 w-6 text-primary"
+            className="h-4 w-4 text-primary"
           >
             <rect
               width="256"
@@ -55,12 +55,12 @@ function HeaderLeftSide() {
               stroke-width="32"
             ></line>
           </svg>
-          <span className="text-primary font-bold inline-block">preact-shadcn/ui</span>
+          <span className="text-primary font-bold inline-block text-sm md:text-base">shadcn-preact</span>
         </a>
 
         <Badge
-          variant="outline"
-          className="absolute top-0 left-[98%]"
+          variant="secondary"
+          className="absolute top-0 left-[98%] md:flex hidden"
         >
           0.0.17
         </Badge>
@@ -78,6 +78,7 @@ function HeaderRightSide() {
           variant="ghost"
           size="icon"
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          className="max-md:bg-accent"
         >
           {theme === "dark" && <Sun className="w-4 h-4 text-primary" />}
           {theme === "light" && <Moon className="w-4 h-4 text-primary" />}

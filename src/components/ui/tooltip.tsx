@@ -120,7 +120,7 @@ export function TooltipContent({ children }: PropsWithChildren) {
       data-tooltip-content
       data-state={isOpen ? "open" : "closed"}
       className={cn(
-        "fixed z-50 overflow-hidden rounded-md bg-primary px-3 py-1.5 text-xs text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+        "fixed z-50 overflow-hidden max-md:hidden rounded-md bg-primary px-3 py-1.5 text-xs text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
       )}
     >
       {children}

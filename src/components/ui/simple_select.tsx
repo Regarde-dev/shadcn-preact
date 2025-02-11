@@ -37,7 +37,7 @@ export function SimpleSelect(props: SelectProps) {
       <Button
         variant="outline"
         onClick={() => setOpen(!open)}
-        className="relative"
+        className="relative z-[1px]"
       >
         <span className="text-primary text-sm">{select_title}</span>
         <ChevronDown className="w-4 h-4 text-primary" />
@@ -45,7 +45,11 @@ export function SimpleSelect(props: SelectProps) {
 
       <Show when={open}>
         <>
-          <div className="absolute top-10 z-[3px] flex w-full flex-col rounded-md border border-border bg-background shadow p-1">
+          <div
+            className="fixed top-0 left-0 h-screen w-screen z-[2px] bg-transparent"
+            onClick={() => setOpen(false)}
+          ></div>
+          <div className="absolute top-11 z-[2px] flex w-full flex-col rounded-md border border-border bg-background shadow p-1">
             {props.data.map((item) => (
               <InternalOption
                 key={item.value}
@@ -74,7 +78,7 @@ function InternalOption(props: { value: string; title: string; selected: boolean
       size="sm"
       variant="ghost"
       onClick={props.onSelect}
-      className="justify-start items-center"
+      className="justify-start items-center relative z-[2px]"
     >
       {props.title}
     </Button>

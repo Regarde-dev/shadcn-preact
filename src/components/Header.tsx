@@ -62,7 +62,7 @@ function HeaderLeftSide() {
           variant="secondary"
           className="absolute top-0 left-[98%] md:flex hidden"
         >
-          0.0.17
+          {process.env.VITE_PACKAGE_VERSION}
         </Badge>
       </div>
     </div>

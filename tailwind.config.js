@@ -46,8 +46,7 @@ export default {
           5: "hsl(var(--chart-5))",
         },
       },
-      fontSize: {
-      },
+      fontSize: {},
       borderRadius: {
         "2xl": "calc(var(--radius) + 4px)",
         "xl": "calc(var(--radius) + 2px)",

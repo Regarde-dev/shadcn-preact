@@ -56,7 +56,7 @@ const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(({ className,
         props.onClose();
       }}
       className={cn(
-        "fixed overflow-hidden left-0 top-0 z-50 flex h-[100vh] w-[100vw] max-h-[100vh] max-w-[100vw] flex-col items-center justify-center bg-black/80 modal-in-animation",
+        "fixed overflow-hidden left-0 top-0 z-50 flex h-[100vh] w-[100vw] max-h-[100vh] max-w-[100vw] flex-col items-center justify-center bg-black/80 animate-in fade-in",
         className
       )}
       {...props}

@@ -8,6 +8,7 @@ import AlertDialogPage from "./routes/Components/AlertDialog";
 import ButtonPage from "./routes/Components/Button";
 import CardPage from "./routes/Components/Card";
 import DialogPage from "./routes/Components/Dialog";
+import TogglePage from "./routes/Components/Toggle";
 import InstallationPage from "./routes/Docs/Installation";
 import IntroductionPage from "./routes/Docs/Introduction";
 import ThemingPage from "./routes/Docs/Theming";
@@ -40,6 +41,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.BUTTON}>
             <ButtonPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.TOGGLE}>
+            <TogglePage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.CARD}>

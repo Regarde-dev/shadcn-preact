@@ -96,6 +96,19 @@ export function NavRoutesLinks() {
         </A>
 
         <A
+          href={AppRoutes.COMPONENTS.TOGGLE}
+          className="w-full group"
+        >
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+          >
+            Toggle
+          </Button>
+        </A>
+
+        <A
           href={AppRoutes.COMPONENTS.CARD}
           className="w-full group"
         >

@@ -6,6 +6,7 @@ import { Modal } from "@ui/modal";
 import { useTheme } from "@ui/theme";
 import { Menu, Moon, Sun, X } from "lucide-preact";
 import { useState } from "preact/hooks";
+import { NavRoutesLinks } from "./ContentLayout";
 import "./MobileNav.scss";
 
 export function Header() {
@@ -106,7 +107,7 @@ function ShadcnIcon() {
   );
 }
 
-function MobileSidebarMenu() {
+export function MobileSidebarMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -122,130 +123,18 @@ function MobileSidebarMenu() {
         show={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
       >
-        <div className="max-w-screen animation-mobile-menu w-full pt-6 p-4 flex flex-col items-start justify-start overflow-auto z-40 h-screen max-h-[400px] bg-background border-x border-t rounded-lg fixed bottom-0 left-0">
+        <div className="max-w-screen animation-mobile-menu w-full pt-6 p-4 flex flex-col items-start justify-start overflow-hidden z-40 h-screen max-h-[400px] bg-background border-x border-t rounded-lg fixed bottom-0 left-0">
           <Button
             size="icon"
             variant="outline"
             onClick={() => setIsMenuOpen(false)}
-            className="absolute w-fit h-fit right-4 top-4 p-1 rounded-md"
+            className="absolute w-fit h-fit right-6 top-2 p-1 rounded-md"
           >
             <X className="w-4 h-4" />
           </Button>
 
-          <div className="w-full h-auto flex flex-col gap-2">
-            <div className="w-full gap-[2px] flex flex-col">
-              <span className="text-sm font-semibold px-1 py-1 h-9 w-full justify-start flex flex-row items-center">
-                Getting Started
-              </span>
-              <A
-                href={AppRoutes.DOCS.INTRO}
-                className="w-full group"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
-                >
-                  Introduction
-                </Button>
-              </A>
-
-              <A
-                href={AppRoutes.DOCS.INSTALLATION}
-                className="w-full group"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
-                >
-                  Installation
-                </Button>
-              </A>
-
-              <A
-                href={AppRoutes.DOCS.THEMING}
-                className="w-full group"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
-                >
-                  Theming
-                </Button>
-              </A>
-
-              <A
-                href={AppRoutes.BLOCKS}
-                className="w-full group"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
-                >
-                  Blocks
-                </Button>
-              </A>
-            </div>
-
-            <div className="w-full gap-[2px] flex flex-col">
-              <span className="text-sm font-semibold px-1 py-1 h-9 w-full justify-start flex flex-row items-center">
-                Components
-              </span>
-              <A
-                href={AppRoutes.COMPONENTS.BUTTON}
-                className="w-full group"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
-                >
-                  Button
-                </Button>
-              </A>
-
-              <A
-                href={AppRoutes.COMPONENTS.CARD}
-                className="w-full group"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
-                >
-                  Card
-                </Button>
-              </A>
-
-              <A
-                href={AppRoutes.COMPONENTS.DIALOG}
-                className="w-full group"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
-                >
-                  Dialog
-                </Button>
-              </A>
-
-              <A
-                href={AppRoutes.COMPONENTS.ALERT_DIALOG}
-                className="w-full group"
-              >
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
-                >
-                  Alert Dialog
-                </Button>
-              </A>
-            </div>
+          <div className="w-full flex flex-col gap-2 h-full overflow-auto pb-6">
+            <NavRoutesLinks />
           </div>
         </div>
       </Modal>

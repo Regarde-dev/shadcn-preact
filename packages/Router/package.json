@@ -1,0 +1,30 @@
+{
+  "name": "preact-router",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "format": "prettier --write ./src/**/* --ignore-unknown"
+  },
+  "dependencies": {
+    "@preact/signals": "^2.0.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "preact": "^10.25.4",
+    "tailwind-merge": "^2.6.0"
+  },
+  "target": "es2020",
+  "author": "LiasCode",
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "sass-embedded": "^1.83.4",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
+}

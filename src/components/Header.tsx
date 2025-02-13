@@ -1,7 +1,12 @@
+import { AppRoutes } from "@/routes/AppRoutes";
+import { A } from "@packages/Router";
 import { Badge } from "@ui/badge";
 import { Button } from "@ui/button";
+import { Modal } from "@ui/modal";
 import { useTheme } from "@ui/theme";
-import { Moon, Sun } from "lucide-preact";
+import { Menu, Moon, Sun, X } from "lucide-preact";
+import { useState } from "preact/hooks";
+import "./MobileNav.scss";
 
 export function Header() {
   return (
@@ -16,47 +21,22 @@ export function Header() {
 
 function HeaderLeftSide() {
   return (
-    <div className="flex h-full flex-1 flex-row items-center max-md:border-none justify-start">
+    <div className="flex h-full md:flex-1 flex-2 flex-row items-center max-md:border-none justify-start">
       <div className="flex max-w-fit flex-1 flex-row items-center justify-start gap-2 py-1 relative px-2">
-        <a
+        <div className="md:hidden flex w-fit h-fit pl-1">
+          <MobileSidebarMenu />
+        </div>
+
+        <ShadcnIcon />
+
+        <A
           className="flex items-center gap-2"
-          href="/"
+          href={AppRoutes.HOME}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 256 256"
-            className="h-4 w-4 text-primary"
-          >
-            <rect
-              width="256"
-              height="256"
-              fill="none"
-            ></rect>
-            <line
-              x1="208"
-              y1="128"
-              x2="128"
-              y2="208"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-            ></line>
-            <line
-              x1="192"
-              y1="40"
-              x2="40"
-              y2="192"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-            ></line>
-          </svg>
-          <span className="text-primary font-bold inline-block text-sm md:text-base">shadcn-preact</span>
-        </a>
+          <span className="text-primary font-bold inline-block text-sm md:text-base">
+            shadcn-<span className="text-purple-500">preact</span>
+          </span>
+        </A>
 
         <Badge
           variant="secondary"
@@ -85,5 +65,190 @@ function HeaderRightSide() {
         </Button>
       </div>
     </div>
+  );
+}
+
+function ShadcnIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      className="h-4 w-4 text-primary"
+    >
+      <rect
+        width="256"
+        height="256"
+        fill="none"
+      ></rect>
+      <line
+        x1="208"
+        y1="128"
+        x2="128"
+        y2="208"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="32"
+      ></line>
+      <line
+        x1="192"
+        y1="40"
+        x2="40"
+        y2="192"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="32"
+      ></line>
+    </svg>
+  );
+}
+
+function MobileSidebarMenu() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <>
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => setIsMenuOpen(true)}
+      >
+        <Menu />
+      </Button>
+      <Modal
+        show={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+      >
+        <div className="max-w-screen animation-mobile-menu w-full pt-6 p-4 flex flex-col items-start justify-start overflow-auto z-40 h-screen max-h-[400px] bg-background border-x border-t rounded-lg fixed bottom-0 left-0">
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={() => setIsMenuOpen(false)}
+            className="absolute w-fit h-fit right-4 top-4 p-1 rounded-md"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+
+          <div className="w-full h-auto flex flex-col gap-2">
+            <div className="w-full gap-[2px] flex flex-col">
+              <span className="text-sm font-semibold px-1 py-1 h-9 w-full justify-start flex flex-row items-center">
+                Getting Started
+              </span>
+              <A
+                href={AppRoutes.DOCS.INTRO}
+                className="w-full group"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
+                >
+                  Introduction
+                </Button>
+              </A>
+
+              <A
+                href={AppRoutes.DOCS.INSTALLATION}
+                className="w-full group"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
+                >
+                  Installation
+                </Button>
+              </A>
+
+              <A
+                href={AppRoutes.DOCS.THEMING}
+                className="w-full group"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
+                >
+                  Theming
+                </Button>
+              </A>
+
+              <A
+                href={AppRoutes.BLOCKS}
+                className="w-full group"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
+                >
+                  Blocks
+                </Button>
+              </A>
+            </div>
+
+            <div className="w-full gap-[2px] flex flex-col">
+              <span className="text-sm font-semibold px-1 py-1 h-9 w-full justify-start flex flex-row items-center">
+                Components
+              </span>
+              <A
+                href={AppRoutes.COMPONENTS.BUTTON}
+                className="w-full group"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
+                >
+                  Button
+                </Button>
+              </A>
+
+              <A
+                href={AppRoutes.COMPONENTS.CARD}
+                className="w-full group"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
+                >
+                  Card
+                </Button>
+              </A>
+
+              <A
+                href={AppRoutes.COMPONENTS.DIALOG}
+                className="w-full group"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
+                >
+                  Dialog
+                </Button>
+              </A>
+
+              <A
+                href={AppRoutes.COMPONENTS.ALERT_DIALOG}
+                className="w-full group"
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full justify-start px-2 py-1 group-data-[route-active=true]:bg-accent"
+                >
+                  Alert Dialog
+                </Button>
+              </A>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 }

@@ -1,22 +1,7 @@
-import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { lazy, Suspense } from "preact/compat";
+import { A } from "@packages/Router";
+import { Button } from "@ui/button";
 import { Header } from "../components/Header";
-import { Login01 } from "./Blocks/Login01";
-import { Login04 } from "./Blocks/Login04";
-import { AlertDialogSection } from "./Sections/AlertDialog";
-import { AlertSection } from "./Sections/AlertSection";
-import { BadgesSection } from "./Sections/BadgeSection";
-import { BreadcrumbSection } from "./Sections/BreadcrumSection";
-import { ButtonsSection } from "./Sections/ButtonsSection";
-import { CardsSection } from "./Sections/CardsSection";
-import { CheckboxSection } from "./Sections/CheckBoxSection";
-import { DialogSection } from "./Sections/DialogSection";
-import { InputsSection } from "./Sections/InputsSection";
-import { LabelSection } from "./Sections/LabelSection";
-import { SwitchSection } from "./Sections/SwitchSection";
-import { TextareaSection } from "./Sections/TextareaSection";
-
-const ChartSection = lazy(() => import("./Sections/Charts/ChartSection"));
+import { AppRoutes } from "./AppRoutes";
 
 export default function HomePage() {
   return (
@@ -24,49 +9,26 @@ export default function HomePage() {
       <Header />
 
       <div className="w-full flex flex-1 flex-col items-center border-b border-dashed border-accent justify-start mb-4 relative">
-        <div className="max-w-screen-2xl *:max-w-[100vw] *:overflow-auto flex px-1 2xl:px-4 flex-col w-full 2xl:border-x border-dashed border-accent py-4 gap-4">
-          <ButtonsSection />
-
-          <BreadcrumbSection />
-
-          <BadgesSection />
-
-          <SwitchSection />
-
-          <CardsSection />
-
-          <AlertSection />
-
-          <InputsSection />
-
-          <TextareaSection />
-
-          <LabelSection />
-
-          <CheckboxSection />
-
-          <AlertDialogSection />
-
-          <DialogSection />
-
-          <Suspense
-            fallback={
-              <div className="w-full flex flex-row justify-center items-center p-4">
-                <LoadingSpinner show />
-              </div>
-            }
-          >
-            <ChartSection />
-          </Suspense>
-
-          <h2 className="w-full text-center text-xl font-bold text-primary">Blocks</h2>
-
-          <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
-            <Login01 className="w-full max-w-lg" />
-          </div>
-
-          <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
-            <Login04 className="w-full max-w-3xl" />
+        <div className="max-w-screen-2xl min-h-[calc(100vh-4rem)] *:max-w-[100vw] *:overflow-auto flex px-1 2xl:px-4 flex-col w-full 2xl:border-x border-dashed border-accent py-4 gap-4">
+          <div className=" flex flex-col items-start gap-1 py-4 md:p-2 px-7">
+            <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1]">
+              Build your component library
+            </h1>
+            <p className="max-w-2xl text-lg font-light text-foreground">
+              A set of beautifully-designed, accessible, and customizable components to help you build your component
+              library. Open Source.
+            </p>
+            <p className="max-w-2xl text-lg font-light text-foreground">
+              This is a direct port of shadcn components api and ui/ux to <strong>preact</strong>.
+            </p>
+            <div className="flex w-full items-center justify-start gap-2 pt-2">
+              <A href={AppRoutes.DOCS.INTRO}>
+                <Button size="sm">Get Started</Button>
+              </A>
+              <A href={AppRoutes.BLOCKS}>
+                <Button variant="ghost">Blocks</Button>
+              </A>
+            </div>
           </div>
         </div>
       </div>

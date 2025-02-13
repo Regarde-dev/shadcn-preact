@@ -6,6 +6,7 @@ import { Login04 } from "./Blocks/Login04";
 import { AlertDialogSection } from "./Sections/AlertDialog";
 import { AlertSection } from "./Sections/AlertSection";
 import { BadgesSection } from "./Sections/BadgeSection";
+import { BreadcrumbSection } from "./Sections/BreadcrumSection";
 import { ButtonsSection } from "./Sections/ButtonsSection";
 import { CardsSection } from "./Sections/CardsSection";
 import { CheckboxSection } from "./Sections/CheckBoxSection";
@@ -25,6 +26,8 @@ export default function HomePage() {
       <div className="w-full flex flex-1 flex-col items-center border-b border-dashed border-accent justify-start mb-4 relative">
         <div className="max-w-screen-2xl *:max-w-[100vw] *:overflow-auto flex px-1 2xl:px-4 flex-col w-full 2xl:border-x border-dashed border-accent py-4 gap-4">
           <ButtonsSection />
+
+          <BreadcrumbSection />
 
           <BadgesSection />
 

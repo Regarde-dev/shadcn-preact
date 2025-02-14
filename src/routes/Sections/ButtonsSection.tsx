@@ -1,7 +1,6 @@
 import { Button } from "@ui/button";
-import { Toggle } from "@ui/toggle";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@ui/tooltip";
-import { Bold, Italic, Loader2, MailOpen, Underline, User } from "lucide-preact";
+import { Loader2, MailOpen, User } from "lucide-preact";
 import toast from "react-hot-toast";
 
 export function ButtonsSection() {
@@ -19,51 +18,6 @@ export function ButtonsSection() {
 
       <Button variant="destructive">Button</Button>
 
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger>
-            <Button variant="outline">Hover</Button>
-          </TooltipTrigger>
-
-          <TooltipContent>
-            <p>Add to library</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-
-      <Toggle aria-label="Toggle italic">
-        <Bold className="h-4 w-4" />
-      </Toggle>
-
-      <Toggle
-        variant="outline"
-        aria-label="Toggle italic"
-      >
-        <Italic />
-      </Toggle>
-
-      <Toggle aria-label="Toggle italic">
-        <Italic />
-        Italic
-      </Toggle>
-
-      <Toggle
-        aria-label="Toggle italic"
-        disabled
-      >
-        <Underline className="h-4 w-4" />
-      </Toggle>
-
-      <Button
-        onClick={() => {
-          toast.loading("Making Transaction");
-          toast.success("Transaction Success");
-          toast.error("Transaction Success");
-        }}
-      >
-        Toast Me
-      </Button>
-
       <Button>
         <MailOpen /> Login with Email
       </Button>
@@ -79,6 +33,28 @@ export function ButtonsSection() {
       >
         <User />
         Login
+      </Button>
+
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <Button variant="outline">Hover</Button>
+          </TooltipTrigger>
+
+          <TooltipContent>
+            <p>Add to library</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+
+      <Button
+        onClick={() => {
+          toast.loading("Making Transaction");
+          toast.success("Transaction Success");
+          toast.error("Transaction Success");
+        }}
+      >
+        Toast Me
       </Button>
     </div>
   );

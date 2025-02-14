@@ -146,6 +146,19 @@ export function NavRoutesLinks() {
             Alert Dialog
           </Button>
         </A>
+
+        <A
+          href={AppRoutes.COMPONENTS.TOOLTIP}
+          className="w-full group"
+        >
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+          >
+            Tooltip
+          </Button>
+        </A>
       </div>
     </>
   );

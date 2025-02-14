@@ -10,6 +10,7 @@ export const AppRoutes = {
     BUTTON: "/component/button",
     TOGGLE: "/component/toggle",
     TOOLTIP: "/component/tooltip",
+    TOAST: "/component/toast",
     SELECT: "/component/select",
     CARD: "/component/card",
     DIALOG: "/component/dialog",

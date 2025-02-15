@@ -148,6 +148,19 @@ export function NavRoutesLinks() {
         </A>
 
         <A
+          href={AppRoutes.COMPONENTS.TEXTAREA}
+          className="w-full group"
+        >
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+          >
+            Textarea
+          </Button>
+        </A>
+
+        <A
           href={AppRoutes.COMPONENTS.ALERT_DIALOG}
           className="w-full group"
         >

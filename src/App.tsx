@@ -8,6 +8,7 @@ import AlertDialogPage from "./routes/Components/AlertDialog";
 import ButtonPage from "./routes/Components/Button";
 import CardPage from "./routes/Components/Card";
 import DialogPage from "./routes/Components/Dialog";
+import TextareaPage from "./routes/Components/Textarea";
 import ToastPage from "./routes/Components/Toast";
 import TogglePage from "./routes/Components/Toggle";
 import TooltipPage from "./routes/Components/Tooltip";
@@ -51,6 +52,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.TOOLTIP}>
             <TooltipPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.TEXTAREA}>
+            <TextareaPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.TOAST}>

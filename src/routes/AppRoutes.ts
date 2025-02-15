@@ -8,6 +8,7 @@ export const AppRoutes = {
   },
   COMPONENTS: {
     BUTTON: "/component/button",
+    TEXTAREA: "/component/textarea",
     TOGGLE: "/component/toggle",
     TOOLTIP: "/component/tooltip",
     TOAST: "/component/toast",

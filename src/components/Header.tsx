@@ -1,6 +1,5 @@
 import { AppRoutes } from "@/routes/AppRoutes";
 import { A } from "@packages/Router";
-import { Badge } from "@ui/badge";
 import { Button } from "@ui/button";
 import { Modal } from "@ui/modal";
 import { useTheme } from "@ui/theme";
@@ -38,13 +37,29 @@ function HeaderLeftSide() {
             shadcn-<span className="text-purple-500">preact</span>
           </span>
         </A>
+      </div>
 
-        <Badge
-          variant="secondary"
-          className="absolute top-0 left-[98%] md:flex hidden"
+      <div className="ml-4 hidden text-sm text-muted-foreground md:flex flex-1 flex-row gap-6 items-center justify-start h-full">
+        <A
+          className="flex items-center data-[route-active=true]:text-primary"
+          href={AppRoutes.DOCS.INTRO}
         >
-          {process.env.VITE_PACKAGE_VERSION}
-        </Badge>
+          Docs
+        </A>
+
+        <A
+          className="flex items-center data-[route-active=true]:text-primary"
+          href={AppRoutes.COMPONENTS.BUTTON}
+        >
+          Components
+        </A>
+
+        <A
+          className="flex items-center data-[route-active=true]:text-primary"
+          href={AppRoutes.BLOCKS}
+        >
+          Blocks
+        </A>
       </div>
     </div>
   );

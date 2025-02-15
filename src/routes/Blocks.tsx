@@ -10,7 +10,7 @@ export default function BlocksPage() {
       <div className="w-full flex flex-1 flex-col items-center border-b border-dashed border-accent justify-start relative">
         <div className="max-w-screen-2xl min-h-[calc(100vh-4rem)] *:max-w-[100vw] *:overflow-auto flex px-1 2xl:px-4 flex-col w-full 2xl:border-x border-dashed border-accent pt-4 gap-4">
           <div className=" flex flex-col items-start gap-10 py-4 md:p-2">
-            <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1]">Blocks</h1>
+            <h1 className="text-2xl font-bold leading-tight tracking-tighter md:text-3xl lg:leading-[1.1]">Blocks</h1>
 
             <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
               <Login01 className="w-full max-w-lg" />

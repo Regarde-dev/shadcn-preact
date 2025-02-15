@@ -4,9 +4,9 @@ import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, Breadcr
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
-import { AlertDialogSection } from "../Sections/AlertDialogSection";
+import { BreadcrumbSection } from "../Sections/BreadcrumSection";
 
-export default function AlertDialogPage() {
+export default function BreadcrumbsPage() {
   return (
     <div className="flex flex-1 min-h-screen h-auto w-full flex-col items-center justify-start relative bg-background">
       <Header />
@@ -24,18 +24,18 @@ export default function AlertDialogPage() {
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbPage>Alert Dialog</BreadcrumbPage>
+                    <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
                   </BreadcrumbItem>
                 </BreadcrumbList>
-                <CardTitle className="text-3xl">Alert Dialog</CardTitle>
+                <CardTitle className="text-3xl">Breadcrumb</CardTitle>
 
                 <CardDescription className="text-md">
-                  A modal dialog that interrupts the user with important content and expects a response.
+                  Displays the path to the current resource using a hierarchy of links.
                 </CardDescription>
               </CardHeader>
 
               <CardContent>
-                <AlertDialogSection />
+                <BreadcrumbSection />
               </CardContent>
             </Card>
           </ContentLayout>

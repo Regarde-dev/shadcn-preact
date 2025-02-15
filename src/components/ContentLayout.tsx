@@ -82,109 +82,23 @@ export function NavRoutesLinks() {
         <span className="text-sm font-semibold p-1 h-9 w-full justify-start flex flex-row items-center">
           Components
         </span>
-        <A
-          href={AppRoutes.COMPONENTS.BUTTON}
-          className="w-full group"
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
-          >
-            Button
-          </Button>
-        </A>
 
-        <A
-          href={AppRoutes.COMPONENTS.TOGGLE}
-          className="w-full group"
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
-          >
-            Toggle
-          </Button>
-        </A>
-
-        <A
-          href={AppRoutes.COMPONENTS.CARD}
-          className="w-full group"
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
-          >
-            Card
-          </Button>
-        </A>
-
-        <A
-          href={AppRoutes.COMPONENTS.DIALOG}
-          className="w-full group"
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
-          >
-            Dialog
-          </Button>
-        </A>
-
-        <A
-          href={AppRoutes.COMPONENTS.TOAST}
-          className="w-full group"
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
-          >
-            Toast
-          </Button>
-        </A>
-
-        <A
-          href={AppRoutes.COMPONENTS.TEXTAREA}
-          className="w-full group"
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
-          >
-            Textarea
-          </Button>
-        </A>
-
-        <A
-          href={AppRoutes.COMPONENTS.ALERT_DIALOG}
-          className="w-full group"
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
-          >
-            Alert Dialog
-          </Button>
-        </A>
-
-        <A
-          href={AppRoutes.COMPONENTS.TOOLTIP}
-          className="w-full group"
-        >
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
-          >
-            Tooltip
-          </Button>
-        </A>
+        {Object.entries(AppRoutes.COMPONENTS).map(([name, route]) => {
+          return (
+            <A
+              href={route}
+              className="w-full group"
+            >
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-full capitalize justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+              >
+                {name.split("_").join(" ").toLocaleLowerCase()}
+              </Button>
+            </A>
+          );
+        })}
       </div>
     </>
   );

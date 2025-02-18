@@ -1,5 +1,5 @@
-import { A } from "@packages/Router";
 import { Button } from "@ui/button";
+import { A } from "preact-hashish-router";
 import { Header } from "../components/Header";
 import { AppRoutes } from "./AppRoutes";
 

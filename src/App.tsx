@@ -1,6 +1,6 @@
-import { ErrorRoute, Route, Router, RouterErrorBoundary } from "@packages/Router";
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { ThemeProvider } from "@ui/theme";
+import { ErrorRoute, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
 import { Toaster } from "react-hot-toast";
 import { AppRoutes } from "./routes/AppRoutes";
 import BlocksPage from "./routes/Blocks";

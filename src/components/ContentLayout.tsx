@@ -1,6 +1,6 @@
 import { AppRoutes } from "@/routes/AppRoutes";
-import { A } from "@packages/Router";
 import { Button } from "@ui/button";
+import { A } from "preact-hashish-router";
 import { PropsWithChildren } from "preact/compat";
 
 export default function MainLayout(props: PropsWithChildren) {

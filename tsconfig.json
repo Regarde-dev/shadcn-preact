@@ -15,7 +15,6 @@
       "react": ["./node_modules/preact/compat/"],
       "react-dom": ["./node_modules/preact/compat/"],
       "@ui/*": ["./src/components/ui/*"],
-      "@packages/*": ["./packages/*"],
       "@/*": ["./src/*"]
     }
   },

@@ -1,7 +1,7 @@
 import ContentLayout from "@/components/ContentLayout";
-import { A } from "@packages/Router";
 import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@ui/breadCrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
+import { A } from "preact-hashish-router";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
 import { SwitchSection } from "../Sections/SwitchSection";

@@ -10,6 +10,7 @@
         "dayjs": "^1.11.13",
         "lucide-preact": "^0.474.0",
         "preact": "^10.25.4",
+        "preact-hashish-router": "^0.0.7",
         "react-day-picker": "^9.5.1",
         "react-hot-toast": "^2.5.1",
         "recharts": "^2.15.1",
@@ -26,28 +27,6 @@
         "prettier-plugin-tailwindcss": "^0.6.11",
         "sass-embedded": "^1.83.4",
         "tailwindcss": "3.4.17",
-        "typescript": "^5.7.3",
-        "vite": "^6.1.0",
-      },
-    },
-    "packages/Router": {
-      "name": "preact-router",
-      "dependencies": {
-        "@preact/signals": "^2.0.1",
-        "class-variance-authority": "^0.7.1",
-        "clsx": "^2.1.1",
-        "preact": "^10.25.4",
-        "tailwind-merge": "^2.6.0",
-      },
-      "devDependencies": {
-        "@preact/preset-vite": "^2.10.1",
-        "autoprefixer": "^10.4.20",
-        "postcss": "^8.5.1",
-        "prettier": "^3.4.2",
-        "prettier-plugin-organize-imports": "^4.1.0",
-        "prettier-plugin-tailwindcss": "^0.6.11",
-        "sass-embedded": "^1.83.4",
-        "tailwindcss": "^3.4.17",
         "typescript": "^5.7.3",
         "vite": "^6.1.0",
       },
@@ -508,7 +487,7 @@
 
     "preact": ["preact@10.25.4", "", {}, "sha512-jLdZDb+Q+odkHJ+MpW/9U5cODzqnB+fy2EiHSZES7ldV5LK7yjlVzTp7R8Xy6W6y75kfK8iWYtFVH7lvjwrCMA=="],
 
-    "preact-router": ["preact-router@workspace:packages/Router"],
+    "preact-hashish-router": ["preact-hashish-router@0.0.7", "", { "peerDependencies": { "preact": "^10.26.2" } }, "sha512-erqW8qvyYAS0mUwSXLRLxTIAeE73F9LvJSz6IPrVXs4ZzGRhLyfNXO4wnfQRmBSYQflF4xvxWOkY//HBvLi54Q=="],
 
     "prettier": ["prettier@3.5.0", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-quyMrVt6svPS7CjQ9gKb3GLEX/rl3BCL2oa/QkNcXv4YNVBC9olt3s+H7ukto06q7B1Qz46PbrKLO34PR6vXcA=="],
 

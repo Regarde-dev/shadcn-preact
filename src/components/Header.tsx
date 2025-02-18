@@ -1,9 +1,9 @@
 import { AppRoutes } from "@/routes/AppRoutes";
-import { A } from "@packages/Router";
 import { Button } from "@ui/button";
 import { Modal } from "@ui/modal";
 import { useTheme } from "@ui/theme";
 import { Menu, Moon, Sun, X } from "lucide-preact";
+import { A } from "preact-hashish-router";
 import { useState } from "preact/hooks";
 import { NavRoutesLinks } from "./ContentLayout";
 import "./MobileNav.scss";

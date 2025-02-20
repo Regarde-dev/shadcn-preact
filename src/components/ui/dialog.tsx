@@ -1,4 +1,4 @@
-import { createContext, createRef, forwardRef, HTMLAttributes, PropsWithChildren } from "preact/compat";
+import { createContext, forwardRef, HTMLAttributes, PropsWithChildren, useRef } from "preact/compat";
 import { useContext, useEffect, useState } from "preact/hooks";
 
 import { X } from "lucide-preact";
@@ -58,7 +58,7 @@ export function DialogTrigger({ children }: PropsWithChildren) {
 export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & { autoSelect?: boolean }>(
   ({ className, children, ...props }, ref) => {
     const { open, closeDialog } = useDialog();
-    const contentRef = createRef<HTMLDivElement>();
+    const contentRef = useRef<HTMLDivElement>();
 
     useEffect(() => {
       if (open) {

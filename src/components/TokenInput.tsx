@@ -1,6 +1,6 @@
 import { Badge, BadgeProps } from "@ui/badge";
 import { cn } from "@ui/share/cn";
-import { createRef, forwardRef, InputHTMLAttributes, useEffect, useState } from "preact/compat";
+import { forwardRef, InputHTMLAttributes, useEffect, useRef, useState } from "preact/compat";
 import { Show } from "./ui/show";
 
 type TokenInputProps = Omit<InputHTMLAttributes, "value"> & {
@@ -21,7 +21,7 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
     const [tokens, setTokens] = useState([]);
     const [isFocus, setIsFocus] = useState(false);
 
-    const contentRef = createRef<HTMLDivElement>();
+    const contentRef = useRef<HTMLDivElement>();
 
     useEffect(() => {
       if (isFocus) {

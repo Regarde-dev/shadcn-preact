@@ -1,4 +1,4 @@
-import { createContext, createRef, PropsWithChildren } from "preact/compat";
+import { createContext, PropsWithChildren, useRef } from "preact/compat";
 import { useContext, useLayoutEffect, useState } from "preact/hooks";
 import { cn } from "./share/cn";
 import { debounce } from "./share/debounce";
@@ -15,7 +15,7 @@ type TooltipProviderProps = PropsWithChildren;
 
 export function TooltipProvider({ children }: TooltipProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const tooltip_ref = createRef<HTMLDivElement>();
+  const tooltip_ref = useRef<HTMLDivElement>();
 
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);

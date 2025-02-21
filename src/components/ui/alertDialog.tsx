@@ -1,7 +1,6 @@
 import { createContext, PropsWithChildren } from "preact/compat";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { Button } from "./button";
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "./card";
 import { Modal } from "./modal";
 import { Show } from "./show";
 
@@ -46,7 +45,7 @@ export function AlertDialogTrigger({ children }: PropsWithChildren) {
   return (
     <div
       onClick={openDialog}
-      className="bg-transparent outline-none border-none p-0 m-0 w-fit h-fit"
+      className="bg-transparent outline-none border-none p-0 m-0 w-fit h-fit max-w-fit max-h-fit"
     >
       {children}
     </div>
@@ -62,52 +61,65 @@ export function AlertDialogContent({ children }: PropsWithChildren) {
         onClose={closeDialog}
         show={true}
       >
-        <Card className="w-screen max-w-[520px]">{children}</Card>
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          data-state="open"
+          className={
+            "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg"
+          }
+        >
+          {children}
+        </div>
       </Modal>
     </Show>
   );
 }
 
-export function AlertDialogHeader({ children }: PropsWithChildren) {
-  return <CardHeader className="flex flex-col space-y-2 text-center pb-2 sm:text-left">{children}</CardHeader>;
-}
+export const AlertDialogHeader = ({ children }: PropsWithChildren) => {
+  return <div className="flex flex-col space-y-2 text-center sm:text-left">{children}</div>;
+};
+AlertDialogHeader.displayName = "AlertDialogHeader";
 
-export function AlertDialogTitle({ children }: PropsWithChildren) {
-  return <CardTitle>{children}</CardTitle>;
-}
+export const AlertDialogFooter = ({ children }: PropsWithChildren) => {
+  return <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">{children}</div>;
+};
+AlertDialogFooter.displayName = "AlertDialogFooter";
 
-export function AlertDialogDescription({ children }: PropsWithChildren) {
-  return <CardDescription>{children}</CardDescription>;
-}
+export const AlertDialogTitle = ({ children }: PropsWithChildren) => {
+  return <div className="text-lg font-semibold">{children}</div>;
+};
+AlertDialogTitle.displayName = "AlertDialogTitle";
 
-export function AlertDialogFooter({ children }: PropsWithChildren) {
-  return <CardFooter className="flex flex-row justify-end gap-4">{children}</CardFooter>;
-}
+export const AlertDialogDescription = ({ children }: PropsWithChildren) => {
+  return <div className="text-sm text-muted-foreground">{children}</div>;
+};
+AlertDialogDescription.displayName = "AlertDialogDescription";
 
-export function AlertDialogCancel({ children, onCancel }: PropsWithChildren<{ onCancel?: () => void }>) {
+export const AlertDialogCancel = ({ children, onCancel }: PropsWithChildren<{ onCancel?: () => void }>) => {
   const { closeDialog } = useAlertDialog();
 
   return (
     <Button
       variant="outline"
-      type="button"
       onClick={() => {
         closeDialog();
         if (onCancel) onCancel();
       }}
+      className="mt-2 sm:mt-0"
     >
       {children}
     </Button>
   );
-}
+};
+AlertDialogCancel.displayName = "AlertDialogCancel";
 
 export function AlertDialogAction({ children, onConfirm }: PropsWithChildren<{ onConfirm?: () => void }>) {
   const { closeDialog } = useAlertDialog();
 
   return (
     <Button
-      variant="default"
-      type="button"
       onClick={() => {
         closeDialog();
         if (onConfirm) onConfirm();

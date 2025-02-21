@@ -2,7 +2,6 @@ import { createContext, forwardRef, HTMLAttributes, PropsWithChildren, useRef } 
 import { useContext, useEffect, useState } from "preact/hooks";
 
 import { X } from "lucide-preact";
-import { Card, CardDescription, CardHeader, CardTitle } from "./card";
 import { Modal } from "./modal";
 import { cn } from "./share/cn";
 import { Show } from "./show";
@@ -56,7 +55,7 @@ export function DialogTrigger({ children }: PropsWithChildren) {
 }
 
 export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & { autoSelect?: boolean }>(
-  ({ className, children, ...props }, ref) => {
+  ({ className, children, ...props }) => {
     const { open, closeDialog } = useDialog();
     const contentRef = useRef<HTMLDivElement>();
 
@@ -77,25 +76,23 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
           show={true}
         >
           <div
-            className="w-fit h-fit"
             ref={contentRef}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            className={cn(
+              "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg",
+              className
+            )}
+            {...props}
           >
-            <Card
-              ref={ref}
-              className={cn(
-                "w-screen py-1 relative max-w-[520px] [&>:not(:first-child):not(:last-child)]:px-6 ",
-                className
-              )}
-              {...props}
+            <button
+              onClick={closeDialog}
+              className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
             >
-              <button
-                onClick={closeDialog}
-                className="absolute w-fit h-fit right-6 top-4 p-1 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
-              >
-                <X className="w-4 h-4" />
-              </button>
-              {children}
-            </Card>
+              <X className="w-4 h-4" />
+            </button>
+            {children}
           </div>
         </Modal>
       </Show>
@@ -104,25 +101,49 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
 );
 DialogContent.displayName = "DialogContent";
 
-export const DialogHeader = CardHeader;
+export const DialogHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("flex flex-col space-y-1.5 text-center sm:text-left", className)}
+      {...props}
+    />
+  )
+);
 DialogHeader.displayName = "DialogHeader";
-
-export const DialogTitle = CardTitle;
-DialogTitle.displayName = "DialogTitle";
-
-export const DialogDescription = CardDescription;
-DialogDescription.displayName = "DialogDescription";
 
 export const DialogFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex items-center justify-end px-6 py-4", className)}
+      className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)}
       {...props}
     />
   )
 );
 DialogFooter.displayName = "DialogFooter";
+
+export const DialogTitle = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      {...props}
+    />
+  )
+);
+DialogTitle.displayName = "DialogTitle";
+
+export const DialogDescription = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props}
+    />
+  )
+);
+DialogDescription.displayName = "DialogDescription";
 
 export const DialogClose = ({ children, onCancel }: PropsWithChildren<{ onCancel?: () => void }>) => {
   const { closeDialog } = useDialog();

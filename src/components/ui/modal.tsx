@@ -37,36 +37,23 @@ type ModalContentProps = PropsWithChildren<
 
 const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(({ className, ...props }, ref) => {
   useEffect(() => {
-    // TODO: FIX this for not break sticky components
+    // TODO: FIX this for not break sticky components or implement Scrollarea component
     document.body.classList.add("overflow-hidden");
-    // $app_root_container.classList.add("overflow-hidden");
 
     return () => {
       document.body.classList.remove("overflow-hidden");
-      // $app_root_container.classList.remove("overflow-hidden");
     };
   }, []);
 
   return (
     <div
       ref={ref}
-      onClick={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        props.onClose();
-      }}
-      className={cn(
-        "fixed overflow-hidden left-0 top-0 z-50 flex h-[100vh] w-[100vw] max-h-[100vh] max-w-[100vw] flex-col items-center justify-center bg-black/80 animate-in fade-in",
-        className
-      )}
+      onClick={props.onClose}
+      data-state="open"
+      className={cn("fixed inset-0 z-50 bg-black/80 animate-in fade-in-0", className)}
       {...props}
     >
-      <div
-        className="w-auto h-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {props.children}
-      </div>
+      {props.children}
     </div>
   );
 });

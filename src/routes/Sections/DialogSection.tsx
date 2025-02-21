@@ -21,42 +21,42 @@ export function DialogSection() {
           <Button variant="outline">Edit Profile</Button>
         </DialogTrigger>
 
-        <DialogContent className="">
+        <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>Make changes to your profile here. Click save when you're done.</DialogDescription>
           </DialogHeader>
 
-          <div className="grid gap-4">
+          <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
               <Label
-                htmlFor="name23"
+                htmlFor="name"
                 className="text-right"
               >
                 Name
               </Label>
               <Input
-                id="name23"
+                id="name"
                 value="Pedro Duarte"
                 className="col-span-3"
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label
-                htmlFor="username23"
+                htmlFor="username"
                 className="text-right"
               >
                 Username
               </Label>
               <Input
-                id="username23"
+                id="username"
                 value="@peduarte"
                 className="col-span-3"
               />
             </div>
           </div>
 
-          <DialogFooter className="justify-end">
+          <DialogFooter>
             <Button type="submit">Save changes</Button>
           </DialogFooter>
         </DialogContent>
@@ -76,14 +76,9 @@ export function DialogSection() {
             <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
           </DialogHeader>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-end space-x-2 flex-row">
             <div className="grid flex-1 gap-2">
-              <Label
-                htmlFor="link"
-                className="sr-only"
-              >
-                Link
-              </Label>
+              <Label htmlFor="link">Link</Label>
               <Input
                 id="link"
                 defaultValue="https://ui.shadcn.com/docs/installation"
@@ -95,7 +90,7 @@ export function DialogSection() {
               size="sm"
               className="px-3"
             >
-              <span className="sr-only">Copy</span>
+              <span>Copy</span>
               <Copy />
             </Button>
           </div>

@@ -46,17 +46,15 @@ export const Calendar = ({ className, classNames, showOutsideDays = true, ...pro
         ...classNames,
       }}
       components={{
-        IconLeft: ({ className, ...props }) => (
-          <ChevronLeft
-            className={cn("h-4 w-4", className)}
-            {...props}
-          />
+        PreviousMonthButton: ({ className, ...props }) => (
+          <button {...props}>
+            <ChevronLeft className={cn("h-4 w-4", className)} />
+          </button>
         ),
-        IconRight: ({ className, ...props }) => (
-          <ChevronRight
-            className={cn("h-4 w-4", className)}
-            {...props}
-          />
+        NextMonthButton: ({ className, ...props }) => (
+          <button {...props}>
+            <ChevronRight className={cn("h-4 w-4", className)} />
+          </button>
         ),
       }}
       {...props}

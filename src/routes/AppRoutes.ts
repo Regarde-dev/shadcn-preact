@@ -23,6 +23,7 @@ export const AppRoutes = {
     TOGGLE: "/component/toggle",
     TOOLTIP: "/component/tooltip",
     CALENDAR: "/component/calendar",
-    // SELECT: "/component/select",
+    DRAWER: "/component/drawer",
+    SELECT: "/component/select",
   },
 } as const;

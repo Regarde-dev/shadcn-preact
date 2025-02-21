@@ -1,6 +1,6 @@
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { Calendar } from "@ui/calendar";
-import { Terminal } from "lucide-preact";
+import { AlertCircle } from "lucide-preact";
 import { useState } from "preact/hooks";
 
 export default function CalendarSection() {
@@ -20,18 +20,28 @@ export default function CalendarSection() {
         .
       </h2>
 
-      <Alert
-        className="max-w-[500px] my-4"
-        variant="destructive"
-      >
-        <Terminal className="h-4 w-4" />
+      <Alert className="max-w-[720px] my-4">
+        <AlertCircle className="h-4 w-4" />
         <AlertTitle>React DayPicker version</AlertTitle>
         <AlertDescription>
-          The last supported version of React DayPicker is <span className="mx-1 font-semibold">8.10.1</span>
+          This calendar component is not fully compatible with the original shadcn calendar component. In order to use
+          the latest version of React DatePicker, we are using a custom component.
         </AlertDescription>
       </Alert>
 
-      <div className="w-full max-w-fit flex flex-col">
+      <h2>
+        All credit of this components goes to{" "}
+        <a
+          className="underline"
+          href="https://github.com/flixlix/shadcn-date-picker"
+          target="_blank"
+        >
+          flixlix
+        </a>
+        .
+      </h2>
+
+      <div className="w-full max-w-fit flex flex-col mt-6">
         <Calendar
           mode="single"
           selected={date}

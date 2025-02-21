@@ -83,22 +83,24 @@ export function NavRoutesLinks() {
           Components
         </span>
 
-        {Object.entries(AppRoutes.COMPONENTS).map(([name, route]) => {
-          return (
-            <A
-              href={route}
-              className="w-full group"
-            >
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full capitalize justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+        {Object.entries(AppRoutes.COMPONENTS)
+          .sort()
+          .map(([name, route]) => {
+            return (
+              <A
+                href={route}
+                className="w-full group"
               >
-                {name.split("_").join(" ").toLocaleLowerCase()}
-              </Button>
-            </A>
-          );
-        })}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full capitalize justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+                >
+                  {name.split("_").join(" ").toLocaleLowerCase()}
+                </Button>
+              </A>
+            );
+          })}
       </div>
     </>
   );

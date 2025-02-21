@@ -9,6 +9,7 @@ import AlertDialogPage from "./routes/Components/AlertDialog";
 import BadgePage from "./routes/Components/Badge";
 import BreadcrumbsPage from "./routes/Components/Breadcrumb";
 import ButtonPage from "./routes/Components/Button";
+import CalendarPage from "./routes/Components/Calendar";
 import CardPage from "./routes/Components/Card";
 import CheckboxPage from "./routes/Components/Checkbox";
 import DialogPage from "./routes/Components/Dialog";
@@ -107,6 +108,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.ALERT}>
             <AlertPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.CALENDAR}>
+            <CalendarPage />
           </Route>
 
           <ErrorRoute>

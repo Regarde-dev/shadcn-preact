@@ -68,6 +68,9 @@ body {
 }
 
 // ----------------------------------------------
+* {
+  @apply underline-offset-4;
+}
 
 :root {
   font-family: "Geist", sans-serif;

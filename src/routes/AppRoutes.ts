@@ -22,6 +22,7 @@ export const AppRoutes = {
     TOAST: "/component/toast",
     TOGGLE: "/component/toggle",
     TOOLTIP: "/component/tooltip",
+    CALENDAR: "/component/calendar",
     // SELECT: "/component/select",
   },
 } as const;

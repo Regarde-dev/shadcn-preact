@@ -16,6 +16,6 @@ export default defineConfig({
   },
   define: {
     "process.env.IS_PREACT": JSON.stringify("true"),
-    "process.env.VITE_PACKAGE_VERSION": "",
+    "process.env.VITE_PACKAGE_VERSION": JSON.stringify(""),
   },
 });

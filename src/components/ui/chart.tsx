@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
+
 import { cn } from "./share/cn";
 
 // Format: { THEME_NAME: CSS_SELECTOR }
@@ -100,6 +101,13 @@ const ChartTooltipContent = React.forwardRef<
       indicator?: "line" | "dot" | "dashed";
       nameKey?: string;
       labelKey?: string;
+      active?: boolean;
+      payload?: any;
+      label?: string | React.ReactNode;
+      labelFormatter?: (label: string | React.ReactNode, payload: any) => React.ReactNode;
+      labelClassName?: string;
+      formatter?: (value: number, name: string, payload: any, index: number, raw: any) => React.ReactNode;
+      color?: string;
     }
 >(
   (
@@ -123,14 +131,11 @@ const ChartTooltipContent = React.forwardRef<
     const { config } = useChart();
 
     const tooltipLabel = React.useMemo(() => {
-      // @ts-expect-error
       if (hideLabel || !payload?.length) {
         return null;
       }
 
-      // @ts-expect-error
       const [item] = payload;
-      // @ts-expect-error
       const key = `${labelKey || item.dataKey || item.name || "value"}`;
       const itemConfig = getPayloadConfigFromPayload(config, item, key);
       const value =
@@ -139,7 +144,6 @@ const ChartTooltipContent = React.forwardRef<
           : itemConfig?.label;
 
       if (labelFormatter) {
-        // @ts-expect-error
         return <div className={cn("font-medium", labelClassName)}>{labelFormatter(value, payload)}</div>;
       }
 
@@ -150,12 +154,10 @@ const ChartTooltipContent = React.forwardRef<
       return <div className={cn("font-medium", labelClassName)}>{value}</div>;
     }, [label, labelFormatter, payload, hideLabel, labelClassName, config, labelKey]);
 
-    // @ts-expect-error
     if (!active || !payload?.length) {
       return null;
     }
 
-    // @ts-expect-error
     const nestLabel = payload.length === 1 && indicator !== "dot";
 
     return (
@@ -168,7 +170,6 @@ const ChartTooltipContent = React.forwardRef<
       >
         {!nestLabel ? tooltipLabel : null}
         <div className="grid gap-1.5">
-          {/* @ts-expect-error */}
           {payload.map((item, index) => {
             const key = `${nameKey || item.name || item.dataKey || "value"}`;
             const itemConfig = getPayloadConfigFromPayload(config, item, key);
@@ -183,7 +184,6 @@ const ChartTooltipContent = React.forwardRef<
                 )}
               >
                 {formatter && item?.value !== undefined && item.name ? (
-                  // @ts-expect-error
                   formatter(item.value, item.name, item, index, item.payload)
                 ) : (
                   <>

@@ -12,6 +12,7 @@ import ButtonPage from "./routes/Components/Button";
 import CalendarPage from "./routes/Components/Calendar";
 import CardPage from "./routes/Components/Card";
 import CarouselPage from "./routes/Components/Carousel";
+import ChartPage from "./routes/Components/Chart";
 import CheckboxPage from "./routes/Components/Checkbox";
 import DialogPage from "./routes/Components/Dialog";
 import DrawerPage from "./routes/Components/Drawer";
@@ -111,6 +112,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.SWITCH}>
             <SwitchPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.CHART}>
+            <ChartPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.BADGE}>

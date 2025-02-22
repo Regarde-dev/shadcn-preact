@@ -207,14 +207,12 @@ export function AreaChartDemo1() {
               cursor={false}
               content={
                 <ChartTooltipContent
-                  /* @ts-expect-error*/
                   labelFormatter={(value: any) => {
                     return new Date(value).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
                     });
                   }}
-                  /* @ts-expect-error*/
                   indicator="dot"
                 />
               }

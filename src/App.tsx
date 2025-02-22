@@ -11,6 +11,7 @@ import BreadcrumbsPage from "./routes/Components/Breadcrumb";
 import ButtonPage from "./routes/Components/Button";
 import CalendarPage from "./routes/Components/Calendar";
 import CardPage from "./routes/Components/Card";
+import CarouselPage from "./routes/Components/Carousel";
 import CheckboxPage from "./routes/Components/Checkbox";
 import DialogPage from "./routes/Components/Dialog";
 import DrawerPage from "./routes/Components/Drawer";
@@ -70,6 +71,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.TOAST}>
             <ToastPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.CAROUSEL}>
+            <CarouselPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.TABLE}>

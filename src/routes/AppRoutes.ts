@@ -26,5 +26,6 @@ export const AppRoutes = {
     DRAWER: "/component/drawer",
     SELECT: "/component/select",
     TABLE: "/component/table",
+    CAROUSEL: "/component/carousel",
   },
 } as const;

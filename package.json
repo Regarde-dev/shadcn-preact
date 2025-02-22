@@ -16,6 +16,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
+    "embla-carousel-react": "^8.5.2",
     "lucide-preact": "^0.474.0",
     "preact": "^10.26.2",
     "preact-hashish-router": "^0.0.12",

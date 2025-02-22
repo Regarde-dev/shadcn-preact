@@ -150,6 +150,7 @@ export const DialogClose = ({ children, onCancel }: PropsWithChildren<{ onCancel
 
   return (
     <div
+      className="*:w-full"
       onClick={() => {
         closeDialog();
         if (onCancel) onCancel();

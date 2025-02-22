@@ -1,6 +1,6 @@
 import ContentLayout from "@/components/ContentLayout";
 import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@ui/breadCrumb";
-import { Card, CardContent, CardHeader, CardTitle } from "@ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { A } from "preact-hashish-router";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
@@ -28,6 +28,7 @@ export default function TablePage() {
                   </BreadcrumbItem>
                 </BreadcrumbList>
                 <CardTitle className="text-3xl">Table</CardTitle>
+                <CardDescription>A responsive table component.</CardDescription>
               </CardHeader>
 
               <CardContent>

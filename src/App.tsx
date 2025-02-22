@@ -17,6 +17,7 @@ import DrawerPage from "./routes/Components/Drawer";
 import InputPage from "./routes/Components/Input";
 import LabelPage from "./routes/Components/Label";
 import SwitchPage from "./routes/Components/Switch";
+import TablePage from "./routes/Components/Table";
 import TextareaPage from "./routes/Components/Textarea";
 import ToastPage from "./routes/Components/Toast";
 import TogglePage from "./routes/Components/Toggle";
@@ -69,6 +70,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.TOAST}>
             <ToastPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.TABLE}>
+            <TablePage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.CARD}>

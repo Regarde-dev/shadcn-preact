@@ -1,5 +1,6 @@
 import { createContext, PropsWithChildren, useRef } from "preact/compat";
-import { useContext, useLayoutEffect, useState } from "preact/hooks";
+import { useContext, useEffect, useState } from "preact/hooks";
+import { Portal } from "./portal";
 import { cn } from "./share/cn";
 import { debounce } from "./share/debounce";
 
@@ -7,6 +8,7 @@ type TooltipContextT = {
   isOpen: boolean;
   open: () => void;
   close: () => void;
+  id: string;
 };
 
 const TooltipContext = createContext<TooltipContextT>(null);
@@ -15,16 +17,17 @@ type TooltipProviderProps = PropsWithChildren;
 
 export function TooltipProvider({ children }: TooltipProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [tooltip_id] = useState(Math.random().toString());
   const tooltip_ref = useRef<HTMLDivElement>();
 
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!tooltip_ref.current) return;
 
     const $tooltipWrapper = tooltip_ref.current;
-    const $tooltipContent = $tooltipWrapper.querySelector("[data-tooltip-content]") as HTMLDivElement;
+    const $tooltipContent = document.querySelector(`[data-tooltip-id="${tooltip_id}"]`) as HTMLDivElement;
 
     if (!$tooltipContent) return;
 
@@ -44,7 +47,7 @@ export function TooltipProvider({ children }: TooltipProviderProps) {
     const dw = wrapper_coords.width - content_coords.width;
 
     if (window.innerWidth - wrapper_coords.left - content_coords.width - 10 <= 0) {
-      leftOffset = window.innerWidth - content_coords.width - 5;
+      leftOffset = window.innerWidth - content_coords.width - 15;
     } else if (wrapper_coords.left >= 20) {
       leftOffset = wrapper_coords.left + dw / 2;
     } else {
@@ -54,7 +57,7 @@ export function TooltipProvider({ children }: TooltipProviderProps) {
     //----- Calculating Vertical Position
     let topOffset = wrapper_coords.top - 30;
 
-    const contentMargin = 5;
+    const contentMargin = 6;
 
     if (window.innerHeight < wrapper_coords.top + wrapper_coords.height + content_coords.height + contentMargin) {
       topOffset = wrapper_coords.top - content_coords.height - contentMargin / 4;
@@ -67,10 +70,10 @@ export function TooltipProvider({ children }: TooltipProviderProps) {
     $tooltipContent.style.top = `${topOffset}px`;
     $tooltipContent.style.zIndex = `99999px`;
     $tooltipContent.style.opacity = "1";
-  }, [open]);
+  }, [open, tooltip_id]);
 
   return (
-    <TooltipContext.Provider value={{ isOpen, open, close }}>
+    <TooltipContext.Provider value={{ isOpen, open, close, id: tooltip_id }}>
       <div
         className="w-fit relative h-fit p-0 m-0"
         ref={tooltip_ref}
@@ -114,16 +117,19 @@ export function TooltipTrigger({ children }: PropsWithChildren) {
 }
 
 export function TooltipContent({ children }: PropsWithChildren) {
-  const { isOpen } = useTooltip();
+  const { isOpen, id } = useTooltip();
   return (
-    <div
-      data-tooltip-content
-      data-state={isOpen ? "open" : "closed"}
-      className={cn(
-        "fixed z-50 overflow-hidden max-md:hidden rounded-md bg-primary px-3 py-1.5 text-xs text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
-      )}
-    >
-      {children}
-    </div>
+    <Portal show={isOpen}>
+      <div
+        data-tooltip-content
+        data-tooltip-id={id}
+        data-state={isOpen ? "open" : "closed"}
+        className={cn(
+          "fixed z-50 overflow-hidden max-md:hidden rounded-md bg-primary px-3 py-1 text-sm text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+        )}
+      >
+        {children}
+      </div>
+    </Portal>
   );
 }

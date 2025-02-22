@@ -25,5 +25,6 @@ export const AppRoutes = {
     CALENDAR: "/component/calendar",
     DRAWER: "/component/drawer",
     SELECT: "/component/select",
+    TABLE: "/component/table",
   },
 } as const;

@@ -7,7 +7,7 @@ import { lazy, Suspense } from "preact/compat";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
 
-const ChartSection = lazy(() => import("../Sections/ChartSection"));
+const ChartSection = lazy(() => import("./Sections/ChartSection"));
 
 export default function ChartPage() {
   return (

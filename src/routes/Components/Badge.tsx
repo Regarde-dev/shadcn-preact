@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/c
 import { A } from "preact-hashish-router";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
-import { BadgesSection } from "../Sections/BadgeSection";
+import { BadgesSection } from "./Sections/BadgeSection";
 
 export default function BadgePage() {
   return (

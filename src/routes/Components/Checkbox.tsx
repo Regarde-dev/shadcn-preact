@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/c
 import { A } from "preact-hashish-router";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
-import { CheckboxSection } from "../Sections/CheckBoxSection";
+import { CheckboxSection } from "./Sections/CheckBoxSection";
 
 export default function CheckboxPage() {
   return (

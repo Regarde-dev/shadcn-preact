@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/c
 import { A } from "preact-hashish-router";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
-import { TextareaSection } from "../Sections/TextareaSection";
+import { TextareaSection } from "./Sections/TextareaSection";
 
 export default function TextareaPage() {
   return (

@@ -7,7 +7,7 @@ import { lazy, Suspense } from "preact/compat";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
 
-const DrawerSection = lazy(() => import("../Sections/DrawerSection"));
+const DrawerSection = lazy(() => import("./Sections/DrawerSection"));
 
 export default function DrawerPage() {
   return (

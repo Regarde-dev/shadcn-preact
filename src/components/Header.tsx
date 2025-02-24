@@ -1,10 +1,9 @@
 import { AppRoutes } from "@/routes/AppRoutes";
 import { Button } from "@ui/button";
-import { Modal } from "@ui/modal";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@ui/drawer";
 import { useTheme } from "@ui/theme";
-import { Menu, Moon, Sun, X } from "lucide-preact";
+import { Menu, Moon, Sun } from "lucide-preact";
 import { A } from "preact-hashish-router";
-import { useState } from "preact/hooks";
 import { NavRoutesLinks } from "./ContentLayout";
 import "./MobileNav.scss";
 
@@ -123,36 +122,26 @@ function ShadcnIcon() {
 }
 
 export function MobileSidebarMenu() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   return (
-    <>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setIsMenuOpen(true)}
-      >
-        <Menu />
-      </Button>
-      <Modal
-        show={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-      >
-        <div className="max-w-screen animation-mobile-menu w-full pt-6 p-4 flex flex-col items-start justify-start overflow-hidden z-40 h-screen max-h-[400px] bg-background border-x border-t rounded-lg fixed bottom-0 left-0">
-          <Button
-            size="icon"
-            variant="outline"
-            onClick={() => setIsMenuOpen(false)}
-            className="absolute w-fit h-fit right-6 top-2 p-1 rounded-md"
-          >
-            <X className="w-4 h-4" />
-          </Button>
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon"
+        >
+          <Menu />
+        </Button>
+      </DrawerTrigger>
 
-          <div className="w-full flex flex-col gap-2 h-full overflow-auto pb-6">
-            <NavRoutesLinks />
-          </div>
+      <DrawerContent className="max-h-[50vh]">
+        <DrawerHeader>
+          <DrawerTitle>Navigation</DrawerTitle>
+        </DrawerHeader>
+
+        <div className="w-full flex flex-col gap-2 h-full overflow-auto px-4">
+          <NavRoutesLinks />
         </div>
-      </Modal>
-    </>
+      </DrawerContent>
+    </Drawer>
   );
 }

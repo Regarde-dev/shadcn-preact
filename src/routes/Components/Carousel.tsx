@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/c
 import { A } from "preact-hashish-router";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
-import { CarouselSection } from "../Sections/CarouselSection";
+import { CarouselSection } from "./Sections/CarouselSection";
 
 export default function CarouselPage() {
   return (

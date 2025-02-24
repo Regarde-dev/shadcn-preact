@@ -7,7 +7,7 @@ import { lazy, Suspense } from "preact/compat";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
 
-const CalendarSection = lazy(() => import("../Sections/CalendarSection"));
+const CalendarSection = lazy(() => import("./Sections/CalendarSection"));
 
 export default function CalendarPage() {
   return (

@@ -6,6 +6,7 @@ import { AppRoutes } from "./routes/AppRoutes";
 import BlocksPage from "./routes/Blocks";
 import AlertPage from "./routes/Components/Alert";
 import AlertDialogPage from "./routes/Components/AlertDialog";
+import AvatarPage from "./routes/Components/Avatar";
 import BadgePage from "./routes/Components/Badge";
 import BreadcrumbsPage from "./routes/Components/Breadcrumb";
 import ButtonPage from "./routes/Components/Button";
@@ -98,6 +99,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.SKELETON}>
             <SkeletonPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.AVATAR}>
+            <AvatarPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.DRAWER}>

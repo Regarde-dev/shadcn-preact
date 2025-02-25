@@ -8,6 +8,7 @@ export const AppRoutes = {
   },
   COMPONENTS: {
     ALERT: "/component/alert",
+    AVATAR: "/component/avatar",
     ALERT_DIALOG: "/component/alert-dialog",
     BADGE: "/component/badge",
     BREADCRUMB: "/component/breadcrumb",

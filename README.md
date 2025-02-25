@@ -20,3 +20,22 @@ _Use this as a reference to build your own component libraries._
 Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix is a heavyweight component library and
 i have tried to port them to Preact for better integration and builint with the minimum external
 dependencies.
+
+**External Deps**
+
+- lucide-preact
+
+- Calendar
+
+  - react-day-picker
+
+- Carousel
+
+  - embla-carousel-react
+
+- Chart
+
+  - recharts
+
+- Drawer
+  - vaul

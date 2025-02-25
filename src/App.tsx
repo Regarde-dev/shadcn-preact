@@ -159,7 +159,7 @@ export function App() {
                 <AlertDescription>This resource doesn't exists</AlertDescription>
               </Alert>
             </div>
-            <Redirect to={AppRoutes.HOME} />
+            <Redirect to={AppRoutes.DOCS.INTRO} />
           </ErrorRoute>
 
           <Toaster

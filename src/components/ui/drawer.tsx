@@ -1,4 +1,4 @@
-import { cn } from "@ui/share/cn";
+import { cn } from "./share/cn";
 import { ComponentProps, ComponentPropsWithoutRef, ElementRef, forwardRef, HTMLAttributes } from "preact/compat";
 import { Drawer as DrawerPrimitive } from "vaul";
 

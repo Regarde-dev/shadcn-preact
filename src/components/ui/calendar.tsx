@@ -2,8 +2,8 @@
  * All credit goes to https://github.com/flixlix/shadcn-date-picker
  */
 
-import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@ui/share/cn";
+import { Button, buttonVariants } from "./button";
+import { cn } from "./share/cn";
 import { differenceInCalendarDays } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
 import * as React from "react";

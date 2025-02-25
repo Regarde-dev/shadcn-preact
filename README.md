@@ -1,4 +1,4 @@
-#  `shadcn/ui` port for PREACT
+# `shadcn/ui` port for PREACT
 
 An unofficial, Preact port of shadcn/ui .
 
@@ -13,11 +13,10 @@ plans to publish it as an npm package (for now).
 Pick the components you need. Copy and paste the code into your project and customize to your needs.
 The code is yours.
 
-*Use this as a reference to build your own component libraries.*
+_Use this as a reference to build your own component libraries._
 
 **Why if Preact is compatible with React?**
 
 Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix is a heavyweight component library and
 i have tried to port them to Preact for better integration and builint with the minimum external
 dependencies.
-

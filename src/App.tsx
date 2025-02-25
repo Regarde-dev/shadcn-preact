@@ -1,6 +1,6 @@
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { ThemeProvider } from "@ui/theme";
-import { ErrorRoute, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
+import { ErrorRoute, Redirect, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
 import { Toaster } from "react-hot-toast";
 import { AppRoutes } from "./routes/AppRoutes";
 import BlocksPage from "./routes/Blocks";
@@ -18,6 +18,7 @@ import DialogPage from "./routes/Components/Dialog";
 import DrawerPage from "./routes/Components/Drawer";
 import InputPage from "./routes/Components/Input";
 import LabelPage from "./routes/Components/Label";
+import SheetPage from "./routes/Components/Sheet";
 import SwitchPage from "./routes/Components/Switch";
 import TablePage from "./routes/Components/Table";
 import TextareaPage from "./routes/Components/Textarea";
@@ -90,6 +91,10 @@ export function App() {
             <DialogPage />
           </Route>
 
+          <Route path={AppRoutes.COMPONENTS.SHEET}>
+            <SheetPage />
+          </Route>
+
           <Route path={AppRoutes.COMPONENTS.DRAWER}>
             <DrawerPage />
           </Route>
@@ -144,6 +149,7 @@ export function App() {
                 <AlertDescription>This resource doesn't exists</AlertDescription>
               </Alert>
             </div>
+            <Redirect to={AppRoutes.HOME} />
           </ErrorRoute>
 
           <Toaster

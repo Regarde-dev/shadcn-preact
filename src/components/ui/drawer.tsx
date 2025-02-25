@@ -1,6 +1,6 @@
-import { cn } from "./share/cn";
 import { ComponentProps, ComponentPropsWithoutRef, ElementRef, forwardRef, HTMLAttributes } from "preact/compat";
 import { Drawer as DrawerPrimitive } from "vaul";
+import { cn } from "./share/cn";
 
 const Drawer = ({ shouldScaleBackground = true, ...props }: ComponentProps<typeof DrawerPrimitive.Root>) => (
   <DrawerPrimitive.Root

@@ -16,6 +16,7 @@ export const AppRoutes = {
     CHECKBOX: "/component/checkbox",
     CHART: "/component/chart",
     DIALOG: "/component/dialog",
+    SHEET: "/component/sheet",
     INPUT: "/component/input",
     LABEL: "/component/label",
     SWITCH: "/component/switch",

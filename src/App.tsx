@@ -19,6 +19,7 @@ import DrawerPage from "./routes/Components/Drawer";
 import InputPage from "./routes/Components/Input";
 import LabelPage from "./routes/Components/Label";
 import SheetPage from "./routes/Components/Sheet";
+import SkeletonPage from "./routes/Components/Skeleton";
 import SwitchPage from "./routes/Components/Switch";
 import TablePage from "./routes/Components/Table";
 import TextareaPage from "./routes/Components/Textarea";
@@ -93,6 +94,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.SHEET}>
             <SheetPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.SKELETON}>
+            <SkeletonPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.DRAWER}>

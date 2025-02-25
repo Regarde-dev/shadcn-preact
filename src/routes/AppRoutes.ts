@@ -20,6 +20,7 @@ export const AppRoutes = {
     INPUT: "/component/input",
     LABEL: "/component/label",
     SWITCH: "/component/switch",
+    SKELETON: "/component/skeleton",
     TEXTAREA: "/component/textarea",
     TOAST: "/component/toast",
     TOGGLE: "/component/toggle",

@@ -48,7 +48,7 @@ function HeaderLeftSide() {
 
         <A
           className="flex items-center data-[route-active=true]:text-primary"
-          href={AppRoutes.COMPONENTS.BUTTON}
+          href={AppRoutes.COMPONENTS[Object.keys(AppRoutes.COMPONENTS).sort()[0]]}
         >
           Components
         </A>

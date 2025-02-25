@@ -87,7 +87,7 @@ export function TableSection() {
           <TableRow>
             <TableHead>Title</TableHead>
             <TableHead>Author</TableHead>
-            <TableHead>Pages</TableHead>
+            <TableHead className="text-end">Pages</TableHead>
             <TableHead className="text-end">Price</TableHead>
             <TableHead className="text-center">Action</TableHead>
           </TableRow>
@@ -98,7 +98,7 @@ export function TableSection() {
             <TableRow>
               <TableCell>{b.title}</TableCell>
               <TableCell>{b.author}</TableCell>
-              <TableCell>{b.pages}</TableCell>
+              <TableCell className="text-end">{b.pages}</TableCell>
               <TableCell className="text-end">{b.price}</TableCell>
               <TableCell className="text-center flex flex-row items-center justify-center">
                 <AlertDialog>

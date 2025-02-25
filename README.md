@@ -38,4 +38,8 @@ dependencies.
   - recharts
 
 - Drawer
+
   - vaul
+
+- Input
+  - input-otp

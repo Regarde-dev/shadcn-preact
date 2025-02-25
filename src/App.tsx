@@ -1,7 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { ThemeProvider } from "@ui/theme";
+import { Toaster } from "@ui/toast";
 import { ErrorRoute, Redirect, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
-import { Toaster } from "react-hot-toast";
 import { AppRoutes } from "./routes/AppRoutes";
 import BlocksPage from "./routes/Blocks";
 import AlertPage from "./routes/Components/Alert";
@@ -37,6 +37,8 @@ export function App() {
     <Router type="browser">
       <RouterErrorBoundary>
         <ThemeProvider>
+          <Toaster position="bottom-right" />
+
           <Route path={AppRoutes.HOME}>
             <HomePage />
           </Route>
@@ -161,16 +163,6 @@ export function App() {
             </div>
             <Redirect to={AppRoutes.DOCS.INTRO} />
           </ErrorRoute>
-
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              duration: 2500,
-              style: {
-                border: "1px solid var(--border)",
-              },
-            }}
-          />
         </ThemeProvider>
       </RouterErrorBoundary>
     </Router>

@@ -12,7 +12,7 @@ const DialogContext = createContext<{
   closeDialog: () => void;
 } | null>(null);
 
-type DialogProviderProps = PropsWithChildren & { open?: boolean; onChange?: (open: boolean) => void };
+export type DialogProviderProps = PropsWithChildren & { open?: boolean; onChange?: (open: boolean) => void };
 
 export function Dialog({ open: controlledIsOpen = false, children, onChange }: DialogProviderProps) {
   const [open, setOpen] = useState(controlledIsOpen);

@@ -13,6 +13,7 @@ export const AppRoutes = {
     TABS: "/component/tabs",
     BADGE: "/component/badge",
     BREADCRUMB: "/component/breadcrumb",
+    COMMAND: "/component/command",
     BUTTON: "/component/button",
     CARD: "/component/card",
     CHECKBOX: "/component/checkbox",

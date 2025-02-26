@@ -15,6 +15,7 @@ import CardPage from "./routes/Components/Card";
 import CarouselPage from "./routes/Components/Carousel";
 import ChartPage from "./routes/Components/Chart";
 import CheckboxPage from "./routes/Components/Checkbox";
+import CommandPage from "./routes/Components/Command";
 import DialogPage from "./routes/Components/Dialog";
 import DrawerPage from "./routes/Components/Drawer";
 import InputPage from "./routes/Components/Input";
@@ -23,6 +24,7 @@ import SheetPage from "./routes/Components/Sheet";
 import SkeletonPage from "./routes/Components/Skeleton";
 import SwitchPage from "./routes/Components/Switch";
 import TablePage from "./routes/Components/Table";
+import TabsPage from "./routes/Components/Tabs";
 import TextareaPage from "./routes/Components/Textarea";
 import ToastPage from "./routes/Components/Toast";
 import TogglePage from "./routes/Components/Toggle";
@@ -31,7 +33,6 @@ import InstallationPage from "./routes/Docs/Installation";
 import IntroductionPage from "./routes/Docs/Introduction";
 import ThemingPage from "./routes/Docs/Theming";
 import HomePage from "./routes/Home";
-import TabsPage from "./routes/Components/Tabs";
 
 export function App() {
   return (
@@ -90,6 +91,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.TABLE}>
             <TablePage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.COMMAND}>
+            <CommandPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.CARD}>

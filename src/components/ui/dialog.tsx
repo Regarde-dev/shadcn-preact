@@ -68,7 +68,8 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
 
     return (
       <Show when={open}>
-        <Modal onClose={closeDialog} show={true}>
+        {/* biome-ignore lint/a11y/useSemanticElements: */}
+        <Modal onClose={closeDialog} show={true} role="dialog">
           <div
             ref={contentRef}
             onClick={(e) => {

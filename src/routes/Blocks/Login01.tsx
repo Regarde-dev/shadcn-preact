@@ -19,9 +19,9 @@ export function Login01({ className, ...props }: React.ComponentPropsWithoutRef<
           <form>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email-login01">Email</Label>
                 <Input
-                  id="email"
+                  id="email-login01"
                   type="email"
                   placeholder="m@example.com"
                   required
@@ -29,7 +29,7 @@ export function Login01({ className, ...props }: React.ComponentPropsWithoutRef<
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password-login01">Password</Label>
                   <a
                     href="#"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
@@ -38,7 +38,7 @@ export function Login01({ className, ...props }: React.ComponentPropsWithoutRef<
                   </a>
                 </div>
                 <Input
-                  id="password"
+                  id="password-login01"
                   type="password"
                   required
                 />

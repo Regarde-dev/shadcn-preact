@@ -13,7 +13,7 @@
         "input-otp": "^1.4.2",
         "lucide-preact": "^0.474.0",
         "preact": "^10.26.2",
-        "preact-hashish-router": "^0.0.13",
+        "preact-hashish-router": "^0.0.16",
         "react-day-picker": "^9.5.1",
         "react-hot-toast": "^2.5.2",
         "recharts": "^2.15.1",
@@ -535,7 +535,7 @@
 
     "preact": ["preact@10.26.2", "", {}, "sha512-0gNmv4qpS9HaN3+40CLBAnKe0ZfyE4ZWo5xKlC1rVrr0ckkEvJvAQqKaHANdFKsGstoxrY4AItZ7kZSGVoVjgg=="],
 
-    "preact-hashish-router": ["preact-hashish-router@0.0.13", "", { "peerDependencies": { "preact": "^10.26.2" } }, "sha512-LPEyv6iVx2/OELpjccpmAgPRuv2kWKx4ZA4ZX1pDdrc6a6LUOKegq9wY8iHji40vvVhw3LdQk9YhNwXHFAIDKQ=="],
+    "preact-hashish-router": ["preact-hashish-router@0.0.16", "", { "peerDependencies": { "preact": "^10.26.2" } }, "sha512-GEC3GZvbmND00eRssVY9WEEb02alFQ/35El2jHT7RtFzqbLWGKWos4lO0OvDxG9lfGFlRgrAssrAgbY1aTlK5w=="],
 
     "prettier": ["prettier@3.5.2", "", { "bin": { "prettier": "bin/prettier.cjs" } }, "sha512-lc6npv5PH7hVqozBR7lkBNOGXV9vMwROAPlumdBkX0wTbbzPu/U1hk5yL8p2pt4Xoc+2mkT8t/sow2YrV/M5qg=="],
 

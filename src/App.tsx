@@ -1,7 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { ThemeProvider } from "@ui/theme";
 import { Toaster } from "@ui/toast";
-import { ErrorRoute, Redirect, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
+import { ErrorRoute, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
 import { AppRoutes } from "./routes/AppRoutes";
 import BlocksPage from "./routes/Blocks";
 import AlertPage from "./routes/Components/Alert";
@@ -161,7 +161,6 @@ export function App() {
                 <AlertDescription>This resource doesn't exists</AlertDescription>
               </Alert>
             </div>
-            <Redirect to={AppRoutes.DOCS.INTRO} />
           </ErrorRoute>
         </ThemeProvider>
       </RouterErrorBoundary>

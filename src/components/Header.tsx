@@ -1,11 +1,12 @@
 import { AppRoutes } from "@/routes/AppRoutes";
 import { Button } from "@ui/button";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@ui/drawer";
 import { useTheme } from "@ui/theme";
-import { Menu, Moon, Sun } from "lucide-preact";
+import { Moon, Sun } from "lucide-preact";
 import { A } from "preact-hashish-router";
-import { NavRoutesLinks } from "./ContentLayout";
-import "./MobileNav.scss";
+import { lazy, Suspense } from "preact/compat";
+import { LoadingSpinner } from "./LoadingSpinner";
+
+const MobileSidebarMenu = lazy(() => import("./MobileSidebarMenu"));
 
 export function Header() {
   return (
@@ -23,7 +24,18 @@ function HeaderLeftSide() {
     <div className="flex h-full md:flex-1 flex-2 flex-row items-center max-md:border-none justify-start">
       <div className="flex max-w-fit flex-1 flex-row items-center justify-start gap-2 py-1 relative px-2">
         <div className="md:hidden flex w-fit h-fit pl-1">
-          <MobileSidebarMenu />
+          <Suspense
+            fallback={
+              <Button
+                size="icon"
+                variant="outline"
+              >
+                <LoadingSpinner />
+              </Button>
+            }
+          >
+            <MobileSidebarMenu />
+          </Suspense>
         </div>
 
         <ShadcnIcon />
@@ -118,30 +130,5 @@ function ShadcnIcon() {
         stroke-width="32"
       ></line>
     </svg>
-  );
-}
-
-export function MobileSidebarMenu() {
-  return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-        >
-          <Menu />
-        </Button>
-      </DrawerTrigger>
-
-      <DrawerContent className="max-h-[50vh]">
-        <DrawerHeader>
-          <DrawerTitle>Navigation</DrawerTitle>
-        </DrawerHeader>
-
-        <div className="w-full flex flex-col gap-2 h-full overflow-auto px-4">
-          <NavRoutesLinks />
-        </div>
-      </DrawerContent>
-    </Drawer>
   );
 }

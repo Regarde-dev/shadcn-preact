@@ -1,6 +1,6 @@
 import { render } from "preact";
 import { App } from "./App";
-import "./index.scss";
+import "./index.css";
 
 const $root = document.querySelector("#app-root");
 

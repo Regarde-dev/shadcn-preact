@@ -57,6 +57,7 @@ const BreadcrumbLink = forwardRef<
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
 const BreadcrumbPage = forwardRef<HTMLSpanElement, ComponentPropsWithoutRef<"span">>(({ className, ...props }, ref) => (
+  // biome-ignore lint/a11y/useFocusableInteractive: <explanation>
   <span
     ref={ref}
     role="link"

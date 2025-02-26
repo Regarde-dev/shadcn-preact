@@ -88,7 +88,8 @@ function HeaderRightSide() {
 function ShadcnIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="h-4 w-4 text-primary">
-      <rect width="256" height="256" fill="none"></rect>
+      <title>Shadcn Icon</title>
+      <rect width="256" height="256" fill="none" />
       <line
         x1="208"
         y1="128"
@@ -99,7 +100,7 @@ function ShadcnIcon() {
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="32"
-      ></line>
+      />
       <line
         x1="192"
         y1="40"
@@ -110,7 +111,7 @@ function ShadcnIcon() {
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="32"
-      ></line>
+      />
     </svg>
   );
 }

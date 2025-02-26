@@ -36,9 +36,9 @@ export function TooltipProvider({ children }: TooltipProviderProps) {
 
     if (isOpen === false) {
       //----- Reseting Values, getting off the tooltip content
-      $tooltipContent.style.opacity = `0`;
-      $tooltipContent.style.top = `-9999px`;
-      $tooltipContent.style.zIndex = `0`;
+      $tooltipContent.style.opacity = "0";
+      $tooltipContent.style.top = "-9999px";
+      $tooltipContent.style.zIndex = "0";
       return;
     }
 
@@ -68,9 +68,9 @@ export function TooltipProvider({ children }: TooltipProviderProps) {
     //----- Settings Styles Values
     $tooltipContent.style.left = `${leftOffset}px`;
     $tooltipContent.style.top = `${topOffset}px`;
-    $tooltipContent.style.zIndex = `99999px`;
+    $tooltipContent.style.zIndex = "99999px";
     $tooltipContent.style.opacity = "1";
-  }, [open, tooltip_id]);
+  }, [tooltip_id, tooltip_ref, isOpen]);
 
   return (
     <TooltipContext.Provider value={{ isOpen, open, close, id: tooltip_id }}>

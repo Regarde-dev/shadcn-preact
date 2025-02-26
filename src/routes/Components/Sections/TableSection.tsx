@@ -95,7 +95,7 @@ export function TableSection() {
 
         <TableBody>
           {data.map((b) => (
-            <TableRow>
+            <TableRow key={b.title}>
               <TableCell>{b.title}</TableCell>
               <TableCell>{b.author}</TableCell>
               <TableCell className="text-end">{b.pages}</TableCell>
@@ -136,7 +136,7 @@ export function TableSection() {
           ))}
         </TableBody>
 
-        <TableFooter></TableFooter>
+        <TableFooter />
       </Table>
     </div>
   );

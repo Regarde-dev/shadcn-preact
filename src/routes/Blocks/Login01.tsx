@@ -22,7 +22,7 @@ export function Login01({ className, ...props }: React.ComponentPropsWithoutRef<
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password-login01">Password</Label>
-                  <a href="#" className="ml-auto inline-block text-sm underline-offset-4 hover:underline">
+                  <a href="/#" className="ml-auto inline-block text-sm underline-offset-4 hover:underline">
                     Forgot your password?
                   </a>
                 </div>
@@ -37,7 +37,7 @@ export function Login01({ className, ...props }: React.ComponentPropsWithoutRef<
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
-              <a href="#" className="underline underline-offset-4">
+              <a href="/#" className="underline underline-offset-4">
                 Sign up
               </a>
             </div>

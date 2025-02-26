@@ -24,7 +24,7 @@ export function Dialog({ open: controlledIsOpen = false, children, onChange }: D
     if (onChange) {
       onChange(open);
     }
-  }, [open]);
+  }, [open, onChange]);
 
   useEffect(() => {
     setOpen(controlledIsOpen);
@@ -64,7 +64,7 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
           contentRef.current?.parentElement?.querySelectorAll("input")[0]?.focus();
         }
       }
-    }, [open]);
+    }, [open, props.autoSelect, contentRef]);
 
     return (
       <Show when={open}>
@@ -82,6 +82,7 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
           >
             <button
               onClick={closeDialog}
+              type="button"
               className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
             >
               <X className="w-4 h-4" />

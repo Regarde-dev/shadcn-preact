@@ -41,10 +41,7 @@ export function SimpleSelect(props: SelectProps) {
 
       <Show when={open}>
         <>
-          <div
-            className="fixed top-0 left-0 h-screen w-screen z-[2px] bg-transparent"
-            onClick={() => setOpen(false)}
-          ></div>
+          <div className="fixed top-0 left-0 h-screen w-screen z-[2px] bg-transparent" onClick={() => setOpen(false)} />
           <div className="absolute top-10 z-[2px] flex w-full flex-col rounded-md border border-border bg-background shadow p-1">
             {props.data.map((item) => (
               <InternalOption

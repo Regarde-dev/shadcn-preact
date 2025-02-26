@@ -22,7 +22,7 @@ export function AlertDialog({ open: controlledIsOpen = false, children, onChange
     if (onChange) {
       onChange(open);
     }
-  }, [open]);
+  }, [open, onChange]);
 
   useEffect(() => {
     setOpen(controlledIsOpen);

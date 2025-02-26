@@ -19,7 +19,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(({ cla
     const timeOut = setTimeout(() => {
       if (value === "-") return;
       const parseRes = Number.parseFloat(value);
-      if (isNaN(parseRes)) {
+      if (Number.isNaN(parseRes)) {
         setValue("0");
         props.onNumberChange(0);
         return;
@@ -28,7 +28,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(({ cla
     }, 100);
 
     return () => clearTimeout(timeOut);
-  }, [value]);
+  }, [value, props.onNumberChange]);
 
   return (
     <Input

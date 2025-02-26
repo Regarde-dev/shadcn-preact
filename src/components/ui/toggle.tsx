@@ -37,7 +37,7 @@ const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(({ className, variant,
     if (props.onPressedChange) {
       props.onPressedChange(isOn);
     }
-  }, [isOn]);
+  }, [isOn, props.onPressedChange]);
 
   useEffect(() => {
     if (props.pressed) {

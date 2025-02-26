@@ -75,7 +75,7 @@ export function NavRoutesLinks() {
           .sort()
           .map(([name, route]) => {
             return (
-              <A href={route} className="w-full group">
+              <A href={route} className="w-full group" key={name}>
                 <Button
                   variant="ghost"
                   size="sm"

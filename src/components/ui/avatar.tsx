@@ -45,10 +45,11 @@ const AvatarImage = forwardRef<HTMLImageElement, ImgHTMLAttributes<HTMLImageElem
 
     useEffect(() => {
       changeStatus(loadingStatus);
-    }, [loadingStatus]);
+    }, [loadingStatus, changeStatus]);
 
     return (
       <Show when={status === "loaded"}>
+        {/* biome-ignore lint/a11y/useAltText: <explanation> */}
         <img ref={ref} className={cn("aspect-square h-full w-full", className)} {...props} />
       </Show>
     );

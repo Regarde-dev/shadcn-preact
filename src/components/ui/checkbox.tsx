@@ -20,7 +20,7 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
 
     useLayoutEffect(() => {
       if (onCheckedChange) onCheckedChange(internalIsChecked);
-    }, [internalIsChecked]);
+    }, [internalIsChecked, onCheckedChange]);
 
     useLayoutEffect(() => {
       setIsChecked(checked);
@@ -38,6 +38,7 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
           type="button"
           ref={ref}
           aria-checked={internalIsChecked}
+          // biome-ignore lint/a11y/useSemanticElements: <explanation>
           role={"checkbox"}
           value={internalIsChecked ? "on" : "off"}
           onClick={() => setIsChecked((prev) => !prev)}

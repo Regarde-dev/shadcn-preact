@@ -4,7 +4,8 @@
 
 import { differenceInCalendarDays } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-preact";
-import * as React from "react";
+import type { HTMLAttributes, ReactNode, SetStateAction, TableHTMLAttributes } from "preact/compat";
+import { type Dispatch, useCallback, useMemo, useState } from "preact/hooks";
 import { DayPicker, type DayPickerProps, labelNext, labelPrevious, useDayPicker } from "react-day-picker";
 import { Button, buttonVariants } from "./button";
 import { cn } from "./share/cn";
@@ -62,12 +63,12 @@ export function Calendar({
   numberOfMonths,
   ...props
 }: CalendarProps) {
-  const [navView, setNavView] = React.useState<NavView>("days");
-  const [displayYears, setDisplayYears] = React.useState<{
+  const [navView, setNavView] = useState<NavView>("days");
+  const [displayYears, setDisplayYears] = useState<{
     from: number;
     to: number;
   }>(
-    React.useMemo(() => {
+    useMemo(() => {
       const currentYear = new Date().getFullYear();
       return {
         from: currentYear - Math.floor(yearRange / 2 - 1),
@@ -127,7 +128,7 @@ export function Calendar({
       showOutsideDays={showOutsideDays}
       className={cn("p-3", className)}
       style={{
-        width: 248.8 * (columnsDisplayed ?? 1) + "px",
+        width: `${248.8 * (columnsDisplayed ?? 1)}px`,
       }}
       classNames={{
         months: _monthsClassName,
@@ -180,7 +181,6 @@ export function Calendar({
         ),
         MonthGrid: ({ className, children, ...props }) => (
           <MonthGrid
-            children={children}
             className={className as string}
             displayYears={displayYears}
             startMonth={startMonth}
@@ -188,7 +188,9 @@ export function Calendar({
             navView={navView}
             setNavView={setNavView}
             {...props}
-          />
+          >
+            {children}
+          </MonthGrid>
         ),
       }}
       numberOfMonths={columnsDisplayed}
@@ -213,7 +215,7 @@ function Nav({
   startMonth?: Date;
   endMonth?: Date;
   displayYears: { from: number; to: number };
-  setDisplayYears: React.Dispatch<React.SetStateAction<{ from: number; to: number }>>;
+  setDisplayYears: Dispatch<SetStateAction<{ from: number; to: number }>>;
   onPrevClick?: (date: Date) => void;
   onNextClick?: (date: Date) => void;
 }) {
@@ -239,7 +241,7 @@ function Nav({
     return !nextMonth;
   })();
 
-  const handlePreviousClick = React.useCallback(() => {
+  const handlePreviousClick = useCallback(() => {
     if (!previousMonth) return;
     if (navView === "years") {
       setDisplayYears((prev) => ({
@@ -251,9 +253,9 @@ function Nav({
     }
     goToMonth(previousMonth);
     onPrevClick?.(previousMonth);
-  }, [previousMonth, goToMonth]);
+  }, [previousMonth, goToMonth, navView, setDisplayYears, onPrevClick, displayYears]);
 
-  const handleNextClick = React.useCallback(() => {
+  const handleNextClick = useCallback(() => {
     if (!nextMonth) return;
     if (navView === "years") {
       setDisplayYears((prev) => ({
@@ -265,7 +267,7 @@ function Nav({
     }
     goToMonth(nextMonth);
     onNextClick?.(nextMonth);
-  }, [goToMonth, nextMonth]);
+  }, [goToMonth, nextMonth, navView, setDisplayYears, onNextClick, displayYears]);
   return (
     <nav className={cn("flex items-center", className)}>
       <Button
@@ -311,9 +313,9 @@ function CaptionLabel({
 }: {
   showYearSwitcher?: boolean;
   navView: NavView;
-  setNavView: React.Dispatch<React.SetStateAction<NavView>>;
+  setNavView: Dispatch<SetStateAction<NavView>>;
   displayYears: { from: number; to: number };
-} & React.HTMLAttributes<HTMLSpanElement>) {
+} & HTMLAttributes<HTMLSpanElement>) {
   if (!showYearSwitcher) return <span {...props}>{children}</span>;
   return (
     <Button
@@ -322,7 +324,7 @@ function CaptionLabel({
       size="sm"
       onClick={() => setNavView((prev) => (prev === "days" ? "years" : "days"))}
     >
-      {navView === "days" ? children : displayYears.from + " - " + displayYears.to}
+      {navView === "days" ? children : `${displayYears.from} - ${displayYears.to}`}
     </Button>
   );
 }
@@ -338,13 +340,13 @@ function MonthGrid({
   ...props
 }: {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   displayYears: { from: number; to: number };
   startMonth?: Date;
   endMonth?: Date;
   navView: NavView;
-  setNavView: React.Dispatch<React.SetStateAction<NavView>>;
-} & React.TableHTMLAttributes<HTMLTableElement>) {
+  setNavView: Dispatch<SetStateAction<NavView>>;
+} & TableHTMLAttributes<HTMLTableElement>) {
   if (navView === "years") {
     return (
       <YearGrid
@@ -378,9 +380,9 @@ function YearGrid({
   displayYears: { from: number; to: number };
   startMonth?: Date;
   endMonth?: Date;
-  setNavView: React.Dispatch<React.SetStateAction<NavView>>;
+  setNavView: Dispatch<SetStateAction<NavView>>;
   navView: NavView;
-} & React.HTMLAttributes<HTMLDivElement>) {
+} & HTMLAttributes<HTMLDivElement>) {
   const { goToMonth, selected } = useDayPicker();
 
   return (
@@ -393,6 +395,7 @@ function YearGrid({
         const isDisabled = isBefore || isAfter;
         return (
           <Button
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             key={i}
             className={cn(
               "h-7 w-full text-sm font-normal text-foreground",

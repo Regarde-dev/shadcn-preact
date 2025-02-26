@@ -42,7 +42,7 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
       if (props.onTokensChange) {
         props.onTokensChange(tokens);
       }
-    }, [tokens]);
+    }, [tokens, props.onTokensChange]);
 
     return (
       <div
@@ -60,7 +60,10 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
       >
         {tokens.map((t, i) => (
           <>
-            <Badge variant={props.variant === "intercalate" ? (i % 2 === 0 ? "default" : "outline") : props.variant}>
+            <Badge
+              key={t}
+              variant={props.variant === "intercalate" ? (i % 2 === 0 ? "default" : "outline") : props.variant}
+            >
               {t}
               <Show when={isFocus}>
                 <span

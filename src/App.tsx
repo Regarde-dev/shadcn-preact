@@ -31,6 +31,7 @@ import InstallationPage from "./routes/Docs/Installation";
 import IntroductionPage from "./routes/Docs/Introduction";
 import ThemingPage from "./routes/Docs/Theming";
 import HomePage from "./routes/Home";
+import TabsPage from "./routes/Components/Tabs";
 
 export function App() {
   return (
@@ -65,6 +66,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.TOGGLE}>
             <TogglePage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.TABS}>
+            <TabsPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.TOOLTIP}>

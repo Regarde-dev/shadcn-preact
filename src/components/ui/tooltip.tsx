@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useRef } from "preact/compat";
+import { createContext, createRef, PropsWithChildren } from "preact/compat";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { Portal } from "./portal";
 import { cn } from "./share/cn";
@@ -18,7 +18,7 @@ type TooltipProviderProps = PropsWithChildren;
 export function TooltipProvider({ children }: TooltipProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [tooltip_id] = useState(Math.random().toString());
-  const tooltip_ref = useRef<HTMLDivElement>();
+  const tooltip_ref = createRef<HTMLDivElement>();
 
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);

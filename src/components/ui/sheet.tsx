@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-preact";
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, HTMLAttributes, useEffect, useRef } from "preact/compat";
+import { ComponentPropsWithoutRef, createRef, ElementRef, forwardRef, HTMLAttributes, useEffect } from "preact/compat";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger, useDialog } from "./dialog";
 import { Modal } from "./modal";
 import { cn } from "./share/cn";
@@ -38,7 +38,7 @@ interface SheetContentProps
 const SheetContent = forwardRef<ElementRef<typeof DialogContent>, SheetContentProps>(
   ({ side = "right", className, children, ...props }, ref) => {
     const { open, closeDialog } = useDialog();
-    const contentRef = useRef<HTMLDivElement>();
+    const contentRef = createRef<HTMLDivElement>();
 
     useEffect(() => {
       if (open) {

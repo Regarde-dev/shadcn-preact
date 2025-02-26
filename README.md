@@ -17,29 +17,29 @@ _Use this as a reference to build your own component libraries._
 
 **Why if Preact is compatible with React?**
 
-Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix is a heavyweight component library and
-i have tried to port them to Preact for better integration and builint with the minimum external
-dependencies.
+Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix is ​​an excellent component library, 
+but it is a heavy dependency and I have tried to move it to Preact for better 
+integration and a build with minimal external dependencies.
+
 
 **External Deps**
 
 - lucide-preact
 
 - Calendar
-
   - react-day-picker
 
 - Carousel
-
   - embla-carousel-react
 
 - Chart
-
   - recharts
 
-- Drawer
+- Command
+  - cmdk
 
+- Drawer
   - vaul
 
-- Input
+- Input Otp
   - input-otp

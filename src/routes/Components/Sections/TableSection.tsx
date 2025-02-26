@@ -10,6 +10,15 @@ import {
   AlertDialogTrigger,
 } from "@ui/alertDialog";
 import { Button } from "@ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@ui/pagination";
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@ui/table";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@ui/tooltip";
 import { Trash } from "lucide-preact";
@@ -138,6 +147,36 @@ export function TableSection() {
 
         <TableFooter />
       </Table>
+
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious onClick={(e) => e.preventDefault()} />
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationLink onClick={(e) => e.preventDefault()}>1</PaginationLink>
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationLink isActive onClick={(e) => e.preventDefault()}>
+              2
+            </PaginationLink>
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationLink onClick={(e) => e.preventDefault()}>3</PaginationLink>
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationNext onClick={(e) => e.preventDefault()} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }

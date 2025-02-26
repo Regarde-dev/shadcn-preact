@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 export function TabsSection() {
   return (
     <div className="w-full flex flex-col gap-10 items-center">
-      <Tabs defaultValue="account" className="w-[400px]">
+      <Tabs defaultValue="account" className="max-w-[400px]">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="password">Password</TabsTrigger>

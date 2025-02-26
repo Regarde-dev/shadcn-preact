@@ -1,7 +1,7 @@
 import { Badge, type BadgeProps } from "@ui/badge";
 import { cn } from "@ui/share/cn";
 import { type InputHTMLAttributes, createRef, forwardRef, useEffect, useState } from "preact/compat";
-import { Show } from "./ui/show";
+import { Show } from "./show";
 
 type TokenInputProps = Omit<InputHTMLAttributes, "value"> & {
   onTokensChange?: (tokens: string[]) => void;
@@ -11,10 +11,6 @@ type TokenInputProps = Omit<InputHTMLAttributes, "value"> & {
 
 const SPLITTER_CHARACTER = " ";
 
-/**
- * Input for tokens
- * You can pass a ref to the input element to dispatch focus manually
- * */
 export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
   ({ className, onInput, onFocus, onFocusOut, value, ...props }, ref) => {
     const [raw, setRaw] = useState(value ? value.join(SPLITTER_CHARACTER) : "");
@@ -68,7 +64,7 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
               <Show when={isFocus}>
                 <span
                   className={cn(
-                    "animate-caret-blink",
+                    "animate-pulse duration-500",
                     props.variant === "secondary"
                       ? "text-primary"
                       : props.variant === "intercalate"

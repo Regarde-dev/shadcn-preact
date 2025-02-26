@@ -1,4 +1,4 @@
-import { TokenInput } from "@/components/TokenInput";
+import { TokenInput } from "@ui/TokenInput";
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@ui/input-otp";

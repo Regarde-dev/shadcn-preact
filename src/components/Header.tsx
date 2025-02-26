@@ -20,6 +20,8 @@ export function Header() {
 }
 
 function HeaderLeftSide() {
+  const firstAlphaComponentKey = Object.keys(AppRoutes.COMPONENTS).sort()[0] as keyof typeof AppRoutes.COMPONENTS;
+
   return (
     <div className="flex h-full md:flex-1 flex-2 flex-row items-center max-md:border-none justify-start">
       <div className="flex max-w-fit flex-1 flex-row items-center justify-start gap-2 py-1 relative px-2">
@@ -60,7 +62,7 @@ function HeaderLeftSide() {
 
         <A
           className="flex items-center data-[route-active=true]:text-primary"
-          href={AppRoutes.COMPONENTS[Object.keys(AppRoutes.COMPONENTS).sort()[0]]}
+          href={AppRoutes.COMPONENTS[firstAlphaComponentKey]}
         >
           Components
         </A>

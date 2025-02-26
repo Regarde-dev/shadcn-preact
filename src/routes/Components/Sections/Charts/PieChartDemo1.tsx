@@ -1,10 +1,10 @@
 "use client";
-import { TrendingUp } from "lucide-preact";
-import * as React from "react";
-import { Label, Pie, PieChart } from "recharts";
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@ui/chart";
+import { TrendingUp } from "lucide-preact";
+import { useMemo } from "preact/hooks";
+import { Label, Pie, PieChart } from "recharts";
+
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
   { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
@@ -40,7 +40,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function PieChartDemo1() {
-  const totalVisitors = React.useMemo(() => {
+  const totalVisitors = useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
   }, []);
 
@@ -94,6 +94,7 @@ export function PieChartDemo1() {
                       </text>
                     );
                   }
+                  return null;
                 }}
               />
             </Pie>

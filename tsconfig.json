@@ -6,6 +6,14 @@
     "noEmit": true,
     "allowJs": true,
     "checkJs": true,
+
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+
     /* Preact Config */
     "jsx": "react-jsx",
     "jsxImportSource": "preact",

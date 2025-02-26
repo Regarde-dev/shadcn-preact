@@ -50,10 +50,7 @@ export function BarChartDemo1() {
               tickFormatter={(value: any) => value.slice(0, 3)}
             />
             <ChartTooltip
-              content={
-                /* @ts-expect-error*/
-                <ChartTooltipContent indicator="dashed" />
-              }
+              content={<ChartTooltipContent indicator="dashed" />}
               cursor={false}
             />
             <Bar

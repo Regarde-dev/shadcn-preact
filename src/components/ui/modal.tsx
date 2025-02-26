@@ -9,14 +9,14 @@ type ModalProps = PropsWithChildren<
   }
 >;
 
-const $app_modal_container = document.querySelector<HTMLDivElement>("#app-modal");
-const $app_root_container = document.querySelector<HTMLDivElement>("#app-root");
-
-if (!$app_modal_container || !$app_root_container) {
-  throw new Error("`#app-modal` or `#app-root` DOM elements does not exist");
-}
-
 const Modal = forwardRef<HTMLDivElement, ModalProps>(({ show, ...props }, ref) => {
+  const $app_modal_container = document.querySelector<HTMLDivElement>("#app-modal");
+  const $app_root_container = document.querySelector<HTMLDivElement>("#app-root");
+
+  if (!$app_modal_container || !$app_root_container) {
+    throw new Error("`#app-modal` or `#app-root` DOM elements does not exist");
+  }
+
   return createPortal(
     <Show when={show}>
       <ModalContent

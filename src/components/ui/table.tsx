@@ -1,46 +1,28 @@
-import { forwardRef, HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "preact/compat";
+import { type HTMLAttributes, type TdHTMLAttributes, type ThHTMLAttributes, forwardRef } from "preact/compat";
 import { cn } from "./share/cn";
 
 const Table = forwardRef<HTMLTableElement, HTMLAttributes<HTMLTableElement>>(({ className, ...props }, ref) => (
   <div className="relative w-full overflow-auto">
-    <table
-      ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
-      {...props}
-    />
+    <table ref={ref} className={cn("w-full caption-bottom text-sm", className)} {...props} />
   </div>
 ));
 Table.displayName = "Table";
 
 const TableHeader = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
-  ({ className, ...props }, ref) => (
-    <thead
-      ref={ref}
-      className={cn("[&_tr]:border-b", className)}
-      {...props}
-    />
-  )
+  ({ className, ...props }, ref) => <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
 );
 TableHeader.displayName = "TableHeader";
 
 const TableBody = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
   ({ className, ...props }, ref) => (
-    <tbody
-      ref={ref}
-      className={cn("[&_tr:last-child]:border-0", className)}
-      {...props}
-    />
+    <tbody ref={ref} className={cn("[&_tr:last-child]:border-0", className)} {...props} />
   )
 );
 TableBody.displayName = "TableBody";
 
 const TableFooter = forwardRef<HTMLTableSectionElement, HTMLAttributes<HTMLTableSectionElement>>(
   ({ className, ...props }, ref) => (
-    <tfoot
-      ref={ref}
-      className={cn("border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", className)}
-      {...props}
-    />
+    <tfoot ref={ref} className={cn("border-t bg-muted/50 font-medium [&>tr]:last:border-b-0", className)} {...props} />
   )
 );
 TableFooter.displayName = "TableFooter";
@@ -83,11 +65,7 @@ TableCell.displayName = "TableCell";
 
 const TableCaption = forwardRef<HTMLTableCaptionElement, HTMLAttributes<HTMLTableCaptionElement>>(
   ({ className, ...props }, ref) => (
-    <caption
-      ref={ref}
-      className={cn("mt-4 text-sm text-muted-foreground", className)}
-      {...props}
-    />
+    <caption ref={ref} className={cn("mt-4 text-sm text-muted-foreground", className)} {...props} />
   )
 );
 TableCaption.displayName = "TableCaption";

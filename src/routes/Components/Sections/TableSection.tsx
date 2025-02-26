@@ -106,10 +106,7 @@ export function TableSection() {
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
-                          <Button
-                            size="icon"
-                            variant="destructive"
-                          >
+                          <Button size="icon" variant="destructive">
                             <Trash className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>

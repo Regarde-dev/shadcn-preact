@@ -1,12 +1,15 @@
-import { ComponentProps, ComponentPropsWithoutRef, ElementRef, forwardRef, HTMLAttributes } from "preact/compat";
+import {
+  type ComponentProps,
+  type ComponentPropsWithoutRef,
+  type ElementRef,
+  type HTMLAttributes,
+  forwardRef,
+} from "preact/compat";
 import { Drawer as DrawerPrimitive } from "vaul";
 import { cn } from "./share/cn";
 
 const Drawer = ({ shouldScaleBackground = true, ...props }: ComponentProps<typeof DrawerPrimitive.Root>) => (
-  <DrawerPrimitive.Root
-    shouldScaleBackground={shouldScaleBackground}
-    {...props}
-  />
+  <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />
 );
 Drawer.displayName = "Drawer";
 
@@ -20,11 +23,7 @@ const DrawerOverlay = forwardRef<
   ElementRef<typeof DrawerPrimitive.Overlay>,
   ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
 >(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Overlay
-    ref={ref}
-    className={cn("fixed inset-0 z-50 bg-black/80", className)}
-    {...props}
-  />
+  <DrawerPrimitive.Overlay ref={ref} className={cn("fixed inset-0 z-50 bg-black/80", className)} {...props} />
 ));
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
@@ -50,18 +49,12 @@ const DrawerContent = forwardRef<
 DrawerContent.displayName = "DrawerContent";
 
 const DrawerHeader = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn("grid gap-1.5 p-4 text-center sm:text-left", className)}
-    {...props}
-  />
+  <div className={cn("grid gap-1.5 p-4 text-center sm:text-left", className)} {...props} />
 );
 DrawerHeader.displayName = "DrawerHeader";
 
 const DrawerFooter = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn("mt-auto flex flex-col gap-2 p-4", className)}
-    {...props}
-  />
+  <div className={cn("mt-auto flex flex-col gap-2 p-4", className)} {...props} />
 );
 DrawerFooter.displayName = "DrawerFooter";
 
@@ -81,11 +74,7 @@ const DrawerDescription = forwardRef<
   ElementRef<typeof DrawerPrimitive.Description>,
   ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
 >(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Description
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
+  <DrawerPrimitive.Description ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
 ));
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 

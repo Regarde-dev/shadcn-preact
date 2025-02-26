@@ -52,6 +52,7 @@ export default function IntroductionPage() {
                       className="font-medium underline underline-offset-4"
                       href="https://preactjs.com/"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       Preact
                     </a>
@@ -60,6 +61,7 @@ export default function IntroductionPage() {
                       className="font-medium underline underline-offset-4"
                       href="https://ui.shadcn.com"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       shadcn/ui
                     </a>

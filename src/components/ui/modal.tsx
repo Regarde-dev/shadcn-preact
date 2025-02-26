@@ -1,4 +1,4 @@
-import { createPortal, forwardRef, HTMLAttributes, PropsWithChildren, useEffect } from "preact/compat";
+import { type HTMLAttributes, type PropsWithChildren, createPortal, forwardRef, useEffect } from "preact/compat";
 import { cn } from "./share/cn";
 import { Show } from "./show";
 
@@ -19,10 +19,7 @@ const Modal = forwardRef<HTMLDivElement, ModalProps>(({ show, ...props }, ref) =
 
   return createPortal(
     <Show when={show}>
-      <ModalContent
-        {...props}
-        ref={ref}
-      />
+      <ModalContent {...props} ref={ref} />
     </Show>,
     $app_modal_container
   );

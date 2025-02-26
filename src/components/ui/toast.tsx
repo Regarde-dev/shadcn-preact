@@ -1,17 +1,12 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-preact";
-import { VNode } from "preact";
-import { forwardRef, HTMLAttributes } from "preact/compat";
+import type { VNode } from "preact";
+import { type HTMLAttributes, forwardRef } from "preact/compat";
 import * as ReactHotToast from "react-hot-toast";
 import { cn } from "./share/cn";
 
 export const Toaster = (props: typeof ReactHotToast.Toaster.defaultProps) => (
-  <ReactHotToast.Toaster
-    position="bottom-right"
-    reverseOrder={false}
-    gutter={6}
-    {...props}
-  />
+  <ReactHotToast.Toaster position="bottom-right" reverseOrder={false} gutter={6} {...props} />
 );
 
 export const toastVariants = cva(
@@ -33,14 +28,7 @@ export const ToastCard = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement> & VariantProps<typeof toastVariants>
 >(({ className, variant, ...props }, ref) => {
-  return (
-    <div
-      ref={ref}
-      data-state="open"
-      className={cn(toastVariants({ variant }), className)}
-      {...props}
-    />
-  );
+  return <div ref={ref} data-state="open" className={cn(toastVariants({ variant }), className)} {...props} />;
 });
 ToastCard.displayName = "ToastCard";
 
@@ -77,23 +65,13 @@ ToastClose.displayName = "ToastClose";
 
 export const ToastTitle = forwardRef<HTMLSpanElement, HTMLAttributes<HTMLSpanElement>>(
   ({ className, ...props }, ref) => (
-    <span
-      ref={ref}
-      className={cn("text-sm font-semibold [&+div]:text-xs", className)}
-      {...props}
-    />
+    <span ref={ref} className={cn("text-sm font-semibold [&+div]:text-xs", className)} {...props} />
   )
 );
 ToastTitle.displayName = "ToastTitle";
 
 export const ToastDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => (
-    <p
-      ref={ref}
-      className={cn("text-sm opacity-90", className)}
-      {...props}
-    />
-  )
+  ({ className, ...props }, ref) => <p ref={ref} className={cn("text-sm opacity-90", className)} {...props} />
 );
 ToastDescription.displayName = "ToastDescription";
 
@@ -105,10 +83,7 @@ export interface ToastProps extends VariantProps<typeof toastVariants> {
 
 export const toast = (props: ToastProps) => {
   const toastId = ReactHotToast.toast.custom(
-    <ToastCard
-      variant={props.variant}
-      className="min-w-[20rem] w-fit pr-8"
-    >
+    <ToastCard variant={props.variant} className="min-w-[20rem] w-fit pr-8">
       <div>
         {props.title && <ToastTitle>{props.title}</ToastTitle>}
         <ToastDescription>{props.description}</ToastDescription>

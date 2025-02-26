@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren } from "preact/compat";
+import { type PropsWithChildren, createContext } from "preact/compat";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { Button } from "./button";
 import { Modal } from "./modal";
@@ -57,10 +57,7 @@ export function AlertDialogContent({ children }: PropsWithChildren) {
 
   return (
     <Show when={open}>
-      <Modal
-        onClose={closeDialog}
-        show={true}
-      >
+      <Modal onClose={closeDialog} show={true}>
         <div
           onClick={(e) => {
             e.stopPropagation();

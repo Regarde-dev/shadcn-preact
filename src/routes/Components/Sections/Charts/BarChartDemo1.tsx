@@ -2,7 +2,7 @@ import { TrendingUp } from "lucide-preact";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@ui/card";
-import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@ui/chart";
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@ui/chart";
 
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },
@@ -33,14 +33,8 @@ export function BarChartDemo1() {
       </CardHeader>
 
       <CardContent>
-        <ChartContainer
-          config={chartConfig}
-          className="w-[500px]"
-        >
-          <BarChart
-            accessibilityLayer
-            data={chartData}
-          >
+        <ChartContainer config={chartConfig} className="w-[500px]">
+          <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"
@@ -49,20 +43,9 @@ export function BarChartDemo1() {
               axisLine={false}
               tickFormatter={(value: any) => value.slice(0, 3)}
             />
-            <ChartTooltip
-              content={<ChartTooltipContent indicator="dashed" />}
-              cursor={false}
-            />
-            <Bar
-              dataKey="desktop"
-              fill="var(--color-desktop)"
-              radius={4}
-            />
-            <Bar
-              dataKey="mobile"
-              fill="var(--color-mobile)"
-              radius={4}
-            />
+            <ChartTooltip content={<ChartTooltipContent indicator="dashed" />} cursor={false} />
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>

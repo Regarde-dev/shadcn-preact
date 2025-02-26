@@ -10,6 +10,7 @@ export function CarouselSection() {
           class="font-medium underline underline-offset-4"
           href="https://www.embla-carousel.com/"
           target="_blank"
+          rel="noreferrer"
         >
           Embla Carousel
         </a>{" "}
@@ -49,10 +50,7 @@ export function CarouselSection() {
         >
           <CarouselContent className="-mt-1 h-[200px]">
             {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem
-                key={index}
-                className="pt-1 md:basis-1/2"
-              >
+              <CarouselItem key={index} className="pt-1 md:basis-1/2">
                 <div className="p-1">
                   <Card>
                     <CardContent className="flex items-center justify-center p-6">

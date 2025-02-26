@@ -1,5 +1,5 @@
 import { createContext } from "preact";
-import { PropsWithChildren, useContext, useEffect, useState } from "preact/compat";
+import { type PropsWithChildren, useContext, useEffect, useState } from "preact/compat";
 
 type ThemeOption = "light" | "dark";
 

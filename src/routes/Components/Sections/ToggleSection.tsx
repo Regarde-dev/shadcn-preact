@@ -8,10 +8,7 @@ export function ToggleSection() {
         <Bold className="h-4 w-4" />
       </Toggle>
 
-      <Toggle
-        variant="outline"
-        aria-label="Toggle italic"
-      >
+      <Toggle variant="outline" aria-label="Toggle italic">
         <Italic />
       </Toggle>
 
@@ -20,10 +17,7 @@ export function ToggleSection() {
         Italic
       </Toggle>
 
-      <Toggle
-        aria-label="Toggle italic"
-        disabled
-      >
+      <Toggle aria-label="Toggle italic" disabled>
         <Underline className="h-4 w-4" />
       </Toggle>
     </div>

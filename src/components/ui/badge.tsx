@@ -1,5 +1,5 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { HTMLAttributes } from "preact/compat";
+import { type VariantProps, cva } from "class-variance-authority";
+import type { HTMLAttributes } from "preact/compat";
 import { cn } from "./share/cn";
 
 const badgeVariants = cva(
@@ -22,12 +22,7 @@ const badgeVariants = cva(
 export interface BadgeProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
 
 function Badge({ className, variant, ...props }: BadgeProps) {
-  return (
-    <div
-      className={cn(badgeVariants({ variant }), className)}
-      {...props}
-    />
-  );
+  return <div className={cn(badgeVariants({ variant }), className)} {...props} />;
 }
 
 export { Badge, badgeVariants };

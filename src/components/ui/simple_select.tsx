@@ -1,5 +1,5 @@
 import { ChevronDown } from "lucide-preact";
-import { PropsWithChildren, useEffect, useMemo, useState } from "preact/compat";
+import { type PropsWithChildren, useEffect, useMemo, useState } from "preact/compat";
 import { Button } from "./button";
 import { Show } from "./show";
 
@@ -34,11 +34,7 @@ export function SimpleSelect(props: SelectProps) {
 
   return (
     <div className="relative w-fit bg-transparent border-none outline-none min-w-[200px] p-0 *:w-full *:justify-between">
-      <Button
-        variant="outline"
-        onClick={() => setOpen(!open)}
-        className="relative z-[1px]"
-      >
+      <Button variant="outline" onClick={() => setOpen(!open)} className="relative z-[1px]">
         <span className="text-foreground text-sm">{select_title}</span>
         <ChevronDown className="w-4 h-4 text-foreground" />
       </Button>
@@ -74,12 +70,7 @@ function InternalOption(props: { value: string; title: string; selected: boolean
   if (props.selected) return null;
 
   return (
-    <Button
-      size="sm"
-      variant="ghost"
-      onClick={props.onSelect}
-      className="justify-start items-center relative z-[2px]"
-    >
+    <Button size="sm" variant="ghost" onClick={props.onSelect} className="justify-start items-center relative z-[2px]">
       {props.title}
     </Button>
   );

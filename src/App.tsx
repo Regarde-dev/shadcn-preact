@@ -153,10 +153,7 @@ export function App() {
 
           <ErrorRoute>
             <div className="w-screen h-screen flex flex-col justify-center items-center bg-background">
-              <Alert
-                variant="destructive"
-                className="max-w-[500px]"
-              >
+              <Alert variant="destructive" className="max-w-[500px]">
                 <AlertTitle>404 error, Not found</AlertTitle>
                 <AlertDescription>This resource doesn't exists</AlertDescription>
               </Alert>

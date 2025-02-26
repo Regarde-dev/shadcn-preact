@@ -1,6 +1,12 @@
 import { ChevronRight, MoreHorizontal } from "lucide-preact";
-import { ComponentProps } from "preact";
-import { AnchorHTMLAttributes, ComponentPropsWithoutRef, forwardRef, HTMLAttributes, ReactNode } from "preact/compat";
+import type { ComponentProps } from "preact";
+import {
+  type AnchorHTMLAttributes,
+  type ComponentPropsWithoutRef,
+  type HTMLAttributes,
+  type ReactNode,
+  forwardRef,
+} from "preact/compat";
 import { cn } from "./share/cn";
 
 const Breadcrumb = forwardRef<
@@ -8,13 +14,7 @@ const Breadcrumb = forwardRef<
   ComponentPropsWithoutRef<"nav"> & {
     separator?: ReactNode;
   }
->(({ ...props }, ref) => (
-  <nav
-    ref={ref}
-    aria-label="breadcrumb"
-    {...props}
-  />
-));
+>(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
 Breadcrumb.displayName = "Breadcrumb";
 
 const BreadcrumbList = forwardRef<HTMLOListElement, ComponentPropsWithoutRef<"ol">>(({ className, ...props }, ref) => (
@@ -30,11 +30,7 @@ const BreadcrumbList = forwardRef<HTMLOListElement, ComponentPropsWithoutRef<"ol
 BreadcrumbList.displayName = "BreadcrumbList";
 
 const BreadcrumbItem = forwardRef<HTMLLIElement, ComponentPropsWithoutRef<"li">>(({ className, ...props }, ref) => (
-  <li
-    ref={ref}
-    className={cn("inline-flex items-center gap-1.5", className)}
-    {...props}
-  />
+  <li ref={ref} className={cn("inline-flex items-center gap-1.5", className)} {...props} />
 ));
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
@@ -47,21 +43,13 @@ const BreadcrumbLink = forwardRef<
 >(({ asChild, children, className, ...props }, ref) => {
   if (asChild) {
     return (
-      <div
-        ref={ref}
-        className={cn("transition-colors hover:text-foreground", className)}
-        {...props}
-      >
+      <div ref={ref} className={cn("transition-colors hover:text-foreground", className)} {...props}>
         {children}
       </div>
     );
   }
   return (
-    <div
-      ref={ref}
-      className={cn("transition-colors hover:text-foreground", className)}
-      {...props}
-    >
+    <div ref={ref} className={cn("transition-colors hover:text-foreground", className)} {...props}>
       <a href={props.href}>{children}</a>
     </div>
   );
@@ -81,12 +69,7 @@ const BreadcrumbPage = forwardRef<HTMLSpanElement, ComponentPropsWithoutRef<"spa
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
 const BreadcrumbSeparator = ({ children, className, ...props }: ComponentProps<"li">) => (
-  <li
-    role="presentation"
-    aria-hidden="true"
-    className={cn("[&>svg]:w-3.5 [&>svg]:h-3.5", className)}
-    {...props}
-  >
+  <li role="presentation" aria-hidden="true" className={cn("[&>svg]:w-3.5 [&>svg]:h-3.5", className)} {...props}>
     {children ?? <ChevronRight />}
   </li>
 );

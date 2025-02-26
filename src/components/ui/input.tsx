@@ -1,4 +1,4 @@
-import { ComponentProps, forwardRef } from "preact/compat";
+import { type ComponentProps, forwardRef } from "preact/compat";
 import { cn } from "./share/cn";
 
 const Input = forwardRef<HTMLInputElement, ComponentProps<"input">>(({ className, type, ...props }, ref) => {

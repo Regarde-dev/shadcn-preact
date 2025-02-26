@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "preact/compat";
+import type { PropsWithChildren } from "preact/compat";
 
 export function Show(props: PropsWithChildren<{ when: boolean }>) {
   if (props.when) {

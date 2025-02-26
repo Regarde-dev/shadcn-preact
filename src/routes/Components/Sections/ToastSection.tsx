@@ -1,5 +1,5 @@
 import { Button } from "@ui/button";
-import { toast, ToastAction } from "@ui/toast";
+import { ToastAction, toast } from "@ui/toast";
 
 export function ToastSection() {
   return (

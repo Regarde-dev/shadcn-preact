@@ -1,6 +1,6 @@
-import { Badge, BadgeProps } from "@ui/badge";
+import { Badge, type BadgeProps } from "@ui/badge";
 import { cn } from "@ui/share/cn";
-import { createRef, forwardRef, InputHTMLAttributes, useEffect, useState } from "preact/compat";
+import { type InputHTMLAttributes, createRef, forwardRef, useEffect, useState } from "preact/compat";
 import { Show } from "./ui/show";
 
 type TokenInputProps = Omit<InputHTMLAttributes, "value"> & {

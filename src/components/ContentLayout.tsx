@@ -1,7 +1,7 @@
 import { AppRoutes } from "@/routes/AppRoutes";
 import { Button } from "@ui/button";
 import { A } from "preact-hashish-router";
-import { PropsWithChildren } from "preact/compat";
+import type { PropsWithChildren } from "preact/compat";
 
 export default function MainLayout(props: PropsWithChildren) {
   return (
@@ -25,10 +25,7 @@ export function NavRoutesLinks() {
         <span className="text-sm font-semibold p-1 h-9 w-full justify-start flex flex-row items-center">
           Getting Started
         </span>
-        <A
-          href={AppRoutes.DOCS.INTRO}
-          className="w-full group"
-        >
+        <A href={AppRoutes.DOCS.INTRO} className="w-full group">
           <Button
             variant="ghost"
             size="sm"
@@ -38,10 +35,7 @@ export function NavRoutesLinks() {
           </Button>
         </A>
 
-        <A
-          href={AppRoutes.DOCS.INSTALLATION}
-          className="w-full group"
-        >
+        <A href={AppRoutes.DOCS.INSTALLATION} className="w-full group">
           <Button
             variant="ghost"
             size="sm"
@@ -51,10 +45,7 @@ export function NavRoutesLinks() {
           </Button>
         </A>
 
-        <A
-          href={AppRoutes.DOCS.THEMING}
-          className="w-full group"
-        >
+        <A href={AppRoutes.DOCS.THEMING} className="w-full group">
           <Button
             variant="ghost"
             size="sm"
@@ -64,10 +55,7 @@ export function NavRoutesLinks() {
           </Button>
         </A>
 
-        <A
-          href={AppRoutes.BLOCKS}
-          className="w-full group"
-        >
+        <A href={AppRoutes.BLOCKS} className="w-full group">
           <Button
             variant="ghost"
             size="sm"
@@ -87,10 +75,7 @@ export function NavRoutesLinks() {
           .sort()
           .map(([name, route]) => {
             return (
-              <A
-                href={route}
-                className="w-full group"
-              >
+              <A href={route} className="w-full group">
                 <Button
                   variant="ghost"
                   size="sm"

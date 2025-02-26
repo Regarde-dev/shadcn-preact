@@ -1,5 +1,5 @@
 import { Check } from "lucide-preact";
-import { forwardRef, HTMLAttributes, useLayoutEffect, useState } from "preact/compat";
+import { type HTMLAttributes, forwardRef, useLayoutEffect, useState } from "preact/compat";
 import { cn } from "./share/cn";
 
 type CheckedState = boolean;

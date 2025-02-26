@@ -1,4 +1,4 @@
-import { createContext, createRef, PropsWithChildren } from "preact/compat";
+import { type PropsWithChildren, createContext, createRef } from "preact/compat";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { Portal } from "./portal";
 import { cn } from "./share/cn";
@@ -74,10 +74,7 @@ export function TooltipProvider({ children }: TooltipProviderProps) {
 
   return (
     <TooltipContext.Provider value={{ isOpen, open, close, id: tooltip_id }}>
-      <div
-        className="w-fit relative h-fit p-0 m-0"
-        ref={tooltip_ref}
-      >
+      <div className="w-fit relative h-fit p-0 m-0" ref={tooltip_ref}>
         {children}
       </div>
     </TooltipContext.Provider>

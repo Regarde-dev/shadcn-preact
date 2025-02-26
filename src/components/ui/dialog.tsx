@@ -1,4 +1,4 @@
-import { createContext, createRef, forwardRef, HTMLAttributes, PropsWithChildren } from "preact/compat";
+import { type HTMLAttributes, type PropsWithChildren, createContext, createRef, forwardRef } from "preact/compat";
 import { useContext, useEffect, useState } from "preact/hooks";
 
 import { X } from "lucide-preact";
@@ -45,10 +45,7 @@ export function DialogTrigger({ children }: PropsWithChildren) {
   const { openDialog } = useDialog();
 
   return (
-    <div
-      onClick={openDialog}
-      className="bg-transparent p-0 m-0 w-fit"
-    >
+    <div onClick={openDialog} className="bg-transparent p-0 m-0 w-fit">
       {children}
     </div>
   );
@@ -71,10 +68,7 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
 
     return (
       <Show when={open}>
-        <Modal
-          onClose={closeDialog}
-          show={true}
-        >
+        <Modal onClose={closeDialog} show={true}>
           <div
             ref={contentRef}
             onClick={(e) => {
@@ -103,11 +97,7 @@ DialogContent.displayName = "DialogContent";
 
 export const DialogHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn("flex flex-col space-y-1.5 text-center sm:text-left", className)}
-      {...props}
-    />
+    <div ref={ref} className={cn("flex flex-col space-y-1.5 text-center sm:text-left", className)} {...props} />
   )
 );
 DialogHeader.displayName = "DialogHeader";
@@ -125,22 +115,14 @@ DialogFooter.displayName = "DialogFooter";
 
 export const DialogTitle = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
-      {...props}
-    />
+    <div ref={ref} className={cn("text-lg font-semibold leading-none tracking-tight", className)} {...props} />
   )
 );
 DialogTitle.displayName = "DialogTitle";
 
 export const DialogDescription = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn("text-sm text-muted-foreground", className)}
-      {...props}
-    />
+    <div ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
   )
 );
 DialogDescription.displayName = "DialogDescription";

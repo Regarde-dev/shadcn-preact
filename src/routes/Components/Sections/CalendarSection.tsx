@@ -10,11 +10,7 @@ export default function CalendarSection() {
     <>
       <h2 className="mb-4">
         The Calendar component is built on top of
-        <a
-          className="underline ml-2"
-          href="https://daypicker.dev/v8"
-          target="_blank"
-        >
+        <a className="underline ml-2" href="https://daypicker.dev/v8" target="_blank" rel="noreferrer">
           React DayPicker
         </a>
         .
@@ -31,23 +27,14 @@ export default function CalendarSection() {
 
       <h2>
         All credit of this components goes to{" "}
-        <a
-          className="underline"
-          href="https://github.com/flixlix/shadcn-date-picker"
-          target="_blank"
-        >
+        <a className="underline" href="https://github.com/flixlix/shadcn-date-picker" target="_blank" rel="noreferrer">
           flixlix
         </a>
         .
       </h2>
 
       <div className="w-full max-w-fit flex flex-col mt-6">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          className="rounded-md border shadow"
-        />
+        <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border shadow" />
       </div>
     </>
   );

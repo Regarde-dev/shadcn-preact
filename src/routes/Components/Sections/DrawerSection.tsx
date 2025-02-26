@@ -23,17 +23,11 @@ export default function DrawerSection() {
     <div className="w-full flex flex-col gap-10">
       <p class="leading-7 [&amp;:not(:first-child)]:mt-6">
         Drawer is built on top of{" "}
-        <a
-          class="font-medium underline underline-offset-4"
-          href="https://github.com/emilkowalski/vaul"
-        >
+        <a class="font-medium underline underline-offset-4" href="https://github.com/emilkowalski/vaul">
           Vaul
         </a>{" "}
         by{" "}
-        <a
-          class="font-medium underline underline-offset-4"
-          href="https://twitter.com/emilkowalski_"
-        >
+        <a class="font-medium underline underline-offset-4" href="https://twitter.com/emilkowalski_">
           emilkowalski_
         </a>
         .
@@ -41,10 +35,7 @@ export default function DrawerSection() {
 
       <Drawer>
         <DrawerTrigger asChild>
-          <Button
-            variant="outline"
-            className="w-fit"
-          >
+          <Button variant="outline" className="w-fit">
             Open Drawer
           </Button>
         </DrawerTrigger>

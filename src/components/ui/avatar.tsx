@@ -1,8 +1,8 @@
 import {
+  type HTMLAttributes,
+  type ImgHTMLAttributes,
   createContext,
   forwardRef,
-  HTMLAttributes,
-  ImgHTMLAttributes,
   useContext,
   useEffect,
   useLayoutEffect,
@@ -49,11 +49,7 @@ const AvatarImage = forwardRef<HTMLImageElement, ImgHTMLAttributes<HTMLImageElem
 
     return (
       <Show when={status === "loaded"}>
-        <img
-          ref={ref}
-          className={cn("aspect-square h-full w-full", className)}
-          {...props}
-        />
+        <img ref={ref} className={cn("aspect-square h-full w-full", className)} {...props} />
       </Show>
     );
   }

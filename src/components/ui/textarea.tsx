@@ -1,4 +1,4 @@
-import { forwardRef, TextareaHTMLAttributes } from "preact/compat";
+import { type TextareaHTMLAttributes, forwardRef } from "preact/compat";
 import { cn } from "./share/cn";
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes>(({ className, ...props }, ref) => {

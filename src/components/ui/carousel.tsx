@@ -1,8 +1,8 @@
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-preact";
 
-import { ComponentProps, createContext } from "preact";
-import { forwardRef, HTMLAttributes, KeyboardEvent } from "preact/compat";
+import { type ComponentProps, createContext } from "preact";
+import { type HTMLAttributes, type KeyboardEvent, forwardRef } from "preact/compat";
 import { useCallback, useContext, useEffect, useState } from "preact/hooks";
 import { Button } from "./button";
 import { cn } from "./share/cn";
@@ -137,10 +137,7 @@ const CarouselContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div
-      ref={carouselRef}
-      className="overflow-hidden"
-    >
+    <div ref={carouselRef} className="overflow-hidden">
       <div
         ref={ref}
         className={cn("flex", orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className)}

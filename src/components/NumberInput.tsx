@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes } from "preact/compat";
+import { type HTMLAttributes, forwardRef } from "preact/compat";
 import { useLayoutEffect, useState } from "preact/hooks";
 import { Input } from "./ui/input";
 import { cn } from "./ui/share/cn";
@@ -18,7 +18,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(({ cla
   useLayoutEffect(() => {
     const timeOut = setTimeout(() => {
       if (value === "-") return;
-      const parseRes = parseFloat(value);
+      const parseRes = Number.parseFloat(value);
       if (isNaN(parseRes)) {
         setValue("0");
         props.onNumberChange(0);

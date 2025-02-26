@@ -3,7 +3,7 @@ import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, Breadcr
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { Loader } from "lucide-preact";
 import { A } from "preact-hashish-router";
-import { lazy, Suspense } from "preact/compat";
+import { Suspense, lazy } from "preact/compat";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
 

@@ -1,4 +1,4 @@
-import { createPortal, PropsWithChildren } from "preact/compat";
+import { type PropsWithChildren, createPortal } from "preact/compat";
 import { Show } from "./show";
 
 type PortalProps = PropsWithChildren & {

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, forwardRef, useEffect, useState } from "preact/compat";
+import { type ButtonHTMLAttributes, forwardRef, useEffect, useState } from "preact/compat";
 import { cn } from "./share/cn";
 
 type SwitchProps = ButtonHTMLAttributes & {

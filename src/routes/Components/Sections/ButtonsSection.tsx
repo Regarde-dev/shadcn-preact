@@ -25,10 +25,7 @@ export function ButtonsSection() {
         Please wait
       </Button>
 
-      <Button
-        variant="secondary"
-        className="gap-2"
-      >
+      <Button variant="secondary" className="gap-2">
         <User />
         Login
       </Button>

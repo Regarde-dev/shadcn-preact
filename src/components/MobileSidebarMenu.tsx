@@ -7,10 +7,7 @@ export default function MobileSidebarMenu() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-        >
+        <Button variant="outline" size="icon">
           <Menu />
         </Button>
       </DrawerTrigger>

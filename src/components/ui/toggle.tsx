@@ -1,5 +1,5 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { ButtonHTMLAttributes, forwardRef, useEffect, useState } from "preact/compat";
+import { type VariantProps, cva } from "class-variance-authority";
+import { type ButtonHTMLAttributes, forwardRef, useEffect, useState } from "preact/compat";
 import { cn } from "./share/cn";
 
 const toggleVariants = cva(

@@ -29,30 +29,16 @@ export function DialogSection() {
 
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label
-                htmlFor="name"
-                className="text-right"
-              >
+              <Label htmlFor="name" className="text-right">
                 Name
               </Label>
-              <Input
-                id="name"
-                value="Pedro Duarte"
-                className="col-span-3"
-              />
+              <Input id="name" value="Pedro Duarte" className="col-span-3" />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label
-                htmlFor="username"
-                className="text-right"
-              >
+              <Label htmlFor="username" className="text-right">
                 Username
               </Label>
-              <Input
-                id="username"
-                value="@peduarte"
-                className="col-span-3"
-              />
+              <Input id="username" value="@peduarte" className="col-span-3" />
             </div>
           </div>
 
@@ -67,10 +53,7 @@ export function DialogSection() {
           <Button variant="outline">Share</Button>
         </DialogTrigger>
 
-        <DialogContent
-          className="sm:max-w-md"
-          autoSelect
-        >
+        <DialogContent className="sm:max-w-md" autoSelect>
           <DialogHeader>
             <DialogTitle>Share link</DialogTitle>
             <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
@@ -79,17 +62,9 @@ export function DialogSection() {
           <div className="flex items-end space-x-2 flex-row">
             <div className="grid flex-1 gap-2">
               <Label htmlFor="link">Link</Label>
-              <Input
-                id="link"
-                defaultValue="https://ui.shadcn.com/docs/installation"
-                readOnly
-              />
+              <Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
             </div>
-            <Button
-              type="submit"
-              size="sm"
-              className="px-3"
-            >
+            <Button type="submit" size="sm" className="px-3">
               <span>Copy</span>
               <Copy />
             </Button>
@@ -97,10 +72,7 @@ export function DialogSection() {
 
           <DialogFooter className="sm:justify-start">
             <DialogClose>
-              <Button
-                type="button"
-                variant="secondary"
-              >
+              <Button type="button" variant="secondary">
                 Close
               </Button>
             </DialogClose>

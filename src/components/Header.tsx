@@ -3,7 +3,7 @@ import { Button } from "@ui/button";
 import { useTheme } from "@ui/theme";
 import { Moon, Sun } from "lucide-preact";
 import { A } from "preact-hashish-router";
-import { lazy, Suspense } from "preact/compat";
+import { Suspense, lazy } from "preact/compat";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 const MobileSidebarMenu = lazy(() => import("./MobileSidebarMenu"));
@@ -28,10 +28,7 @@ function HeaderLeftSide() {
         <div className="md:hidden flex w-fit h-fit pl-1">
           <Suspense
             fallback={
-              <Button
-                size="icon"
-                variant="outline"
-              >
+              <Button size="icon" variant="outline">
                 <LoadingSpinner />
               </Button>
             }
@@ -42,10 +39,7 @@ function HeaderLeftSide() {
 
         <ShadcnIcon />
 
-        <A
-          className="flex items-center gap-2"
-          href={AppRoutes.HOME}
-        >
+        <A className="flex items-center gap-2" href={AppRoutes.HOME}>
           <span className="text-primary font-bold inline-block text-sm md:text-base">
             shadcn-<span className="text-purple-500">preact</span>
           </span>
@@ -53,10 +47,7 @@ function HeaderLeftSide() {
       </div>
 
       <div className="ml-4 hidden text-sm text-muted-foreground md:flex flex-1 flex-row gap-6 items-center justify-start h-full">
-        <A
-          className="flex items-center data-[route-active=true]:text-primary"
-          href={AppRoutes.DOCS.INTRO}
-        >
+        <A className="flex items-center data-[route-active=true]:text-primary" href={AppRoutes.DOCS.INTRO}>
           Docs
         </A>
 
@@ -67,10 +58,7 @@ function HeaderLeftSide() {
           Components
         </A>
 
-        <A
-          className="flex items-center data-[route-active=true]:text-primary"
-          href={AppRoutes.BLOCKS}
-        >
+        <A className="flex items-center data-[route-active=true]:text-primary" href={AppRoutes.BLOCKS}>
           Blocks
         </A>
       </div>
@@ -99,16 +87,8 @@ function HeaderRightSide() {
 
 function ShadcnIcon() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 256 256"
-      className="h-4 w-4 text-primary"
-    >
-      <rect
-        width="256"
-        height="256"
-        fill="none"
-      ></rect>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="h-4 w-4 text-primary">
+      <rect width="256" height="256" fill="none"></rect>
       <line
         x1="208"
         y1="128"

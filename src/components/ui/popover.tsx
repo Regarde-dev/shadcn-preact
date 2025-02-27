@@ -1,4 +1,4 @@
-import { autoPlacement, autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react-dom";
+import { autoPlacement, autoUpdate, offset, shift, useFloating } from "@floating-ui/react-dom";
 import {
   type CSSProperties,
   type HTMLAttributes,
@@ -34,24 +34,27 @@ type PopoverProviderProps = PropsWithChildren & {
   delay?: number;
   side?: "top" | "right" | "bottom" | "left";
   alignOffset?: number;
+  onOpenChange?: (o: boolean) => void;
+  open?: boolean;
+  alignment?: "start" | "end";
 };
 
-export function Popover({ children, ...props }: PopoverProviderProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [Popover_id] = useState(Math.random().toString());
+export function Popover({ children, open: controlledOpen, onOpenChange, ...props }: PopoverProviderProps) {
+  const [isOpen, setIsOpen] = useState(controlledOpen || false);
+  const [popover_id] = useState(Math.random().toString());
 
   const { refs, floatingStyles } = useFloating<HTMLDivElement>({
     open: isOpen,
     strategy: "fixed",
-    placement: props.side,
     middleware: [
-      ...[
-        props.side
-          ? flip()
-          : autoPlacement({
-              allowedPlacements: ["top", "right", "bottom", "left"],
-            }),
-      ],
+      autoPlacement({
+        allowedPlacements: props.side
+          ? props.alignment
+            ? [`${props.side}-end`, `${props.side}-start`, props.side]
+            : [props.side]
+          : undefined,
+        alignment: props.alignment,
+      }),
       shift(),
       offset(props.alignOffset || 4),
     ],
@@ -59,12 +62,27 @@ export function Popover({ children, ...props }: PopoverProviderProps) {
     transform: false,
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    if (onOpenChange) {
+      onOpenChange(isOpen);
+    }
+  }, [isOpen]);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    if (onOpenChange) {
+      onOpenChange(controlledOpen);
+    }
+    setIsOpen(controlledOpen);
+  }, [controlledOpen]);
+
   const open = () => setIsOpen(true);
   const close = () => setIsOpen(false);
 
   return (
     <PopoverContext.Provider
-      value={{ isOpen, open, close, id: Popover_id, ref: refs, floatingStyles, delay: props.delay, side: props.side }}
+      value={{ isOpen, open, close, id: popover_id, ref: refs, floatingStyles, delay: props.delay, side: props.side }}
     >
       {children}
     </PopoverContext.Provider>

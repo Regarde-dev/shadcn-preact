@@ -25,6 +25,7 @@ const TooltipContext = createContext<TooltipContextT>(null);
 type TooltipProviderProps = PropsWithChildren & {
   delay?: number;
   side?: "top" | "right" | "bottom" | "left";
+  alignment?: "start" | "end";
   alignOffset?: number;
 };
 
@@ -37,13 +38,10 @@ export function TooltipProvider({ children, ...props }: TooltipProviderProps) {
     strategy: "fixed",
     placement: props.side,
     middleware: [
-      ...[
-        props.side
-          ? flip()
-          : autoPlacement({
-              allowedPlacements: ["top", "right", "bottom", "left"],
-            }),
-      ],
+      autoPlacement({
+        allowedPlacements: props.side ? [`${props.side}-end`, `${props.side}-start`, props.side] : undefined,
+        alignment: props.alignment,
+      }),
       shift(),
       offset(props.alignOffset || 4),
     ],

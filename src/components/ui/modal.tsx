@@ -29,9 +29,11 @@ const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(({ className,
   useEffect(() => {
     // TODO: FIX this for not break sticky components or implement Scrollarea component
     document.body.classList.add("overflow-hidden");
+    document.body.classList.add("mr-[10px]");
 
     return () => {
       document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove("mr-[10px]");
     };
   }, []);
 

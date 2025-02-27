@@ -3,8 +3,10 @@ import { Button } from "@ui/button";
 import { useTheme } from "@ui/theme";
 import { Moon, Sun } from "lucide-preact";
 import { A } from "preact-hashish-router";
-import { Suspense, lazy } from "preact/compat";
+import { Suspense, lazy, useState } from "preact/compat";
 import { LoadingSpinner } from "./LoadingSpinner";
+import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
+import { cn } from "@ui/share/cn";
 
 const MobileSidebarMenu = lazy(() => import("./MobileSidebarMenu"));
 
@@ -67,19 +69,46 @@ function HeaderLeftSide() {
 }
 
 function HeaderRightSide() {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const { setTheme, theme } = useTheme();
+
   return (
     <div className="flex h-full flex-row items-center justify-center flex-1">
       <div className="flex px-2 flex-1 flex-row justify-end items-center gap-4">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="max-md:bg-accent"
-        >
-          {theme === "dark" && <Sun className="w-4 h-4 text-primary" />}
-          {theme === "light" && <Moon className="w-4 h-4 text-primary" />}
-        </Button>
+        <Popover side="bottom" alignOffset={4} open={isPopoverOpen} onOpenChange={(v) => setIsPopoverOpen(v)}>
+          <PopoverTrigger>
+            <Button variant="ghost" size="icon" className={cn("max-md:bg-accent", isPopoverOpen ? "bg-accent" : "")}>
+              {theme === "light" && <Sun className="w-4 h-4 text-primary" />}
+              {theme === "dark" && <Moon className="w-4 h-4 text-primary" />}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="flex flex-col p-1 px-2 max-w-28 gap-2 *:justify-start">
+            <Button
+              variant={theme === "light" ? "secondary" : "ghost"}
+              size="sm"
+              className="text-sm p-1 px-2"
+              onClick={() => {
+                setTheme("light");
+                setIsPopoverOpen(false);
+              }}
+            >
+              <Sun className="w-4 h-4 text-primary" />
+              Light
+            </Button>
+            <Button
+              size="sm"
+              variant={theme === "dark" ? "secondary" : "ghost"}
+              className="text-sm p-1 px-2"
+              onClick={() => {
+                setTheme("dark");
+                setIsPopoverOpen(false);
+              }}
+            >
+              <Moon className="w-4 h-4 text-primary" />
+              Dark
+            </Button>
+          </PopoverContent>
+        </Popover>
       </div>
     </div>
   );

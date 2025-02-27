@@ -112,7 +112,7 @@ export function TableSection() {
               <TableCell className="text-center flex flex-row items-center justify-center">
                 <AlertDialog>
                   <AlertDialogTrigger>
-                    <TooltipProvider>
+                    <TooltipProvider side="left">
                       <Tooltip>
                         <TooltipTrigger>
                           <Button size="icon" variant="destructive">

@@ -23,8 +23,10 @@ export function SimpleSelect(props: SelectProps) {
     // TODO: FIX this for not break sticky components
     if (open) {
       document.body.classList.add("overflow-hidden");
+      document.body.classList.add("mr-[10px]");
     } else {
       document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove("mr-[10px]");
     }
   }, [open]);
 

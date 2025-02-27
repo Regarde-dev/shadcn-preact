@@ -1,5 +1,6 @@
 import { type HTMLAttributes, type PropsWithChildren, createPortal, forwardRef, useEffect } from "preact/compat";
 import { cn } from "./share/cn";
+import { getScrollBarWidth } from "./share/getScrollBarWidth";
 import { Show } from "./show";
 
 type ModalProps = PropsWithChildren<
@@ -27,13 +28,14 @@ type ModalContentProps = PropsWithChildren<
 
 const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(({ className, ...props }, ref) => {
   useEffect(() => {
-    // TODO: FIX this for not break sticky components or implement Scrollarea component
     document.body.classList.add("overflow-hidden");
-    document.body.classList.add("mr-[10px]");
+    const scrollbarWidth = getScrollBarWidth(document.body);
+    document.body.classList.add(`mr-[${scrollbarWidth}px]`);
 
     return () => {
       document.body.classList.remove("overflow-hidden");
-      document.body.classList.remove("mr-[10px]");
+      const scrollbarWidth = getScrollBarWidth(document.body);
+      document.body.classList.remove(`mr-[${scrollbarWidth}px]`);
     };
   }, []);
 

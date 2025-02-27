@@ -1,7 +1,9 @@
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
+import { Button } from "@ui/button";
 import { ThemeProvider } from "@ui/theme";
 import { Toaster } from "@ui/toast";
-import { ErrorRoute, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
+import { ExternalLink } from "lucide-preact";
+import { A, ErrorRoute, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
 import { AppRoutes } from "./routes/AppRoutes";
 import BlocksPage from "./routes/Blocks";
 import AlertPage from "./routes/Components/Alert";
@@ -167,11 +169,17 @@ export function App() {
           </Route>
 
           <ErrorRoute>
-            <div className="w-screen h-screen flex flex-col justify-center items-center bg-background">
-              <Alert variant="destructive" className="max-w-[500px]">
-                <AlertTitle>404 error, Not found</AlertTitle>
-                <AlertDescription>This resource doesn't exists</AlertDescription>
+            <div className="w-screen h-screen flex flex-col justify-center gap-6 items-center bg-background">
+              <Alert variant="destructive" className="max-w-[500px] border-red-500">
+                <AlertTitle className="font-bold text-red-500">404 error, Not found</AlertTitle>
+                <AlertDescription className="text-red-400">This resource doesn't exists</AlertDescription>
               </Alert>
+
+              <A href={AppRoutes.HOME}>
+                <Button variant="secondary">
+                  Go home <ExternalLink />
+                </Button>
+              </A>
             </div>
           </ErrorRoute>
         </ThemeProvider>

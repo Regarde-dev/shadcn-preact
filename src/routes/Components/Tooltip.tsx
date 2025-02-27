@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/c
 import { A } from "preact-hashish-router";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
-import { TooltipSection } from "./Sections/Tooltip";
+import { TooltipSection } from "./Sections/TooltipSection";
 
 export default function TooltipPage() {
   return (

@@ -43,3 +43,6 @@ integration and a build with minimal external dependencies.
 
 - Input Otp
   - input-otp
+
+- Tooltip
+  - @floating-ui/react-dom

@@ -11,6 +11,7 @@
     "check": "biome check --write ."
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^2.1.2",
     "@preact/signals": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

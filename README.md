@@ -17,32 +17,123 @@ _Use this as a reference to build your own component libraries._
 
 **Why if Preact is compatible with React?**
 
-Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix is ​​an excellent component library, 
-but it is a heavy dependency and I have tried to move it to Preact for better 
+Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix is ​​an excellent component library,
+but it is a heavy dependency and I have tried to move it to Preact for better
 integration and a build with minimal external dependencies.
 
+### Installation Guide
 
-**External Deps**
+**VITE:**
 
-- lucide-preact
+**1- Create project**
 
-- Calendar
-  - react-day-picker
+Start by creating a new Preact project using vite:
 
-- Carousel
-  - embla-carousel-react
+```bash
+bun create vite@latest
+```
 
-- Chart
-  - recharts
+**2- Add Tailwind and its configuration**
 
-- Command
-  - cmdk
+> For now only suport tailwindcss 3
+> In the future will support tailwindcss 4
 
-- Drawer
-  - vaul
+Install tailwindcss and its peer dependencies, then generate your tailwind.config.js and postcss.config.js files:
 
-- Input Otp
-  - input-otp
+```bash
+bun add -D tailwindcss@3.4.17 postcss autoprefixer
+```
 
-- Tooltip
-  - @floating-ui/react-dom
+Add this import header in your main css file, `src/index.css` in our case:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ... */
+```
+
+Configure the tailwind template paths in `tailwind.config.js`:
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+Configure the postcss file `postcss.config.js`:
+
+```js
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
+
+**3- Edit tsconfig.json file**
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@ui/*": ["./src/components/ui/*"]
+    }
+  }
+}
+```
+
+**4- Update vite.config.ts**
+
+```bash
+bun add -D @types/node
+```
+
+```js
+import { resolve } from "node:path";
+import preact from "@preact/preset-vite";
+import { defineConfig } from "vite";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [preact()],
+  server: {
+    host: true,
+  },
+  resolve: {
+    alias: {
+      "@ui": resolve(resolve(__dirname), "./src/components/ui/"),
+      "@": resolve(resolve(__dirname), "./src/"),
+    },
+  },
+  define: {
+    "process.env.IS_PREACT": JSON.stringify("true"),
+  },
+});
+```
+
+### Add UI components
+
+For now this guide its for the installation of all components at once.
+
+**1- Install all components dependencies:**
+
+```bash
+bun add class-variance-authority clsx cmdk date-fns dayjs embla-carousel-react input-otp lucide-preact react-day-picker react-hot-toast recharts tailwind-merge tailwindcss-animate vaul
+```
+
+**2- Adding components:**
+
+Copy the folder of this repo `src/components/ui` into your ui path
+If you dont change the config guide should be in `src/components/ui`
+
+**3- Done**

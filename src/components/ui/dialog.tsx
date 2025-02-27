@@ -56,6 +56,7 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
     const { open, closeDialog } = useDialog();
     const contentRef = createRef<HTMLDivElement>();
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     useEffect(() => {
       if (open) {
         if (props.autoSelect) {
@@ -64,7 +65,7 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
           contentRef.current?.parentElement?.querySelectorAll("input")[0]?.focus();
         }
       }
-    }, [open, props.autoSelect, contentRef]);
+    }, [open]);
 
     return (
       <Show when={open}>

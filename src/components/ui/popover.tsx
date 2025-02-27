@@ -64,16 +64,12 @@ export function Popover({ children, open: controlledOpen, onOpenChange, ...props
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (onOpenChange) {
+    if (onOpenChange && isOpen !== controlledOpen) {
       onOpenChange(isOpen);
     }
   }, [isOpen]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (onOpenChange) {
-      onOpenChange(controlledOpen);
-    }
     setIsOpen(controlledOpen);
   }, [controlledOpen]);
 

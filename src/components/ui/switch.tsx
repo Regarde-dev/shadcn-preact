@@ -10,11 +10,12 @@ type SwitchProps = ButtonHTMLAttributes & {
 const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({ className, ...props }, ref) => {
   const [checked, setChecked] = useState(props.checked !== undefined ? props.checked : props.defaultChecked || false);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (props.onCheckedChange) {
       props.onCheckedChange(checked);
     }
-  }, [checked, props.onCheckedChange]);
+  }, [checked]);
 
   useEffect(() => {
     setChecked(props.checked);

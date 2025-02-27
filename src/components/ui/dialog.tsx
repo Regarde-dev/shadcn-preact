@@ -20,11 +20,12 @@ export function Dialog({ open: controlledIsOpen = false, children, onChange }: D
   const openDialog = () => setOpen(true);
   const closeDialog = () => setOpen(false);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (onChange) {
+    if (onChange && open !== controlledIsOpen) {
       onChange(open);
     }
-  }, [open, onChange]);
+  }, [open]);
 
   useEffect(() => {
     setOpen(controlledIsOpen);

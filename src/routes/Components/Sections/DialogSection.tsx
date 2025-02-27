@@ -12,13 +12,16 @@ import {
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
 import { Copy } from "lucide-preact";
+import { useState } from "preact/hooks";
 
 export function DialogSection() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="w-full flex flex-col gap-10 items-center">
-      <Dialog>
+      <Dialog onChange={setOpen} open={open}>
         <DialogTrigger>
-          <Button variant="outline">Edit Profile</Button>
+          <Button variant="default">Edit Profile</Button>
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-[425px]">
@@ -43,7 +46,7 @@ export function DialogSection() {
           </div>
 
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
+            <Button onClick={() => setOpen(false)}>Save changes</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

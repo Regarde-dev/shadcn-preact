@@ -33,11 +33,12 @@ type ToggleProps = ButtonHTMLAttributes &
 const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(({ className, variant, size, ...props }, ref) => {
   const [isOn, setIsOn] = useState(props.pressed ? props.pressed : props.defaultPressed || false);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (props.onPressedChange) {
       props.onPressedChange(isOn);
     }
-  }, [isOn, props.onPressedChange]);
+  }, [isOn]);
 
   useEffect(() => {
     if (props.pressed) {

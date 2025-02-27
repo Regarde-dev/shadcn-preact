@@ -44,11 +44,12 @@ const Tabs = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & TabsPro
   ) => {
     const [value, setValue] = useState(controlledValue !== undefined ? controlledValue : defaultValue || "");
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     useEffect(() => {
       if (onValueChange) {
         onValueChange(value);
       }
-    }, [value, onValueChange]);
+    }, [value]);
 
     useEffect(() => {
       if (controlledValue) {

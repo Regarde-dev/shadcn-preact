@@ -30,12 +30,11 @@ const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(({ className,
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
     const scrollbarWidth = getScrollBarWidth(document.body);
-    document.body.classList.add(`mr-[${scrollbarWidth}px]`);
+    document.body.style.marginRight = `${scrollbarWidth}px`;
 
     return () => {
       document.body.classList.remove("overflow-hidden");
-      const scrollbarWidth = getScrollBarWidth(document.body);
-      document.body.classList.remove(`mr-[${scrollbarWidth}px]`);
+      document.body.style.marginRight = `${0}px`;
     };
   }, []);
 

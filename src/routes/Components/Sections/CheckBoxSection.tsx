@@ -1,17 +1,20 @@
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@ui/card";
 import { Checkbox } from "@ui/checkbox";
+import { useState } from "preact/hooks";
 
 export function CheckboxSection() {
+  const [c, setC] = useState(false);
+
   return (
     <div className="w-full flex flex-col gap-10  items-start pt-4">
       <div className="flex items-center space-x-2">
-        <Checkbox id="terms32" />
+        <Checkbox id="terms32" checked={c} onCheckedChange={setC} />
         <label
           htmlFor="terms32"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
-          Accept terms and conditions
+          Accept terms and conditions. Controlled Check
         </label>
       </div>
 

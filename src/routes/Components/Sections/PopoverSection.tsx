@@ -2,11 +2,15 @@ import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
+import { X } from "lucide-preact";
+import { useState } from "preact/hooks";
 
 export function PopoverSection() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="w-full flex flex-col justify-start items-start gap-10">
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger>
           <Button variant="outline">Open popover</Button>
         </PopoverTrigger>
@@ -34,6 +38,9 @@ export function PopoverSection() {
                 <Input id="maxHeight" defaultValue="none" className="col-span-2 h-8" />
               </div>
             </div>
+            <Button variant="default" onClick={() => setOpen(false)}>
+              <X /> Close
+            </Button>
           </div>
         </PopoverContent>
       </Popover>

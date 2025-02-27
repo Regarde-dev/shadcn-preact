@@ -34,11 +34,12 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
       }
     }, [raw, isFocus]);
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     useEffect(() => {
       if (props.onTokensChange) {
         props.onTokensChange(tokens);
       }
-    }, [tokens, props.onTokensChange]);
+    }, [tokens]);
 
     return (
       <div

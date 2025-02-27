@@ -6,7 +6,7 @@ import { Modal } from "./modal";
 import { cn } from "./share/cn";
 
 type SelectProps = PropsWithChildren & {
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   value?: string;
   data: { value: string; title: string }[];
   title?: string;
@@ -71,7 +71,9 @@ export const SimpleSelect = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLBut
                 onSelect={() => {
                   setValue(item.value);
                   setOpen(false);
-                  props.onChange(item.value);
+                  if (props.onChange !== undefined) {
+                    props.onChange(item.value);
+                  }
                 }}
               />
             ))}

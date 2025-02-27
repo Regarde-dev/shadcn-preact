@@ -13,19 +13,21 @@ type CheckboxProps = HTMLAttributes<HTMLButtonElement> & {
 };
 
 const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
-  ({ className, checked, defaultChecked, required, onCheckedChange, ...props }, ref) => {
+  ({ className, checked: controlledChecked, defaultChecked, required, onCheckedChange, ...props }, ref) => {
     const [internalIsChecked, setIsChecked] = useState<CheckedState>(
-      checked !== undefined ? checked : defaultChecked || false
+      controlledChecked !== undefined ? controlledChecked : defaultChecked || false
     );
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
     useLayoutEffect(() => {
-      if (onCheckedChange) onCheckedChange(internalIsChecked);
+      if (onCheckedChange && controlledChecked !== internalIsChecked) {
+        onCheckedChange(internalIsChecked);
+      }
     }, [internalIsChecked]);
 
     useLayoutEffect(() => {
-      setIsChecked(checked);
-    }, [checked]);
+      setIsChecked(controlledChecked);
+    }, [controlledChecked]);
 
     return (
       <>

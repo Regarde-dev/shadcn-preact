@@ -20,6 +20,7 @@ import DialogPage from "./routes/Components/Dialog";
 import DrawerPage from "./routes/Components/Drawer";
 import InputPage from "./routes/Components/Input";
 import LabelPage from "./routes/Components/Label";
+import PopoverPage from "./routes/Components/Popover";
 import SheetPage from "./routes/Components/Sheet";
 import SkeletonPage from "./routes/Components/Skeleton";
 import SwitchPage from "./routes/Components/Switch";
@@ -75,6 +76,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.TOOLTIP}>
             <TooltipPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.POPOVER}>
+            <PopoverPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.TEXTAREA}>

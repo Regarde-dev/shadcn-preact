@@ -28,6 +28,7 @@ export const AppRoutes = {
     TOAST: "/component/toast",
     TOGGLE: "/component/toggle",
     TOOLTIP: "/component/tooltip",
+    POPOVER: "/component/popover",
     CALENDAR: "/component/calendar",
     DRAWER: "/component/drawer",
     SELECT: "/component/select",

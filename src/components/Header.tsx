@@ -1,12 +1,12 @@
 import { AppRoutes } from "@/routes/AppRoutes";
 import { Button } from "@ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
+import { cn } from "@ui/share/cn";
 import { useTheme } from "@ui/theme";
 import { Moon, Sun } from "lucide-preact";
 import { A } from "preact-hashish-router";
 import { Suspense, lazy, useState } from "preact/compat";
 import { LoadingSpinner } from "./LoadingSpinner";
-import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
-import { cn } from "@ui/share/cn";
 
 const MobileSidebarMenu = lazy(() => import("./MobileSidebarMenu"));
 
@@ -75,7 +75,13 @@ function HeaderRightSide() {
   return (
     <div className="flex h-full flex-row items-center justify-center flex-1">
       <div className="flex px-2 flex-1 flex-row justify-end items-center gap-4">
-        <Popover side="bottom" alignOffset={4} open={isPopoverOpen} onOpenChange={(v) => setIsPopoverOpen(v)}>
+        <Popover
+          side="bottom"
+          alignment="end"
+          alignOffset={4}
+          open={isPopoverOpen}
+          onOpenChange={(v) => setIsPopoverOpen(v)}
+        >
           <PopoverTrigger>
             <Button variant="ghost" size="icon" className={cn("max-md:bg-accent", isPopoverOpen ? "bg-accent" : "")}>
               {theme === "light" && <Sun className="w-4 h-4 text-primary" />}

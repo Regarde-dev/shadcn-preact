@@ -128,7 +128,7 @@ For now this guide its for the installation of all components at once.
 **1- Install all components dependencies:**
 
 ```bash
-bun add class-variance-authority clsx cmdk date-fns dayjs embla-carousel-react input-otp lucide-preact react-day-picker react-hot-toast recharts tailwind-merge tailwindcss-animate vaul
+bun add class-variance-authority clsx cmdk date-fns dayjs embla-carousel-react input-otp lucide-preact react-day-picker react-hot-toast recharts tailwind-merge tailwindcss-animate vaul @floating-ui/react-dom
 ```
 
 **2- Adding components:**

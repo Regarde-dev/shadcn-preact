@@ -16,7 +16,7 @@ const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 
 export function SheetSection() {
   return (
-    <div className="w-full flex flex-col gap-10 items-center">
+    <div className="flex w-full flex-col items-center gap-10">
       <Sheet>
         <SheetTrigger>
           <Button variant="outline">Open</Button>

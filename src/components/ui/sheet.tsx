@@ -84,7 +84,7 @@ const SheetContent = forwardRef<ElementRef<typeof DialogContent>, SheetContentPr
                 onClick={() => closeDialog()}
                 type="button"
                 data-state={open ? "open" : "closed"}
-                className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"
+                className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -110,7 +110,7 @@ SheetFooter.displayName = "SheetFooter";
 
 const SheetTitle = forwardRef<ElementRef<typeof DialogTitle>, ComponentPropsWithoutRef<typeof DialogTitle>>(
   ({ className, ...props }, ref) => (
-    <DialogTitle ref={ref} className={cn("text-lg font-semibold text-foreground", className)} {...props} />
+    <DialogTitle ref={ref} className={cn("font-semibold text-foreground text-lg", className)} {...props} />
   )
 );
 SheetTitle.displayName = DialogTitle.displayName;
@@ -119,7 +119,7 @@ const SheetDescription = forwardRef<
   ElementRef<typeof DialogDescription>,
   ComponentPropsWithoutRef<typeof DialogDescription>
 >(({ className, ...props }, ref) => (
-  <DialogDescription ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
+  <DialogDescription ref={ref} className={cn("text-muted-foreground text-sm", className)} {...props} />
 ));
 SheetDescription.displayName = DialogDescription.displayName;
 

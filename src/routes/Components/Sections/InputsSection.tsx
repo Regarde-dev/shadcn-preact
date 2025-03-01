@@ -6,7 +6,7 @@ import { Label } from "@ui/label";
 
 export function InputsSection() {
   return (
-    <div className="w-full flex flex-col gap-10 items-center">
+    <div className="flex w-full flex-col items-center gap-10">
       <Input type="email1" placeholder="Email" className="max-w-sm" />
 
       <div className="grid w-full max-w-sm items-center gap-1.5">

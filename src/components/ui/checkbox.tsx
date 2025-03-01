@@ -34,7 +34,7 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         <button
           disabled={props.disabled || false}
           className={cn(
-            "border-primary shadow border w-4 h-4 rounded-sm flex flex-row justify-center items-center disabled:cursor-not-allowed",
+            "flex h-4 w-4 flex-row items-center justify-center rounded-sm border border-primary shadow disabled:cursor-not-allowed",
             `${internalIsChecked ? "bg-primary text-primary-foreground" : ""}`,
             className
           )}

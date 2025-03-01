@@ -34,7 +34,11 @@
         "useKeyWithClickEvents": "off"
       },
       "style": {
-        "noNonNullAssertion": "off"
+        "noNonNullAssertion": "off",
+        "useImportType": "error"
+      },
+      "nursery": {
+        "useSortedClasses": "warn"
       }
     }
   },

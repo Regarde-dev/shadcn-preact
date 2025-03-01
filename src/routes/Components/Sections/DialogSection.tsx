@@ -18,7 +18,7 @@ export function DialogSection() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full flex flex-col gap-10 items-center">
+    <div className="flex w-full flex-col items-center gap-10">
       <Dialog onChange={setOpen} open={open}>
         <DialogTrigger>
           <Button variant="default">Edit Profile</Button>
@@ -62,7 +62,7 @@ export function DialogSection() {
             <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
           </DialogHeader>
 
-          <div className="flex items-end space-x-2 flex-row">
+          <div className="flex flex-row items-end space-x-2">
             <div className="grid flex-1 gap-2">
               <Label htmlFor="link">Link</Label>
               <Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />

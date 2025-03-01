@@ -51,7 +51,7 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
           contentRef.current?.querySelector("input")?.focus();
         }}
         className={cn(
-          "flex min-h-9 flex-wrap cursor-text w-full flex-row gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          "flex min-h-9 w-full cursor-text flex-row flex-wrap gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
           isFocus ? "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring " : ""
         )}
       >
@@ -84,7 +84,7 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
           </>
         ))}
         <input
-          className="fixed -top-[9999999px] -z-50 select-none"
+          className="-top-[9999999px] -z-50 fixed select-none"
           // className="block text-primary-foreground w-full select-none"
           ref={ref}
           onFocus={() => {

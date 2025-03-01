@@ -11,7 +11,7 @@ import { Slash } from "lucide-preact";
 
 export function BreadcrumbSection() {
   return (
-    <div className="w-full flex flex-col justify-start items-center gap-10">
+    <div className="flex w-full flex-col items-center justify-start gap-10">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

@@ -2,7 +2,7 @@ import { Skeleton } from "@ui/skeleton";
 
 export function SkeletonSection() {
   return (
-    <div className="w-full flex flex-col gap-10 items-center">
+    <div className="flex w-full flex-col items-center gap-10">
       <div className="flex items-center space-x-4">
         <Skeleton className="h-12 w-12 rounded-full" />
         <div className="space-y-2">

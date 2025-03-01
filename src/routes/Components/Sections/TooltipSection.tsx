@@ -3,7 +3,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@ui/to
 
 export function TooltipSection() {
   return (
-    <div className="w-full flex flex-col justify-start items-start gap-10">
+    <div className="flex w-full flex-col items-start justify-start gap-10">
       <TooltipProvider side="bottom" alignOffset={4}>
         <Tooltip>
           <TooltipTrigger>

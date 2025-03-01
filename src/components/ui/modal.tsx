@@ -43,7 +43,7 @@ const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(({ className,
       ref={ref}
       onClick={props.onClose}
       data-state="open"
-      className={cn("fixed inset-0 z-50 bg-black/80 animate-in fade-in-0", className)}
+      className={cn("fade-in-0 fixed inset-0 z-50 animate-in bg-black/80", className)}
       {...props}
     >
       {props.children}

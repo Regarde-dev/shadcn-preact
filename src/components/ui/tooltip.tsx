@@ -87,7 +87,7 @@ export function TooltipTrigger({ children }: PropsWithChildren) {
       onMouseLeave={closeDebounced}
       onFocusOut={closeDebounced}
       onBlur={closeDebounced}
-      className="bg-transparent p-0 m-0 w-fit relative border-none border-0 outline-none"
+      className="relative m-0 w-fit border-0 border-none bg-transparent p-0 outline-none"
     >
       {children}
     </div>
@@ -106,7 +106,7 @@ export function TooltipContent({ children }: PropsWithChildren) {
         data-tooltip-id={id}
         data-state={isOpen ? "open" : "closed"}
         className={cn(
-          "z-50 overflow-hidden rounded-md bg-primary px-3 py-1 text-sm text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+          "fade-in-0 zoom-in-95 data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 z-50 animate-in overflow-hidden rounded-md bg-primary px-3 py-1 text-primary-foreground text-sm data-[state=closed]:animate-out"
         )}
       >
         {children}

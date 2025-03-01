@@ -14,13 +14,13 @@ import { AppRoutes } from "../AppRoutes";
 
 export default function IntroductionPage() {
   return (
-    <div className="flex flex-1 min-h-screen h-auto w-full flex-col items-center justify-start relative bg-background">
+    <div className="relative flex h-auto min-h-screen w-full flex-1 flex-col items-center justify-start bg-background">
       <Header />
 
-      <div className="w-full flex flex-1 flex-col items-center justify-start p-0 mt-0  relative border-b border-accent border-dashed">
-        <div className="max-w-screen-2xl md:border-x border-accent border-dashed *:max-w-[100vw] *:overflow-auto flex md:px-1 flex-col w-full md:pt-2 gap-4">
+      <div className="relative mt-0 flex w-full flex-1 flex-col items-center justify-start border-accent border-b border-dashed p-0">
+        <div className="flex w-full max-w-screen-2xl flex-col gap-4 border-accent border-dashed *:max-w-[100vw] *:overflow-auto md:border-x md:px-1 md:pt-2">
           <ContentLayout>
-            <Card className="w-full flex flex-col border-none shadow-none pt-0 max-md:*:px-2 md:pr-12 lg:pr-64 border border-primary">
+            <Card className="flex w-full flex-col border border-primary border-none pt-0 shadow-none max-md:*:px-2 md:pr-12 lg:pr-64">
               <CardHeader>
                 <Breadcrumb>
                   <BreadcrumbList>
@@ -46,7 +46,7 @@ export default function IntroductionPage() {
 
               <CardContent className="pt-0">
                 <div className="max-w-full pb-12 *:my-1">
-                  <p className="break-words leading-7 [&amp;:not(:first-child)]:mt-6 *:mx-2">
+                  <p className="break-words leading-7 *:mx-2 [&amp;:not(:first-child)]:mt-6">
                     An unofficial,
                     <a
                       className="font-medium underline underline-offset-4"

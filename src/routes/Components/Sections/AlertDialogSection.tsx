@@ -16,7 +16,7 @@ export function AlertDialogSection() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full flex flex-col gap-10 items-center">
+    <div className="flex w-full flex-col items-center gap-10">
       <AlertDialog>
         <AlertDialogTrigger>
           <Button variant="outline">Got an Alert</Button>

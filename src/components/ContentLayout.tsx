@@ -5,13 +5,13 @@ import type { PropsWithChildren } from "preact/compat";
 
 export default function MainLayout(props: PropsWithChildren) {
   return (
-    <div className="md:grid md:grid-cols-[1fr,5fr] md:grid-rows-1 flex flex-col h-auto w-full p-0">
-      <aside class="md:flex z-30 h-[calc(100vh-4.3rem)] w-full shrink-0 overflow-auto hidden min-w-[220px]">
-        <div className="w-full h-full md:p-4 px-1 py-2">
+    <div className="flex h-auto w-full flex-col p-0 md:grid md:grid-cols-[1fr,5fr] md:grid-rows-1">
+      <aside class="z-30 hidden h-[calc(100vh-4.3rem)] w-full min-w-[220px] shrink-0 overflow-auto md:flex">
+        <div className="h-full w-full px-1 py-2 md:p-4">
           <NavRoutesLinks />
         </div>
       </aside>
-      <main className="w-full flex px-1 flex-col justify-start items-start md:border-l md:border-l-accent md:border-dashed h-[calc(100vh-4.3rem)] overflow-auto">
+      <main className="flex h-[calc(100vh-4.3rem)] w-full flex-col items-start justify-start overflow-auto px-1 md:border-l md:border-l-accent md:border-dashed">
         {props.children}
       </main>
     </div>
@@ -21,11 +21,11 @@ export default function MainLayout(props: PropsWithChildren) {
 export function NavRoutesLinks() {
   return (
     <>
-      <div className="w-full gap-[2px] flex flex-col">
-        <span className="text-sm font-semibold p-1 h-9 w-full justify-start flex flex-row items-center">
+      <div className="flex w-full flex-col gap-[2px]">
+        <span className="flex h-9 w-full flex-row items-center justify-start p-1 font-semibold text-sm">
           Getting Started
         </span>
-        <A href={AppRoutes.DOCS.INTRO} className="w-full group">
+        <A href={AppRoutes.DOCS.INTRO} className="group w-full">
           <Button
             variant="ghost"
             size="sm"
@@ -35,7 +35,7 @@ export function NavRoutesLinks() {
           </Button>
         </A>
 
-        <A href={AppRoutes.DOCS.INSTALLATION} className="w-full group">
+        <A href={AppRoutes.DOCS.INSTALLATION} className="group w-full">
           <Button
             variant="ghost"
             size="sm"
@@ -45,7 +45,7 @@ export function NavRoutesLinks() {
           </Button>
         </A>
 
-        <A href={AppRoutes.DOCS.THEMING} className="w-full group">
+        <A href={AppRoutes.DOCS.THEMING} className="group w-full">
           <Button
             variant="ghost"
             size="sm"
@@ -55,7 +55,7 @@ export function NavRoutesLinks() {
           </Button>
         </A>
 
-        <A href={AppRoutes.BLOCKS} className="w-full group">
+        <A href={AppRoutes.BLOCKS} className="group w-full">
           <Button
             variant="ghost"
             size="sm"
@@ -66,8 +66,8 @@ export function NavRoutesLinks() {
         </A>
       </div>
 
-      <div className="w-full gap-[2px] flex flex-col">
-        <span className="text-sm font-semibold p-1 h-9 w-full justify-start flex flex-row items-center">
+      <div className="flex w-full flex-col gap-[2px]">
+        <span className="flex h-9 w-full flex-row items-center justify-start p-1 font-semibold text-sm">
           Components
         </span>
 
@@ -75,11 +75,11 @@ export function NavRoutesLinks() {
           .sort()
           .map(([name, route]) => {
             return (
-              <A href={route} className="w-full group" key={name}>
+              <A href={route} className="group w-full" key={name}>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-full capitalize justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+                  className="w-full justify-start px-1 py-1 font-normal capitalize group-data-[route-active=true]:bg-accent"
                 >
                   {name.split("_").join(" ").toLocaleLowerCase()}
                 </Button>

@@ -4,19 +4,19 @@ import { Login04 } from "./Blocks/Login04";
 
 export default function BlocksPage() {
   return (
-    <div className="flex flex-1 min-h-screen h-auto w-full flex-col items-center justify-start relative bg-background">
+    <div className="relative flex h-auto min-h-screen w-full flex-1 flex-col items-center justify-start bg-background">
       <Header />
 
-      <div className="w-full flex flex-1 flex-col items-center border-b border-dashed border-accent justify-start relative">
-        <div className="max-w-screen-2xl min-h-[calc(100vh-4rem)] *:max-w-[100vw] *:overflow-auto flex px-1 2xl:px-4 flex-col w-full 2xl:border-x border-dashed border-accent pt-4 gap-4">
+      <div className="relative flex w-full flex-1 flex-col items-center justify-start border-accent border-b border-dashed">
+        <div className="flex min-h-[calc(100vh-4rem)] w-full max-w-screen-2xl flex-col gap-4 border-accent border-dashed px-1 pt-4 *:max-w-[100vw] *:overflow-auto 2xl:border-x 2xl:px-4">
           <div className=" flex flex-col items-start gap-10 py-4 md:p-2">
-            <h1 className="text-2xl font-bold leading-tight tracking-tighter md:text-3xl lg:leading-[1.1]">Blocks</h1>
+            <h1 className="font-bold text-2xl leading-tight tracking-tighter md:text-3xl lg:leading-[1.1]">Blocks</h1>
 
-            <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
+            <div className="flex h-screen w-full flex-col items-center justify-center overflow-auto rounded-md bg-muted p-6 shadow md:p-10">
               <Login01 className="w-full max-w-lg" />
             </div>
 
-            <div className="w-full h-screen overflow-auto shadow bg-muted rounded-md p-6 md:p-10 flex flex-col justify-center items-center">
+            <div className="flex h-screen w-full flex-col items-center justify-center overflow-auto rounded-md bg-muted p-6 shadow md:p-10">
               <Login04 className="w-full max-w-3xl" />
             </div>
           </div>

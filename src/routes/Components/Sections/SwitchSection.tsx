@@ -4,15 +4,15 @@ import { Switch } from "@ui/switch";
 
 export function SwitchSection() {
   return (
-    <div className="w-full flex flex-col gap-10 items-center">
+    <div className="flex w-full flex-col items-center gap-10">
       <div className="flex items-center space-x-2">
         <Switch id="airplane-mode" />
         <Label htmlFor="airplane-mode">Airplane Mode</Label>
       </div>
 
-      <div className="w-full space-y-6 border border-border p-4 max-w-[500px] rounded-lg shadow-md">
+      <div className="w-full max-w-[500px] space-y-6 rounded-lg border border-border p-4 shadow-md">
         <div>
-          <h3 className="mb-4 text-lg font-medium">Email Notifications</h3>
+          <h3 className="mb-4 font-medium text-lg">Email Notifications</h3>
           <div className="space-y-4">
             <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
               <div className="space-y-0.5">

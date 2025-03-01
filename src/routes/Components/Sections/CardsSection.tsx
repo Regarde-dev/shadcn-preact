@@ -23,8 +23,8 @@ const notifications = [
 
 export function CardsSection() {
   return (
-    <div className="w-full flex flex-col gap-10 items-center">
-      <Card className="w-full max-w-[400px] h-fit">
+    <div className="flex w-full flex-col items-center gap-10">
+      <Card className="h-fit w-full max-w-[400px]">
         <CardHeader>
           <CardTitle>Create project</CardTitle>
           <CardDescription>Deploy your new project in one-click.</CardDescription>
@@ -77,11 +77,11 @@ export function CardsSection() {
           <CardDescription>You have 3 unread messages.</CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <div className="flex-row flex items-center space-x-4 rounded-md border p-4">
+          <div className="flex flex-row items-center space-x-4 rounded-md border p-4">
             <BellRing />
             <div className="flex-1 space-y-1">
-              <p className="text-sm font-medium leading-none">Push Notifications</p>
-              <p className="text-sm text-muted-foreground">Send notifications to device.</p>
+              <p className="font-medium text-sm leading-none">Push Notifications</p>
+              <p className="text-muted-foreground text-sm">Send notifications to device.</p>
             </div>
             <Switch />
           </div>
@@ -93,8 +93,8 @@ export function CardsSection() {
               >
                 <span className="flex h-2 w-2 translate-y-1 rounded-full bg-sky-500" />
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">{notification.title}</p>
-                  <p className="text-sm text-muted-foreground">{notification.description}</p>
+                  <p className="font-medium text-sm leading-none">{notification.title}</p>
+                  <p className="text-muted-foreground text-sm">{notification.description}</p>
                 </div>
               </div>
             ))}

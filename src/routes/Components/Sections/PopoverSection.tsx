@@ -9,7 +9,7 @@ export function PopoverSection() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full flex flex-col justify-start items-start gap-10">
+    <div className="flex w-full flex-col items-start justify-start gap-10">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger>
           <Button variant="outline">Open popover</Button>
@@ -18,7 +18,7 @@ export function PopoverSection() {
           <div className="grid gap-4">
             <div className="space-y-2">
               <h4 className="font-medium leading-none">Dimensions</h4>
-              <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+              <p className="text-muted-foreground text-sm">Set the dimensions for the layer.</p>
             </div>
             <div className="grid gap-2">
               <div className="grid grid-cols-3 items-center gap-4">

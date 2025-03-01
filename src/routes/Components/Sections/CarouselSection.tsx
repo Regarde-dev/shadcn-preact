@@ -3,7 +3,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 export function CarouselSection() {
   return (
-    <div className="w-full flex flex-col gap-10 pb-12">
+    <div className="flex w-full flex-col gap-10 pb-12">
       <p class="leading-7 [&amp;:not(:first-child)]:mt-6">
         The carousel component is built using the{" "}
         <a
@@ -17,7 +17,7 @@ export function CarouselSection() {
         library.
       </p>
 
-      <div className="w-full flex flex-col justify-center items-center gap-12">
+      <div className="flex w-full flex-col items-center justify-center gap-12">
         <Carousel
           className="w-full max-w-md"
           opts={{
@@ -30,7 +30,7 @@ export function CarouselSection() {
                 <div className="p-1">
                   <Card>
                     <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-4xl font-semibold">{index + 1}</span>
+                      <span className="font-semibold text-4xl">{index + 1}</span>
                     </CardContent>
                   </Card>
                 </div>
@@ -46,7 +46,7 @@ export function CarouselSection() {
             align: "start",
           }}
           orientation="vertical"
-          className="w-full max-w-xs mt-10"
+          className="mt-10 w-full max-w-xs"
         >
           <CarouselContent className="-mt-1 h-[200px]">
             {Array.from({ length: 5 }).map((c, index) => (
@@ -54,7 +54,7 @@ export function CarouselSection() {
                 <div className="p-1">
                   <Card>
                     <CardContent className="flex items-center justify-center p-6">
-                      <span className="text-3xl font-semibold">{index + 1}</span>
+                      <span className="font-semibold text-3xl">{index + 1}</span>
                     </CardContent>
                   </Card>
                 </div>

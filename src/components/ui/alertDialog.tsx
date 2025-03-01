@@ -48,7 +48,7 @@ export function AlertDialogTrigger({ children }: PropsWithChildren) {
   return (
     <div
       onClick={openDialog}
-      className="bg-transparent outline-none border-none p-0 m-0 w-fit h-fit max-w-fit max-h-fit"
+      className="m-0 h-fit max-h-fit w-fit max-w-fit border-none bg-transparent p-0 outline-none"
     >
       {children}
     </div>
@@ -64,7 +64,7 @@ export function AlertDialogContent({ children }: PropsWithChildren) {
         <div
           onClick={(e) => e.stopPropagation()}
           data-state="open"
-          className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg"
+          className="fixed top-[50%] left-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg"
         >
           {children}
         </div>
@@ -84,12 +84,12 @@ export const AlertDialogFooter = ({ children }: PropsWithChildren) => {
 AlertDialogFooter.displayName = "AlertDialogFooter";
 
 export const AlertDialogTitle = ({ children }: PropsWithChildren) => {
-  return <div className="text-lg font-semibold">{children}</div>;
+  return <div className="font-semibold text-lg">{children}</div>;
 };
 AlertDialogTitle.displayName = "AlertDialogTitle";
 
 export const AlertDialogDescription = ({ children }: PropsWithChildren) => {
-  return <div className="text-sm text-muted-foreground">{children}</div>;
+  return <div className="text-muted-foreground text-sm">{children}</div>;
 };
 AlertDialogDescription.displayName = "AlertDialogDescription";
 

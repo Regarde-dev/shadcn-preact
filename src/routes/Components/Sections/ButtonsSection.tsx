@@ -3,7 +3,7 @@ import { Loader2, MailOpen, User } from "lucide-preact";
 
 export function ButtonsSection() {
   return (
-    <div className="w-full flex flex-col justify-start items-center gap-10">
+    <div className="flex w-full flex-col items-center justify-start gap-10">
       <Button variant="default">Button</Button>
 
       <Button variant="secondary">Button</Button>

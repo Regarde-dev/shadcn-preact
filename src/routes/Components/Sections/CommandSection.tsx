@@ -29,13 +29,13 @@ export default function CommandSection() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col gap-10 items-center">
-      <p className="text-sm text-muted-foreground">
+    <div className="flex w-full flex-col items-center gap-10">
+      <p className="text-muted-foreground text-sm">
         Press{" "}
-        <kbd className="pointer-events-none inline-flex h-5 select-none max-md:hidden items-center gap-1 rounded border bg-muted px-1.5 font-mono font-medium text-muted-foreground opacity-100">
+        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-medium font-mono text-muted-foreground opacity-100 max-md:hidden">
           <span className="">⌘</span>J
         </kbd>
-        <Button variant="outline" onClick={() => setOpen(true)} className="md:hidden ml-4">
+        <Button variant="outline" onClick={() => setOpen(true)} className="ml-4 md:hidden">
           <span className="">⌘</span>J
         </Button>
       </p>

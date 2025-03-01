@@ -88,7 +88,7 @@ const data: { title: string; pages: number; author: string; price: string }[] = 
 
 export function TableSection() {
   return (
-    <div className="w-full flex flex-col justify-start items-center gap-10">
+    <div className="flex w-full flex-col items-center justify-start gap-10">
       <Table className="min-w-[720px]">
         <TableCaption>List of my Books</TableCaption>
 
@@ -109,14 +109,14 @@ export function TableSection() {
               <TableCell>{b.author}</TableCell>
               <TableCell className="text-end">{b.pages}</TableCell>
               <TableCell className="text-end">{b.price}</TableCell>
-              <TableCell className="text-center flex flex-row items-center justify-center">
+              <TableCell className="flex flex-row items-center justify-center text-center">
                 <AlertDialog>
                   <AlertDialogTrigger>
                     <TooltipProvider side="left">
                       <Tooltip>
                         <TooltipTrigger>
                           <Button size="icon" variant="destructive">
-                            <Trash className="w-4 h-4" />
+                            <Trash className="h-4 w-4" />
                           </Button>
                         </TooltipTrigger>
                         <TooltipContent>

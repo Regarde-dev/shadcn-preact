@@ -52,14 +52,14 @@ export const SimpleSelect = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLBut
           onFocus={() => setOpen(true)}
         >
           <span className="text-foreground text-sm">{select_title}</span>
-          <ChevronDown className="w-4 h-4 text-foreground" />
+          <ChevronDown className="h-4 w-4 text-foreground" />
         </Button>
 
         <Modal show={open} onClose={() => setOpen(false)} className="bg-transparent">
           <div
             ref={refs.setFloating}
             style={floatingStyles}
-            className="flex min-w-[200px] max-h-[96vh] overflow-auto w-fit flex-col rounded-md border border-border bg-background shadow p-1"
+            className="flex max-h-[96vh] w-fit min-w-[200px] flex-col overflow-auto rounded-md border border-border bg-background p-1 shadow"
           >
             {props.data.map((item) => (
               <SelectItem
@@ -95,7 +95,7 @@ const SelectItem = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElemen
       size="sm"
       variant="ghost"
       onClick={props.onSelect}
-      className={cn("justify-start items-center min-h-9", props.className)}
+      className={cn("min-h-9 items-center justify-start", props.className)}
     >
       {props.title}
     </Button>

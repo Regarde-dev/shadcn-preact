@@ -46,7 +46,7 @@ export function DialogTrigger({ children }: PropsWithChildren) {
   const { openDialog } = useDialog();
 
   return (
-    <div onClick={openDialog} className="bg-transparent p-0 m-0 w-fit">
+    <div onClick={openDialog} className="m-0 w-fit bg-transparent p-0">
       {children}
     </div>
   );
@@ -78,7 +78,7 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
               e.stopPropagation();
             }}
             className={cn(
-              "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg",
+              "fixed top-[50%] left-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg",
               className
             )}
             {...props}
@@ -86,9 +86,9 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
             <button
               onClick={closeDialog}
               type="button"
-              className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
             >
-              <X className="w-4 h-4" />
+              <X className="h-4 w-4" />
             </button>
             {children}
           </div>
@@ -119,14 +119,14 @@ DialogFooter.displayName = "DialogFooter";
 
 export const DialogTitle = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("text-lg font-semibold leading-none tracking-tight", className)} {...props} />
+    <div ref={ref} className={cn("font-semibold text-lg leading-none tracking-tight", className)} {...props} />
   )
 );
 DialogTitle.displayName = "DialogTitle";
 
 export const DialogDescription = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
+    <div ref={ref} className={cn("text-muted-foreground text-sm", className)} {...props} />
   )
 );
 DialogDescription.displayName = "DialogDescription";

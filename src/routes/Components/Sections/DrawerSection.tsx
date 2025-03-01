@@ -20,7 +20,7 @@ export default function DrawerSection() {
   }
 
   return (
-    <div className="w-full flex flex-col gap-10">
+    <div className="flex w-full flex-col gap-10">
       <p class="leading-7 [&amp;:not(:first-child)]:mt-6">
         Drawer is built on top of{" "}
         <a class="font-medium underline underline-offset-4" href="https://github.com/emilkowalski/vaul">
@@ -59,8 +59,8 @@ export default function DrawerSection() {
                   <span className="sr-only">Decrease</span>
                 </Button>
                 <div className="flex-1 text-center">
-                  <div className="text-7xl font-bold tracking-tighter">{goal}</div>
-                  <div className="text-[0.70rem] uppercase text-muted-foreground">Calories/day</div>
+                  <div className="font-bold text-7xl tracking-tighter">{goal}</div>
+                  <div className="text-[0.70rem] text-muted-foreground uppercase">Calories/day</div>
                 </div>
                 <Button
                   variant="outline"

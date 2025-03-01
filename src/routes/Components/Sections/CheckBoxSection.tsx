@@ -7,12 +7,12 @@ export function CheckboxSection() {
   const [c, setC] = useState(false);
 
   return (
-    <div className="w-full flex flex-col gap-10  items-start pt-4">
+    <div className="flex w-full flex-col items-start gap-10 pt-4">
       <div className="flex items-center space-x-2">
         <Checkbox id="terms32" checked={c} onCheckedChange={setC} />
         <label
           htmlFor="terms32"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Accept terms and conditions. Controlled Check
         </label>
@@ -23,11 +23,11 @@ export function CheckboxSection() {
         <div className="grid gap-1.5 leading-none">
           <label
             htmlFor="terms1"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             Accept terms and conditions
           </label>
-          <p className="text-sm text-muted-foreground">You agree to our Terms of Service and Privacy Policy.</p>
+          <p className="text-muted-foreground text-sm">You agree to our Terms of Service and Privacy Policy.</p>
         </div>
       </div>
 
@@ -35,7 +35,7 @@ export function CheckboxSection() {
         <Checkbox id="terms2" disabled />
         <label
           htmlFor="terms2"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Accept terms and conditions
         </label>
@@ -52,7 +52,7 @@ export function CheckboxSection() {
             <Checkbox id="recents" defaultChecked />
             <label
               htmlFor="recents"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Recents
             </label>
@@ -62,7 +62,7 @@ export function CheckboxSection() {
             <Checkbox id="home" defaultChecked />
             <label
               htmlFor="home"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Home
             </label>
@@ -72,7 +72,7 @@ export function CheckboxSection() {
             <Checkbox id="app" />
             <label
               htmlFor="app"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Applications
             </label>
@@ -82,7 +82,7 @@ export function CheckboxSection() {
             <Checkbox id="desktop" />
             <label
               htmlFor="desktop"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Desktop
             </label>
@@ -92,7 +92,7 @@ export function CheckboxSection() {
             <Checkbox id="downloads" />
             <label
               htmlFor="downloads"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Downloads
             </label>
@@ -102,7 +102,7 @@ export function CheckboxSection() {
             <Checkbox id="docs" />
             <label
               htmlFor="docs"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Documents
             </label>

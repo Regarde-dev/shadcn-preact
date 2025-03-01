@@ -4,7 +4,7 @@ import { PieChartDemo1 } from "./Charts/PieChartDemo1";
 
 export default function ChartSection() {
   return (
-    <div className="w-full flex flex-col gap-10 ">
+    <div className="flex w-full flex-col gap-10 ">
       <PieChartDemo1 />
       <BarChartDemo1 />
       <AreaChartDemo1 />

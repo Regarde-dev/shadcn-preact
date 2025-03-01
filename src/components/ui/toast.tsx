@@ -37,7 +37,7 @@ export const ToastAction = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButt
     <button
       ref={ref}
       className={cn(
-        "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium transition-colors hover:bg-secondary focus:outline-none focus:ring-1 focus:ring-ring disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
+        "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 font-medium text-sm transition-colors hover:bg-secondary focus:outline-none focus:ring-1 focus:ring-ring disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:focus:ring-destructive group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground",
         className
       )}
       {...props}
@@ -51,7 +51,7 @@ export const ToastClose = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButto
     <button
       ref={ref}
       className={cn(
-        "absolute right-1 top-1 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-1 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+        "absolute top-1 right-1 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-1 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600 group-[.destructive]:hover:text-red-50",
         className
       )}
       toast-close=""
@@ -65,7 +65,7 @@ ToastClose.displayName = "ToastClose";
 
 export const ToastTitle = forwardRef<HTMLSpanElement, HTMLAttributes<HTMLSpanElement>>(
   ({ className, ...props }, ref) => (
-    <span ref={ref} className={cn("text-sm font-semibold [&+div]:text-xs", className)} {...props} />
+    <span ref={ref} className={cn("font-semibold text-sm [&+div]:text-xs", className)} {...props} />
   )
 );
 ToastTitle.displayName = "ToastTitle";
@@ -83,7 +83,7 @@ export interface ToastProps extends VariantProps<typeof toastVariants> {
 
 export const toast = (props: ToastProps) => {
   const toastId = ReactHotToast.toast.custom(
-    <ToastCard variant={props.variant} className="min-w-[20rem] w-fit pr-8">
+    <ToastCard variant={props.variant} className="w-fit min-w-[20rem] pr-8">
       <div>
         {props.title && <ToastTitle>{props.title}</ToastTitle>}
         <ToastDescription>{props.description}</ToastDescription>

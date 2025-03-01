@@ -17,7 +17,7 @@ export default function MobileSidebarMenu() {
           <DrawerTitle>Navigation</DrawerTitle>
         </DrawerHeader>
 
-        <div className="w-full flex flex-col gap-2 h-full overflow-auto px-4">
+        <div className="flex h-full w-full flex-col gap-2 overflow-auto px-4">
           <NavRoutesLinks />
         </div>
       </DrawerContent>

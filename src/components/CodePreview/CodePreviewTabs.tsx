@@ -32,7 +32,7 @@ export function CodePreviewTabs(props: { codeString: string; previewElement: VNo
 
       <TabsContent
         value="code"
-        className="broder-border flex max-h-[500px] w-full flex-col items-center justify-center rounded-lg border *:overflow-auto"
+        className="flex max-h-[500px] w-full flex-col items-center justify-center rounded-lg border border-border *:overflow-auto"
       >
         <Suspense
           fallback={

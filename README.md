@@ -136,6 +136,10 @@ bun add class-variance-authority clsx cmdk date-fns dayjs embla-carousel-react i
 Copy the folder of this repo `src/components/ui` into your ui path
 If you dont change the config guide should be in `src/components/ui`
 
+```bash
+bunx degit https://github.com/LiasCode/shadcn-preact/src/components/ui ./src/components/ui
+```
+
 **3- Adding custom css vars:**
 
 Add this import header in your main css file, `src/index.css` in our case:

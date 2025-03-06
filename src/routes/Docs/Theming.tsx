@@ -51,7 +51,7 @@ export default function ThemingPage() {
                   <PaginationContent className="flex w-full flex-row justify-between">
                     <PaginationItem>
                       <A href={AppRoutes.DOCS.INSTALLATION}>
-                        <Button className="gap-1 pl-1" variant="ghost">
+                        <Button className="gap-1 pl-1" variant="outline">
                           <ChevronLeft />
                           Installation
                         </Button>
@@ -59,7 +59,7 @@ export default function ThemingPage() {
                     </PaginationItem>
                     <PaginationItem>
                       <A href={AppRoutes.COMPONENTS[firstAlphaComponentKey]}>
-                        <Button className="gap-1 pr-1 capitalize" variant="ghost">
+                        <Button className="gap-1 pr-1 capitalize" variant="outline">
                           {firstAlphaComponentKey.toLocaleLowerCase()}
                           <ChevronRight />
                         </Button>

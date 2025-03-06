@@ -59,7 +59,7 @@ export default function InstallationPage() {
                   <PaginationContent className="flex w-full flex-row justify-between">
                     <PaginationItem>
                       <A href={AppRoutes.DOCS.INTRO}>
-                        <Button className="gap-1 pl-1" variant="ghost">
+                        <Button className="gap-1 pl-1" variant="outline">
                           <ChevronLeft />
                           Introduction
                         </Button>
@@ -67,7 +67,7 @@ export default function InstallationPage() {
                     </PaginationItem>
                     <PaginationItem>
                       <A href={AppRoutes.DOCS.THEMING}>
-                        <Button className="gap-1 pr-1" variant="ghost">
+                        <Button className="gap-1 pr-1" variant="outline">
                           Theming
                           <ChevronRight />
                         </Button>

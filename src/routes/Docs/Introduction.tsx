@@ -9,8 +9,8 @@ import {
 } from "@ui/breadCrumb";
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "@ui/pagination";
-import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { Pagination, PaginationContent, PaginationItem } from "@ui/pagination";
+import { ChevronRight } from "lucide-preact";
 import { A } from "preact-hashish-router";
 import { Header } from "../../components/Header";
 import { AppRoutes } from "../AppRoutes";
@@ -48,7 +48,7 @@ export default function IntroductionPage() {
               </CardHeader>
 
               <CardContent className="pt-0">
-                <div className="max-w-full pb-12 *:my-1">
+                <div className="flex max-w-full flex-col gap-6 pb-12 *:my-1">
                   <p className="break-words leading-7 *:mx-2 [&amp;:not(:first-child)]:mt-6">
                     An unofficial,
                     <a
@@ -71,13 +71,13 @@ export default function IntroductionPage() {
                     .
                   </p>
 
-                  <div className="*:break-words *:leading-7 *:[&amp;:not(:first-child)]:mt-6">
+                  <div className="flex flex-col *:break-words *:leading-7">
                     <p>
                       This is <strong>NOT</strong> a component library. It’s a collection of re-usable components that
                       you can copy and paste into your apps.
                     </p>
 
-                    <h2 className="mt-2 font-bold">What do you mean by not a component library?</h2>
+                    <h2 className="mt-6 font-bold">What do you mean by not a component library?</h2>
 
                     <p>
                       I mean you do not install it as a dependency. It is not available or distributed via npm. I have
@@ -91,7 +91,7 @@ export default function IntroductionPage() {
 
                     <span className="italic">Use this as a reference to build your own component libraries.</span>
 
-                    <h2 className="mt-2 font-bold">Why if Preact is compatible with React? </h2>
+                    <h2 className="mt-6 font-bold">Why if Preact is compatible with React? </h2>
 
                     <p>
                       Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix is ​​an excellent component library,
@@ -106,7 +106,7 @@ export default function IntroductionPage() {
                     <PaginationItem />
                     <PaginationItem>
                       <A href={AppRoutes.DOCS.INSTALLATION}>
-                        <Button className="gap-1 pr-1" variant="ghost">
+                        <Button className="gap-1 pr-1" variant="outline">
                           Intallation
                           <ChevronRight />
                         </Button>

@@ -1,6 +1,11 @@
 import { CodePreviewTabs } from "@/components/CodePreview/CodePreviewTabs";
+import { AppRoutes } from "@/routes/AppRoutes";
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
+import { Button } from "@ui/button";
+import { Pagination, PaginationContent, PaginationItem } from "@ui/pagination";
 import { AlertCircle, Terminal } from "lucide-preact";
+import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { A } from "preact-hashish-router";
 
 export function AlertSection() {
   return (
@@ -82,6 +87,27 @@ export function AlertSection() {
           </Alert>
         }
       />
+
+      <Pagination className="mt-10">
+        <PaginationContent className="flex w-full flex-row justify-between">
+          <PaginationItem>
+            <A href={AppRoutes.DOCS.THEMING}>
+              <Button className="gap-1 pl-1" variant="outline">
+                <ChevronLeft />
+                Theming
+              </Button>
+            </A>
+          </PaginationItem>
+          <PaginationItem>
+            <A href={AppRoutes.COMPONENTS.ALERT_DIALOG}>
+              <Button className="gap-1 pr-1 capitalize" variant="outline">
+                Alert Dialog
+                <ChevronRight />
+              </Button>
+            </A>
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }

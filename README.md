@@ -1,4 +1,4 @@
-# `shadcn/ui` port for PREACT
+# `shadcn/ui` port for Preact
 
 An unofficial, Preact port of shadcn/ui .
 

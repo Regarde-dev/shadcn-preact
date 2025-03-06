@@ -1,3 +1,4 @@
+import { Skeleton } from "@ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
 import type { VNode } from "preact";
 import { Suspense, lazy } from "preact/compat";
@@ -36,9 +37,9 @@ export function CodePreviewTabs(props: { codeString: string; previewElement: VNo
       >
         <Suspense
           fallback={
-            <div className="flex h-20 w-full flex-col items-center justify-center pt-4">
+            <Skeleton className="flex h-64 w-full flex-col items-center justify-center">
               <LoadingSpinner />
-            </div>
+            </Skeleton>
           }
         >
           <HighlightCode lang="tsx" codeString={props.codeString} />

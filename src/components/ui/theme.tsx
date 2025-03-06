@@ -37,7 +37,10 @@ export const useTheme = () => {
 };
 
 function getThemeFromLocalStorage(): ThemeOption {
-  return (localStorage.getItem("--theme--") || "light") as ThemeOption;
+  if (window !== undefined) {
+    return (localStorage.getItem("--theme--") || "light") as ThemeOption;
+  }
+  return "dark";
 }
 
 function setThemeFromLocalStorage(t: ThemeOption) {

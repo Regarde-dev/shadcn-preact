@@ -33,6 +33,8 @@ import ToastPage from "./routes/Components/Toast";
 import TogglePage from "./routes/Components/Toggle";
 import TooltipPage from "./routes/Components/Tooltip";
 import InstallationPage from "./routes/Docs/Installation";
+import InstallationAstroPage from "./routes/Docs/InstallationAstro";
+import InstallationVitePage from "./routes/Docs/InstallationVite";
 import IntroductionPage from "./routes/Docs/Introduction";
 import ThemingPage from "./routes/Docs/Theming";
 import HomePage from "./routes/Home";
@@ -58,6 +60,14 @@ export function App() {
 
           <Route path={AppRoutes.DOCS.INSTALLATION}>
             <InstallationPage />
+          </Route>
+
+          <Route path={AppRoutes.DOCS.INSTALLATION_VITE}>
+            <InstallationVitePage />
+          </Route>
+
+          <Route path={AppRoutes.DOCS.INSTALLATION_ASTRO}>
+            <InstallationAstroPage />
           </Route>
 
           <Route path={AppRoutes.DOCS.THEMING}>

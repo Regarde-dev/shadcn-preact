@@ -2,11 +2,9 @@ import HighlightCode from "@/components/CodePreview/HighlightCode";
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { AlertCircle } from "lucide-preact";
 
-export default function Installation() {
+export default function InstallationForVite() {
   return (
     <div className="flex w-full flex-col gap-6">
-      <h1 className="font-bold text-2xl">Vite:</h1>
-
       <section className="flex flex-col gap-4">
         <h2 className="font-semibold text-xl">1- Create project</h2>
         <p>Start by creating a new Preact project using Vite:</p>

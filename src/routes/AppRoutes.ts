@@ -4,6 +4,8 @@ export const AppRoutes = {
   DOCS: {
     INTRO: "/docs",
     INSTALLATION: "/docs/installation",
+    INSTALLATION_VITE: "/docs/installation/vite",
+    INSTALLATION_ASTRO: "/docs/installation/astro",
     THEMING: "/docs/theming",
   },
   COMPONENTS: {

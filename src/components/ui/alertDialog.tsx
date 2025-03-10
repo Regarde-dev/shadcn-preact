@@ -10,7 +10,10 @@ const AlertContext = createContext<{
   closeDialog: () => void;
 } | null>(null);
 
-type AlertDialogProviderProps = PropsWithChildren & { open?: boolean; onChange?: (open: boolean) => void };
+type AlertDialogProviderProps = PropsWithChildren & {
+  open?: boolean;
+  onChange?: (open: boolean) => void;
+};
 
 export function AlertDialog({ open: controlledIsOpen = false, children, onChange }: AlertDialogProviderProps) {
   const [open, setOpen] = useState(controlledIsOpen);
@@ -42,7 +45,7 @@ export function useAlertDialog() {
   return context;
 }
 
-export function AlertDialogTrigger({ children }: PropsWithChildren) {
+export function AlertDialogTrigger({ children }: PropsWithChildren & { asChild?: boolean }) {
   const { openDialog } = useAlertDialog();
 
   return (

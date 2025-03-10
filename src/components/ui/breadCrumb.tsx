@@ -49,7 +49,7 @@ const BreadcrumbLink = forwardRef<
     );
   }
   return (
-    <div ref={ref} className={cn("transition-colors hover:text-foreground", className)} {...props}>
+    <div ref={ref} className={cn("transition-colors *:h-full *:w-full hover:text-foreground", className)} {...props}>
       <a href={props.href}>{children}</a>
     </div>
   );

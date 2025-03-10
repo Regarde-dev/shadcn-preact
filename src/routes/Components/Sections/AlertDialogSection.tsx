@@ -1,3 +1,6 @@
+import { CodePreviewTabs } from "@/components/CodePreview/CodePreviewTabs";
+import HighlightCode from "@/components/CodePreview/HighlightCode";
+import { AppRoutes } from "@/routes/AppRoutes";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,54 +13,137 @@ import {
   AlertDialogTrigger,
 } from "@ui/alertDialog";
 import { Button } from "@ui/button";
-import { useState } from "preact/hooks";
+import { Pagination, PaginationContent, PaginationItem } from "@ui/pagination";
+import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { A } from "preact-hashish-router";
 
 export function AlertDialogSection() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <div className="flex w-full flex-col items-center gap-10">
-      <AlertDialog>
-        <AlertDialogTrigger>
-          <Button variant="outline">Got an Alert</Button>
-        </AlertDialogTrigger>
+    <div className="flex w-full max-w-screen-md flex-col gap-6">
+      <CodePreviewTabs
+        codeString={`
+  import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@ui/alert-dialog"
+  import { Button } from "@ui/button"
 
+  export function AlertDialogDemo() {
+    return (
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant="outline">Show Dialog</Button>
+        </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your account and remove your data from our
-              servers.
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
-
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction>Continue</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+    )
+  }
 
-      <AlertDialog onChange={setOpen} open={open}>
-        <AlertDialogTrigger>
-          <Button variant="outline">Controlled Alert</Button>
-        </AlertDialogTrigger>
+`}
+        previewElement={
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="outline">Show Dialog</Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete your account and remove your data from our
+                  servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction>Continue</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        }
+      />
 
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your account and remove your data from our
-              servers.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
+      <h2 className="w-full border-b-2 pb-2 font-semibold text-2xl">Usage</h2>
 
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <Button onClick={() => setOpen(false)}>Continue</Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <HighlightCode
+        lang="tsx"
+        codeString={`
+  import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@ui/alert-dialog"
+
+`}
+      />
+
+      <HighlightCode
+        lang="tsx"
+        codeString={`
+  <AlertDialog>
+    <AlertDialogTrigger>Open</AlertDialogTrigger>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone. This will permanently delete your account
+          and remove your data from our servers.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction>Continue</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+  </AlertDialog>
+
+`}
+      />
+
+      <Pagination className="mt-10">
+        <PaginationContent className="flex w-full flex-row justify-between">
+          <PaginationItem>
+            <A href={AppRoutes.COMPONENTS.ALERT}>
+              <Button className="gap-1 pl-1" variant="outline">
+                <ChevronLeft />
+                Alert
+              </Button>
+            </A>
+          </PaginationItem>
+          <PaginationItem>
+            <A href={AppRoutes.COMPONENTS.AVATAR}>
+              <Button className="gap-1 pr-1 capitalize" variant="outline">
+                Avatar
+                <ChevronRight />
+              </Button>
+            </A>
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }

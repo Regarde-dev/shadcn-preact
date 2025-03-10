@@ -58,7 +58,9 @@ const Tabs = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & TabsPro
     }, [controlledValue]);
 
     return (
-      <TabContext.Provider value={{ onValueChange: setValue, value, orientation, activationMode }}>
+      <TabContext.Provider
+        value={{ onValueChange: setValue, value, orientation: orientation || "horizontal", activationMode }}
+      >
         <div ref={ref} className={cn("", className)} {...props}>
           {children}
         </div>

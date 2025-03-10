@@ -118,6 +118,7 @@ const Carousel = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Car
         }}
       >
         <section
+          // @ts-expect-error ForwardedRef<HTMLDivElement> !=  Ref<HTMLElement>
           ref={ref}
           onKeyDownCapture={handleKeyDown}
           className={cn("relative", className)}

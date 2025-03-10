@@ -349,6 +349,7 @@ function MonthGrid({
 } & TableHTMLAttributes<HTMLTableElement>) {
   if (navView === "years") {
     return (
+      // @ts-expect-error
       <YearGrid
         displayYears={displayYears}
         startMonth={startMonth}

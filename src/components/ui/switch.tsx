@@ -18,7 +18,9 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({ className, ...props
   }, [checked]);
 
   useEffect(() => {
-    setChecked(props.checked);
+    if (props.checked !== undefined) {
+      setChecked(props.checked);
+    }
   }, [props.checked]);
 
   return (

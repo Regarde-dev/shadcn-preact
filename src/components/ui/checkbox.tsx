@@ -26,7 +26,9 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
     }, [internalIsChecked]);
 
     useLayoutEffect(() => {
-      setIsChecked(controlledChecked);
+      if (controlledChecked !== undefined) {
+        setIsChecked(controlledChecked);
+      }
     }, [controlledChecked]);
 
     return (

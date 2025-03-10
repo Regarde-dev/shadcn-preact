@@ -18,17 +18,17 @@ type PopoverContextT = {
   close: () => void;
   id: string;
   ref: {
-    reference: MutableRefObject<HTMLDivElement>;
-    floating: React.MutableRefObject<HTMLElement | null>;
+    reference: MutableRefObject<HTMLDivElement | null>;
+    floating: MutableRefObject<HTMLElement | null>;
     setReference: (node: HTMLDivElement) => void;
-    setFloating: (node: HTMLElement | null) => void;
+    setFloating: (node: HTMLElement) => void;
   };
   floatingStyles: CSSProperties;
   delay?: number;
   side?: "top" | "right" | "bottom" | "left";
 };
 
-const PopoverContext = createContext<PopoverContextT>(null);
+const PopoverContext = createContext<PopoverContextT | null>(null);
 
 type PopoverProviderProps = PropsWithChildren & {
   delay?: number;
@@ -70,7 +70,9 @@ export function Popover({ children, open: controlledOpen, onOpenChange, ...props
   }, [isOpen]);
 
   useEffect(() => {
-    setIsOpen(controlledOpen);
+    if (controlledOpen !== undefined) {
+      setIsOpen(controlledOpen);
+    }
   }, [controlledOpen]);
 
   const open = () => setIsOpen(true);
@@ -100,6 +102,7 @@ export function PopoverTrigger({ children }: PropsWithChildren) {
 
   return (
     <div
+      // @ts-expect-error
       ref={ref.setReference}
       onClick={openDebounced}
       onFocus={openDebounced}
@@ -125,6 +128,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivE
       <Modal onClose={close} show={isOpen} className="bg-transparent">
         <div
           data-popover-id={id}
+          // @ts-expect-error
           ref={ref.setFloating}
           onClick={(e) => e.stopPropagation()}
           style={floatingStyles}

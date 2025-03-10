@@ -1,4 +1,4 @@
-import { autoPlacement, autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react-dom";
+import { autoPlacement, autoUpdate, offset, shift, useFloating } from "@floating-ui/react-dom";
 import { type CSSProperties, type MutableRefObject, type PropsWithChildren, createContext } from "preact/compat";
 import { useContext, useState } from "preact/hooks";
 import { cn } from "./share/cn";
@@ -11,7 +11,7 @@ type TooltipContextT = {
   close: () => void;
   id: string;
   ref: {
-    reference: MutableRefObject<HTMLDivElement>;
+    reference: MutableRefObject<HTMLDivElement | null>;
     floating: React.MutableRefObject<HTMLElement | null>;
     setReference: (node: HTMLDivElement) => void;
     setFloating: (node: HTMLElement | null) => void;
@@ -20,7 +20,7 @@ type TooltipContextT = {
   delay?: number;
 };
 
-const TooltipContext = createContext<TooltipContextT>(null);
+const TooltipContext = createContext<TooltipContextT | null>(null);
 
 type TooltipProviderProps = PropsWithChildren & {
   delay?: number;
@@ -81,6 +81,7 @@ export function TooltipTrigger({ children }: PropsWithChildren) {
 
   return (
     <div
+      // @ts-expect-error
       ref={ref.setReference}
       onMouseEnter={openDebounced}
       onFocus={openDebounced}

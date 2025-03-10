@@ -14,7 +14,7 @@ const SPLITTER_CHARACTER = " ";
 export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
   ({ className, onInput, onFocus, onFocusOut, value, ...props }, ref) => {
     const [raw, setRaw] = useState(value ? value.join(SPLITTER_CHARACTER) : "");
-    const [tokens, setTokens] = useState([]);
+    const [tokens, setTokens] = useState<string[]>([]);
     const [isFocus, setIsFocus] = useState(false);
 
     const contentRef = createRef<HTMLDivElement>();

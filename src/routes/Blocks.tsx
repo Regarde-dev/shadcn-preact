@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { Header } from "../components/Header";
 import { Login01 } from "./Blocks/Login01";
 import { Login04 } from "./Blocks/Login04";
@@ -22,6 +23,8 @@ export default function BlocksPage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

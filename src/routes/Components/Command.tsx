@@ -1,4 +1,5 @@
 import ContentLayout from "@/components/ContentLayout";
+import { Footer } from "@/components/Footer";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@ui/breadCrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
@@ -46,6 +47,7 @@ export default function CommandPage() {
           </ContentLayout>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

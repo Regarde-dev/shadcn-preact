@@ -1,4 +1,5 @@
 import ContentLayout from "@/components/ContentLayout";
+import { Footer } from "@/components/Footer";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -119,6 +120,7 @@ export default function IntroductionPage() {
           </ContentLayout>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

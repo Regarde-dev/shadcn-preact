@@ -1,4 +1,5 @@
 import ContentLayout from "@/components/ContentLayout";
+import { Footer } from "@/components/Footer";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import {
   Breadcrumb,
@@ -90,6 +91,8 @@ export default function InstallationVitePage() {
           </ContentLayout>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

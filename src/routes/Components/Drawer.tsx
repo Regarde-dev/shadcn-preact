@@ -1,4 +1,5 @@
 import ContentLayout from "@/components/ContentLayout";
+import { Footer } from "@/components/Footer";
 import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@ui/breadCrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { Loader } from "lucide-preact";
@@ -50,6 +51,7 @@ export default function DrawerPage() {
           </ContentLayout>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

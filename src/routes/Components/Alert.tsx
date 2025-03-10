@@ -1,4 +1,5 @@
 import ContentLayout from "@/components/ContentLayout";
+import { Footer } from "@/components/Footer";
 import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@ui/breadCrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { A } from "preact-hashish-router";
@@ -39,6 +40,7 @@ export default function AlertPage() {
           </ContentLayout>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

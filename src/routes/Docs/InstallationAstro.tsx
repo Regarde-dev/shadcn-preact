@@ -1,4 +1,5 @@
 import ContentLayout from "@/components/ContentLayout";
+import { Footer } from "@/components/Footer";
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import {
   Breadcrumb,
@@ -89,6 +90,8 @@ export default function InstallationAstroPage() {
           </ContentLayout>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

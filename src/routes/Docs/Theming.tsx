@@ -1,4 +1,5 @@
 import ContentLayout from "@/components/ContentLayout";
+import { Footer } from "@/components/Footer";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -72,6 +73,8 @@ export default function ThemingPage() {
           </ContentLayout>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

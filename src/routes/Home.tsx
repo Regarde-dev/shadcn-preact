@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { Button } from "@ui/button";
 import { A } from "preact-hashish-router";
 import { Header } from "../components/Header";
@@ -32,6 +33,8 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

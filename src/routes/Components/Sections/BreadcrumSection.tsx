@@ -186,17 +186,17 @@ export function BreadcrumbSection() {
       <Pagination className="mt-10">
         <PaginationContent className="flex w-full flex-row justify-between">
           <PaginationItem>
-            <A href={AppRoutes.COMPONENTS.AVATAR}>
+            <A href={AppRoutes.COMPONENTS.BADGE}>
               <Button className="gap-1 pl-1" variant="outline">
                 <ChevronLeft />
-                Avatar
+                Badge
               </Button>
             </A>
           </PaginationItem>
           <PaginationItem>
-            <A href={AppRoutes.COMPONENTS.BREADCRUMB}>
+            <A href={AppRoutes.COMPONENTS.BUTTON}>
               <Button className="gap-1 pr-1 capitalize" variant="outline">
-                Breadcrumb
+                Button
                 <ChevronRight />
               </Button>
             </A>

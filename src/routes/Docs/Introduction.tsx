@@ -95,9 +95,9 @@ export default function IntroductionPage() {
                     <h2 className="mt-6 font-bold">Why if Preact is compatible with React? </h2>
 
                     <p>
-                      Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix is ​​an excellent component library,
-                      but it is a heavy dependency and I have tried to move it to Preact for better integration and a
-                      build with minimal external dependencies.
+                      Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix UI is an excellent component
+                      library, but it's dependency-heavy, and I've tried to move it to Preact for better integration and
+                      minimal external dependencies.
                     </p>
                   </div>
                 </div>

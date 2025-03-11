@@ -18,6 +18,7 @@ export default function HighlightCode(props: { codeString: string; lang: Bundled
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useLayoutEffect(() => {
+    // TODO: add CATCH for not recompute in all initial render
     (async () => {
       const html = await codeToHtml(props.codeString, {
         lang: props.lang,

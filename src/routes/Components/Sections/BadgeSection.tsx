@@ -58,7 +58,7 @@ export function BadgesSection() {
       <HighlightCode
         lang="tsx"
         codeString={`
-  <Link className={badgeVariants({ variant: "outline" })}>Badge</Link>
+  <a className={badgeVariants({ variant: "outline" })}>Badge</a>
 
 `}
       />

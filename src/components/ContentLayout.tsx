@@ -68,6 +68,32 @@ export function NavRoutesLinks() {
 
       <div className="flex w-full flex-col gap-[2px]">
         <span className="flex h-9 w-full flex-row items-center justify-start p-1 font-semibold text-sm">
+          Installation
+        </span>
+
+        <A href={AppRoutes.DOCS.INSTALLATION_VITE} className="group w-full">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+          >
+            Vite
+          </Button>
+        </A>
+
+        <A href={AppRoutes.DOCS.INSTALLATION_ASTRO} className="group w-full">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start px-1 py-1 font-normal group-data-[route-active=true]:bg-accent"
+          >
+            Astro
+          </Button>
+        </A>
+      </div>
+
+      <div className="flex w-full flex-col gap-[2px]">
+        <span className="flex h-9 w-full flex-row items-center justify-start p-1 font-semibold text-sm">
           Components
         </span>
 

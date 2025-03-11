@@ -1,4 +1,6 @@
 import { Button } from "@ui/button";
+import { Show } from "@ui/show";
+import { Skeleton } from "@ui/skeleton";
 import { Check, Copy } from "lucide-preact";
 import { useLayoutEffect, useState } from "preact/hooks";
 import { type BundledLanguage, type BundledTheme, codeToHtml } from "shiki/bundle/web";
@@ -6,6 +8,7 @@ import { type BundledLanguage, type BundledTheme, codeToHtml } from "shiki/bundl
 export default function HighlightCode(props: { codeString: string; lang: BundledLanguage; theme?: BundledTheme }) {
   const [htmlCode, setHtmlCode] = useState("");
   const [copied, setCopied] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(true);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(props.codeString);
@@ -22,6 +25,7 @@ export default function HighlightCode(props: { codeString: string; lang: Bundled
       });
 
       setHtmlCode(html);
+      setIsProcessing(false);
     })();
   }, []);
 
@@ -36,13 +40,24 @@ export default function HighlightCode(props: { codeString: string; lang: Bundled
         {copied && <Check className="" />}
       </Button>
 
-      <div
-        className="max-w-full text-sm *:overflow-auto"
-        // biome-ignore lint/security/noDangerouslySetInnerHtml:
-        dangerouslySetInnerHTML={{
-          __html: htmlCode,
-        }}
-      />
+      <Show when={isProcessing}>
+        <Skeleton
+          className="w-full"
+          style={{
+            height: `${props.codeString.split("\n").length + 2}em`,
+          }}
+        />
+      </Show>
+
+      <Show when={!isProcessing}>
+        <div
+          className="max-w-full text-sm *:overflow-auto"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml:
+          dangerouslySetInnerHTML={{
+            __html: htmlCode,
+          }}
+        />
+      </Show>
     </div>
   );
 }

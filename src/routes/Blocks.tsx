@@ -1,5 +1,5 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "../components/Header";
+import { Footer } from "@/components/Layout/Footer";
+import { Header } from "../components/Layout/Header";
 import { Login01 } from "./Blocks/Login01";
 import { Login04 } from "./Blocks/Login04";
 

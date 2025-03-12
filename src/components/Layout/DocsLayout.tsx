@@ -1,5 +1,5 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { Footer } from "@/components/Layout/Footer";
+import { Header } from "@/components/Layout/Header";
 import { AppRoutes } from "@/routes/AppRoutes";
 import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@ui/breadCrumb";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
@@ -16,9 +16,9 @@ export function DocsLayout(props: DocsLayoutProps) {
       <Header />
 
       <div className="mt-0 mb-1 flex w-full flex-1 flex-col items-center justify-start border-accent border-b border-dashed p-0">
-        <div className="flex w-full max-w-screen-2xl flex-col gap-4 border-accent border-dashed pb-4 *:max-w-[100vw] md:border-x md:px-1 md:pt-2">
+        <div className="flex w-full max-w-screen-2xl flex-col gap-4 border-accent border-dashed *:max-w-[100vw] md:border-x md:px-1 md:pt-2">
           <ContentLayout>
-            <Card className="flex w-full flex-col border border-primary border-none pt-0 shadow-none max-md:*:px-2">
+            <Card className="flex w-full max-w-screen-md flex-col border border-primary border-none pt-0 shadow-none max-md:*:px-2">
               <CardHeader>
                 {props.breadcrumbs !== undefined ? (
                   props.breadcrumbs

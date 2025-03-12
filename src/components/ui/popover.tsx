@@ -40,7 +40,7 @@ type PopoverProviderProps = PropsWithChildren & {
 };
 
 export function Popover({ children, open: controlledOpen, onOpenChange, ...props }: PopoverProviderProps) {
-  const [isOpen, setIsOpen] = useState(controlledOpen || false);
+  const [isOpen, setIsOpen] = useState(controlledOpen !== undefined ? controlledOpen : false);
   const [popover_id] = useState(Math.random().toString());
 
   const { refs, floatingStyles } = useFloating<HTMLDivElement>({
@@ -95,7 +95,7 @@ export function usePopover() {
   return context;
 }
 
-export function PopoverTrigger({ children }: PropsWithChildren) {
+export function PopoverTrigger({ children }: PropsWithChildren & { asChild?: boolean }) {
   const { open, isOpen, ref, delay } = usePopover();
 
   const openDebounced = debounce(open, delay || 50);

@@ -1,7 +1,7 @@
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/Layout/Footer";
 import { Button } from "@ui/button";
 import { A } from "preact-hashish-router";
-import { Header } from "../components/Header";
+import { Header } from "../components/Layout/Header";
 import { AppRoutes } from "./AppRoutes";
 
 export default function HomePage() {

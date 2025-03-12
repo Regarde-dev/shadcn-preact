@@ -76,7 +76,7 @@ export default function NavRoutesLinks() {
         </A>
       </div>
 
-      <div className="flex w-full flex-col gap-[2px]">
+      <div className="flex w-full flex-col gap-[2px] pb-4">
         <span className="flex h-9 w-full flex-row items-center justify-start p-1 font-semibold text-sm">
           Components
         </span>

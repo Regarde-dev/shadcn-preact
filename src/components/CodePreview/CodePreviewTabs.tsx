@@ -26,7 +26,7 @@ export function CodePreviewTabs(props: { codeString: string; previewElement: VNo
 
       <TabsContent
         value="preview"
-        className="broder-border flex min-h-[300px] w-full flex-col items-center justify-center rounded-lg border p-4"
+        className="broder-border flex min-h-[350px] w-full flex-col items-center justify-center rounded-lg border py-4 md:py-16"
       >
         {props.previewElement}
       </TabsContent>

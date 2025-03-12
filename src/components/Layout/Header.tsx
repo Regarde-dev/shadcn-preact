@@ -1,12 +1,12 @@
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { AppRoutes } from "@/routes/AppRoutes";
 import { Button } from "@ui/button";
 import { useTheme } from "@ui/theme";
 import { Moon, Sun } from "lucide-preact";
 import { A } from "preact-hashish-router";
 import { Suspense, lazy } from "preact/compat";
-import { LoadingSpinner } from "./LoadingSpinner";
 
-const MobileSidebarMenu = lazy(() => import("./MobileSidebarMenu"));
+const MobileSidebarMenu = lazy(() => import("@/components/MobileSidebarMenu"));
 
 export function Header() {
   return (

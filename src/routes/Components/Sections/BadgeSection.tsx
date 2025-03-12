@@ -9,7 +9,7 @@ import { A } from "preact-hashish-router";
 
 export function BadgesSection() {
   return (
-    <div className="flex w-full max-w-screen-md flex-col gap-6">
+    <div className="flex w-full flex-col gap-6">
       <CodePreviewTabs
         codeString={`
   import { Badge } from "@ui/badge"

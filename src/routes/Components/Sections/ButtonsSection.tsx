@@ -8,7 +8,7 @@ import { A } from "preact-hashish-router";
 
 export function ButtonsSection() {
   return (
-    <div className="flex w-full max-w-screen-md flex-col gap-6">
+    <div className="flex w-full flex-col gap-6">
       <CodePreviewTabs
         codeString={`
   import { Button } from "@ui/button"

@@ -1,41 +1,8 @@
 import { AppRoutes } from "@/routes/AppRoutes";
 import { Button } from "@ui/button";
 import { A } from "preact-hashish-router";
-import { type PropsWithChildren, createRef, useEffect } from "preact/compat";
 
-export default function ContentLayout(props: PropsWithChildren) {
-  const asideRef = createRef<HTMLElement>();
-
-  useEffect(() => {
-    if (asideRef.current === null) return;
-    const link = asideRef.current.querySelector("a[data-route-active=true]");
-
-    if (!link) return;
-
-    link.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-  }, [asideRef.current]);
-
-  return (
-    <div className="flex h-auto w-full flex-col p-0 md:grid md:grid-cols-[1fr,5fr] md:grid-rows-1">
-      <aside
-        ref={asideRef}
-        className="fixed top-0 z-30 hidden h-[calc(100vh-4.3rem)] w-full shrink-0 overflow-auto border-grid border-r md:sticky md:z-auto md:block"
-      >
-        <div className="h-full w-full px-1 py-2 md:p-4 md:px-6">
-          <NavRoutesLinks />
-        </div>
-      </aside>
-      <main className="flex w-full flex-col items-start justify-start px-1 md:border-l md:border-l-accent md:border-dashed">
-        {props.children}
-      </main>
-    </div>
-  );
-}
-
-export function NavRoutesLinks() {
+export default function NavRoutesLinks() {
   return (
     <>
       <div className="flex w-full flex-col gap-[2px]">

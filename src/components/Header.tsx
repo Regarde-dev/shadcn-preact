@@ -92,7 +92,7 @@ function HeaderRightSide() {
 
 function ShadcnIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="h-4 w-4 text-primary">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="h-6 w-6 text-primary">
       <title>Shadcn Icon</title>
       <rect width="256" height="256" fill="none" />
       <line

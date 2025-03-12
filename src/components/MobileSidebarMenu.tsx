@@ -1,7 +1,7 @@
 import { Button } from "@ui/button";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@ui/drawer";
 import { Menu } from "lucide-preact";
-import { NavRoutesLinks } from "./ContentLayout";
+import NavRoutesLinks from "./NavRoutesLinks";
 
 export default function MobileSidebarMenu() {
   return (

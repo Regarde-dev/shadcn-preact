@@ -1,5 +1,5 @@
-import { Loader } from "lucide-preact";
+import { Loader2 } from "lucide-preact";
 
 export function LoadingSpinner() {
-  return <Loader className="h-4 w-4 animate-spin" />;
+  return <Loader2 className="h-4 w-4 animate-spin duration-500" />;
 }

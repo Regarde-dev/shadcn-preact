@@ -6,7 +6,11 @@ export default function InstallationForVite() {
   return (
     <div className="flex w-full flex-col gap-6">
       <section className="flex flex-col gap-4">
-        <h2 className="font-semibold text-xl">1- Create project</h2>
+        <div className="flex flex-row items-center justify-start gap-2">
+          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">1</span>
+          <h2 className="font-semibold text-lg">Create project</h2>
+        </div>
+
         <p>Start by creating a new Preact project using Vite:</p>
 
         <HighlightCode
@@ -19,7 +23,11 @@ export default function InstallationForVite() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-semibold text-xl">2- Add Tailwind and its configuration</h2>
+        <div className="flex flex-row items-center justify-start gap-2">
+          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">2</span>
+          <h2 className="font-semibold text-lg">Add Tailwind and its configuration</h2>
+        </div>
+
         <Alert className="border-yellow-400">
           <AlertCircle className="h-4 w-4" color="#facc15" />
           <AlertTitle>TailwindCSS version</AlertTitle>
@@ -90,12 +98,13 @@ export default function InstallationForVite() {
         />
       </section>
 
-      <section className="flex flex-col gap-4">
-        <h2 className="font-semibold text-xl">
-          3- Edit
-          <code className="mx-2 rounded-sm bg-accent px-2">tsconfig.json</code>
-          file
-        </h2>
+      <section className="mt-4 flex flex-col gap-4">
+        <div className="flex flex-row items-center justify-start gap-2">
+          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">3</span>
+          <h2 className="font-semibold text-lg">
+            Edit <code className="rounded-sm bg-accent px-2">tsconfig.json</code> file
+          </h2>
+        </div>
 
         <HighlightCode
           codeString={`
@@ -114,11 +123,13 @@ export default function InstallationForVite() {
         />
       </section>
 
-      <section className="flex flex-col gap-4">
-        <h2 className="font-semibold text-xl">
-          4- Update
-          <code className="mx-2 rounded-sm bg-accent px-2">vite.config.ts</code>
-        </h2>
+      <section className="mt-4 flex flex-col gap-4">
+        <div className="flex flex-row items-center justify-start gap-2">
+          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">4</span>
+          <h2 className="font-semibold text-lg">
+            Update <code className="rounded-sm bg-accent px-2">vite.config.ts</code>
+          </h2>
+        </div>
 
         <HighlightCode
           codeString={`
@@ -157,7 +168,11 @@ export default function InstallationForVite() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-semibold text-xl">Add UI components</h2>
+        <div className="flex flex-row items-center justify-start gap-2">
+          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">5</span>
+          <h2 className="font-semibold text-lg">Add UI components</h2>
+        </div>
+
         <p>For now this guide its for the installation of all components at once.</p>
 
         <p>Install all components dependencies:</p>
@@ -333,7 +348,11 @@ export default function InstallationForVite() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-semibold text-xl">5- Done</h2>
+        <div className="flex flex-row items-center justify-start gap-2">
+          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">6</span>
+          <h2 className="font-semibold text-lg">Done</h2>
+        </div>
+
         <p>Setup is complete, and your environment is ready.</p>
       </section>
     </div>

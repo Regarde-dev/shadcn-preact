@@ -53,7 +53,7 @@ export function DialogTrigger({ children }: PropsWithChildren) {
 }
 
 export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & { autoSelect?: boolean }>(
-  ({ className, children, ...props }) => {
+  ({ className, class: classNative, children, ...props }) => {
     const { open, closeDialog } = useDialog();
     const contentRef = createRef<HTMLDivElement>();
 
@@ -79,7 +79,8 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
             }}
             className={cn(
               "fixed top-[50%] left-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg",
-              className
+              className,
+              classNative
             )}
             {...props}
           >
@@ -100,17 +101,21 @@ export const DialogContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEl
 DialogContent.displayName = "DialogContent";
 
 export const DialogHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("flex flex-col space-y-1.5 text-center sm:text-left", className)} {...props} />
+  ({ className, class: classNative, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("flex flex-col space-y-1.5 text-center sm:text-left", className, classNative)}
+      {...props}
+    />
   )
 );
 DialogHeader.displayName = "DialogHeader";
 
 export const DialogFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+  ({ className, class: classNative, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)}
+      className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className, classNative)}
       {...props}
     />
   )
@@ -118,15 +123,19 @@ export const DialogFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEle
 DialogFooter.displayName = "DialogFooter";
 
 export const DialogTitle = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("font-semibold text-lg leading-none tracking-tight", className)} {...props} />
+  ({ className, class: classNative, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("font-semibold text-lg leading-none tracking-tight", className, classNative)}
+      {...props}
+    />
   )
 );
 DialogTitle.displayName = "DialogTitle";
 
 export const DialogDescription = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("text-muted-foreground text-sm", className)} {...props} />
+  ({ className, class: classNative, ...props }, ref) => (
+    <div ref={ref} className={cn("text-muted-foreground text-sm", className, classNative)} {...props} />
   )
 );
 DialogDescription.displayName = "DialogDescription";

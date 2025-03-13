@@ -26,29 +26,31 @@ type ModalContentProps = PropsWithChildren<
   }
 >;
 
-const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(({ className, ...props }, ref) => {
-  useEffect(() => {
-    document.body.classList.add("overflow-hidden");
-    const scrollbarWidth = getScrollBarWidth(document.body);
-    document.body.style.marginRight = `${scrollbarWidth}px`;
+const ModalContent = forwardRef<HTMLDivElement, ModalContentProps>(
+  ({ className, class: classNative, ...props }, ref) => {
+    useEffect(() => {
+      document.body.classList.add("overflow-hidden");
+      const scrollbarWidth = getScrollBarWidth(document.body);
+      document.body.style.marginRight = `${scrollbarWidth}px`;
 
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-      document.body.style.marginRight = `${0}px`;
-    };
-  }, []);
+      return () => {
+        document.body.classList.remove("overflow-hidden");
+        document.body.style.marginRight = `${0}px`;
+      };
+    }, []);
 
-  return (
-    <div
-      ref={ref}
-      onClick={props.onClose}
-      data-state="open"
-      className={cn("fade-in-0 fixed inset-0 z-50 animate-in bg-black/80", className)}
-      {...props}
-    >
-      {props.children}
-    </div>
-  );
-});
+    return (
+      <div
+        ref={ref}
+        onClick={props.onClose}
+        data-state="open"
+        className={cn("fade-in-0 fixed inset-0 z-50 animate-in bg-black/80", className, classNative)}
+        {...props}
+      >
+        {props.children}
+      </div>
+    );
+  }
+);
 
 export { Modal };

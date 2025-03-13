@@ -51,7 +51,7 @@ interface SheetContentProps
     VariantProps<typeof sheetVariants> {}
 
 const SheetContent = forwardRef<ElementRef<typeof DialogContent>, SheetContentProps>(
-  ({ side = "right", className, children, ...props }, ref) => {
+  ({ side = "right", className, class: classNative, children, ...props }, ref) => {
     const { open, closeDialog } = useDialog();
     const contentRef = createRef<HTMLDivElement>();
 
@@ -77,7 +77,7 @@ const SheetContent = forwardRef<ElementRef<typeof DialogContent>, SheetContentPr
           >
             <div
               data-state={open ? "open" : "closed"}
-              className={cn("rounded-sm", sheetVariants({ side }), className)}
+              className={cn("rounded-sm", sheetVariants({ side }), className, classNative)}
               ref={ref}
             >
               <button
@@ -98,19 +98,22 @@ const SheetContent = forwardRef<ElementRef<typeof DialogContent>, SheetContentPr
 );
 SheetContent.displayName = "SheetContent";
 
-const SheetHeader = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex flex-col space-y-2 text-center sm:text-left", className)} {...props} />
+const SheetHeader = ({ className, class: classNative, ...props }: HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn("flex flex-col space-y-2 text-center sm:text-left", className, classNative)} {...props} />
 );
 SheetHeader.displayName = "SheetHeader";
 
-const SheetFooter = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)} {...props} />
+const SheetFooter = ({ className, class: classNative, ...props }: HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className, classNative)}
+    {...props}
+  />
 );
 SheetFooter.displayName = "SheetFooter";
 
 const SheetTitle = forwardRef<ElementRef<typeof DialogTitle>, ComponentPropsWithoutRef<typeof DialogTitle>>(
-  ({ className, ...props }, ref) => (
-    <DialogTitle ref={ref} className={cn("font-semibold text-foreground text-lg", className)} {...props} />
+  ({ className, class: classNative, ...props }, ref) => (
+    <DialogTitle ref={ref} className={cn("font-semibold text-foreground text-lg", className, classNative)} {...props} />
   )
 );
 SheetTitle.displayName = DialogTitle.displayName;
@@ -118,8 +121,8 @@ SheetTitle.displayName = DialogTitle.displayName;
 const SheetDescription = forwardRef<
   ElementRef<typeof DialogDescription>,
   ComponentPropsWithoutRef<typeof DialogDescription>
->(({ className, ...props }, ref) => (
-  <DialogDescription ref={ref} className={cn("text-muted-foreground text-sm", className)} {...props} />
+>(({ className, class: classNative, ...props }, ref) => (
+  <DialogDescription ref={ref} className={cn("text-muted-foreground text-sm", className, classNative)} {...props} />
 ));
 SheetDescription.displayName = DialogDescription.displayName;
 

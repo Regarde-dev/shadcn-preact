@@ -32,9 +32,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, Va
   asChild?: boolean;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, asChild, ...props }, ref) => {
-  return <button className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />;
-});
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, class: classNative, variant, size, asChild, ...props }, ref) => {
+    return <button className={cn(buttonVariants({ variant, size, className }), classNative)} ref={ref} {...props} />;
+  }
+);
 Button.displayName = "Button";
 
 export { Button, buttonVariants };

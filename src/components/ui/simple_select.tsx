@@ -14,7 +14,7 @@ type SelectProps = PropsWithChildren & {
 };
 
 export const SimpleSelect = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElement> & SelectProps>(
-  ({ className, ...props }) => {
+  ({ className, class: classNative, ...props }) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(props.value || "");
     const data = useMemo(() => props.data, [props.data]);
@@ -47,7 +47,7 @@ export const SimpleSelect = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLBut
         <Button
           ref={refs.setReference}
           variant="outline"
-          className={cn("w-fit min-w-[200px] justify-between", className)}
+          className={cn("w-fit min-w-[200px] justify-between", className, classNative)}
           onClick={() => setOpen(!open)}
           onFocus={() => setOpen(true)}
         >
@@ -66,7 +66,7 @@ export const SimpleSelect = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLBut
                 key={item.value}
                 value={item.value}
                 title={item.title}
-                className={className}
+                className={cn(className, classNative)}
                 selected={item.value === value}
                 onSelect={() => {
                   setValue(item.value);
@@ -86,18 +86,20 @@ export const SimpleSelect = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLBut
 
 type SelectItemProps = { value: string; title: string; selected: boolean; onSelect: () => void };
 
-const SelectItem = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElement> & SelectItemProps>((props, ref) => {
-  if (props.selected) return null;
+const SelectItem = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElement> & SelectItemProps>(
+  ({ class: classNative, className, ...props }, ref) => {
+    if (props.selected) return null;
 
-  return (
-    <Button
-      ref={ref}
-      size="sm"
-      variant="ghost"
-      onClick={props.onSelect}
-      className={cn("min-h-9 items-center justify-start", props.className)}
-    >
-      {props.title}
-    </Button>
-  );
-});
+    return (
+      <Button
+        ref={ref}
+        size="sm"
+        variant="ghost"
+        onClick={props.onSelect}
+        className={cn("min-h-9 items-center justify-start", className, classNative)}
+      >
+        {props.title}
+      </Button>
+    );
+  }
+);

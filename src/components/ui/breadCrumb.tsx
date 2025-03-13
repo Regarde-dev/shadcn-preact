@@ -17,21 +17,26 @@ const Breadcrumb = forwardRef<
 >(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
 Breadcrumb.displayName = "Breadcrumb";
 
-const BreadcrumbList = forwardRef<HTMLOListElement, ComponentPropsWithoutRef<"ol">>(({ className, ...props }, ref) => (
-  <ol
-    ref={ref}
-    className={cn(
-      "flex flex-wrap items-center gap-1.5 break-words text-muted-foreground text-sm sm:gap-2.5",
-      className
-    )}
-    {...props}
-  />
-));
+const BreadcrumbList = forwardRef<HTMLOListElement, ComponentPropsWithoutRef<"ol">>(
+  ({ className, class: classNative, ...props }, ref) => (
+    <ol
+      ref={ref}
+      className={cn(
+        "flex flex-wrap items-center gap-1.5 break-words text-muted-foreground text-sm sm:gap-2.5",
+        className,
+        classNative
+      )}
+      {...props}
+    />
+  )
+);
 BreadcrumbList.displayName = "BreadcrumbList";
 
-const BreadcrumbItem = forwardRef<HTMLLIElement, ComponentPropsWithoutRef<"li">>(({ className, ...props }, ref) => (
-  <li ref={ref} className={cn("inline-flex items-center gap-1.5", className)} {...props} />
-));
+const BreadcrumbItem = forwardRef<HTMLLIElement, ComponentPropsWithoutRef<"li">>(
+  ({ className, class: classNative, ...props }, ref) => (
+    <li ref={ref} className={cn("inline-flex items-center gap-1.5", className, classNative)} {...props} />
+  )
+);
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
 const BreadcrumbLink = forwardRef<
@@ -40,47 +45,58 @@ const BreadcrumbLink = forwardRef<
     asChild?: boolean;
     href?: AnchorHTMLAttributes["href"];
   }
->(({ asChild, children, className, ...props }, ref) => {
+>(({ asChild, children, className, class: classNative, ...props }, ref) => {
   if (asChild) {
     return (
-      <div ref={ref} className={cn("transition-colors hover:text-foreground", className)} {...props}>
+      <div ref={ref} className={cn("transition-colors hover:text-foreground", className, classNative)} {...props}>
         {children}
       </div>
     );
   }
   return (
-    <div ref={ref} className={cn("transition-colors *:h-full *:w-full hover:text-foreground", className)} {...props}>
+    <div
+      ref={ref}
+      className={cn("transition-colors *:h-full *:w-full hover:text-foreground", className, classNative)}
+      {...props}
+    >
       <a href={props.href}>{children}</a>
     </div>
   );
 });
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
-const BreadcrumbPage = forwardRef<HTMLSpanElement, ComponentPropsWithoutRef<"span">>(({ className, ...props }, ref) => (
-  // biome-ignore lint/a11y/useFocusableInteractive: <explanation>
-  <span
-    ref={ref}
-    role="link"
-    aria-disabled="true"
-    aria-current="page"
-    className={cn("font-normal text-foreground", className)}
-    {...props}
-  />
-));
+const BreadcrumbPage = forwardRef<HTMLSpanElement, ComponentPropsWithoutRef<"span">>(
+  ({ className, class: classNative, ...props }, ref) => (
+    // biome-ignore lint/a11y/useFocusableInteractive: <explanation>
+    <span
+      ref={ref}
+      role="link"
+      aria-disabled="true"
+      aria-current="page"
+      className={cn("font-normal text-foreground", className, classNative)}
+      {...props}
+    />
+  )
+);
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
-const BreadcrumbSeparator = ({ children, className, ...props }: ComponentProps<"li">) => (
-  <li role="presentation" aria-hidden="true" className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)} {...props}>
+const BreadcrumbSeparator = ({ children, className, class: classNative, ...props }: ComponentProps<"li">) => (
+  <li
+    role="presentation"
+    aria-hidden="true"
+    className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className, classNative)}
+    {...props}
+  >
     {children ?? <ChevronRight />}
   </li>
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
 
-const BreadcrumbEllipsis = ({ className, ...props }: ComponentProps<"span">) => (
+const BreadcrumbEllipsis = ({ className, class: classNative, ...props }: ComponentProps<"span">) => (
   <span
     role="presentation"
     aria-hidden="true"
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
+    className={cn("flex h-9 w-9 items-center justify-center", className, classNative)}
     {...props}
   >
     <MoreHorizontal className="h-4 w-4" />

@@ -18,25 +18,27 @@ const AvatarContext = createContext<{
   changeStatus: (s: ImageLoadingStatus) => void;
 } | null>(null);
 
-const Avatar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
-  const [imgStatus, setImgStatus] = useState<ImageLoadingStatus>("idle");
+const Avatar = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, class: classNative, ...props }, ref) => {
+    const [imgStatus, setImgStatus] = useState<ImageLoadingStatus>("idle");
 
-  const changeImgStatus = (s: ImageLoadingStatus) => setImgStatus(s);
+    const changeImgStatus = (s: ImageLoadingStatus) => setImgStatus(s);
 
-  return (
-    <AvatarContext.Provider value={{ status: imgStatus, changeStatus: changeImgStatus }}>
-      <div
-        ref={ref}
-        className={cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className)}
-        {...props}
-      />
-    </AvatarContext.Provider>
-  );
-});
+    return (
+      <AvatarContext.Provider value={{ status: imgStatus, changeStatus: changeImgStatus }}>
+        <div
+          ref={ref}
+          className={cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className, classNative)}
+          {...props}
+        />
+      </AvatarContext.Provider>
+    );
+  }
+);
 Avatar.displayName = "Avatar";
 
 const AvatarImage = forwardRef<HTMLImageElement, ImgHTMLAttributes<HTMLImageElement>>(
-  ({ className, ...props }, ref) => {
+  ({ className, class: classNative, ...props }, ref) => {
     const { status, changeStatus } = useAvatar();
     const loadingStatus = useImageLoadingStatus(props.src as string, {
       crossOrigin: props.crossOrigin,
@@ -50,24 +52,26 @@ const AvatarImage = forwardRef<HTMLImageElement, ImgHTMLAttributes<HTMLImageElem
     return (
       <Show when={status === "loaded"}>
         {/* biome-ignore lint/a11y/useAltText: <explanation> */}
-        <img ref={ref} className={cn("aspect-square h-full w-full", className)} {...props} />
+        <img ref={ref} className={cn("aspect-square h-full w-full", className, classNative)} {...props} />
       </Show>
     );
   }
 );
 AvatarImage.displayName = "AvatarImage";
 
-const AvatarFallback = forwardRef<HTMLSpanElement, HTMLAttributes<HTMLSpanElement>>(({ className, ...props }, ref) => {
-  const { status } = useAvatar();
+const AvatarFallback = forwardRef<HTMLSpanElement, HTMLAttributes<HTMLSpanElement>>(
+  ({ className, class: classNative, ...props }, ref) => {
+    const { status } = useAvatar();
 
-  return status !== "loaded" ? (
-    <span
-      ref={ref}
-      className={cn("flex h-full w-full items-center justify-center rounded-full bg-muted", className)}
-      {...props}
-    />
-  ) : null;
-});
+    return status !== "loaded" ? (
+      <span
+        ref={ref}
+        className={cn("flex h-full w-full items-center justify-center rounded-full bg-muted", className, classNative)}
+        {...props}
+      />
+    ) : null;
+  }
+);
 AvatarFallback.displayName = "AvatarFallback";
 
 function useImageLoadingStatus(

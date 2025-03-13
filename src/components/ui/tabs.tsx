@@ -39,7 +39,17 @@ const TabContext = createContext<{
 
 const Tabs = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & TabsProps>(
   (
-    { value: controlledValue, defaultValue, onValueChange, activationMode, orientation, children, className, ...props },
+    {
+      value: controlledValue,
+      defaultValue,
+      onValueChange,
+      activationMode,
+      orientation,
+      children,
+      className,
+      class: classNative,
+      ...props
+    },
     ref
   ) => {
     const [value, setValue] = useState(controlledValue !== undefined ? controlledValue : defaultValue || "");
@@ -61,7 +71,7 @@ const Tabs = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & TabsPro
       <TabContext.Provider
         value={{ onValueChange: setValue, value, orientation: orientation || "horizontal", activationMode }}
       >
-        <div ref={ref} className={cn("", className)} {...props}>
+        <div ref={ref} className={cn("", className, classNative)} {...props}>
           {children}
         </div>
       </TabContext.Provider>
@@ -77,25 +87,28 @@ function useTabs() {
   return context;
 }
 
-const TabsList = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
-  const { orientation } = useTabs();
+const TabsList = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, class: classNative, ...props }, ref) => {
+    const { orientation } = useTabs();
 
-  return (
-    <div
-      ref={ref}
-      data-orientation={orientation}
-      className={cn(
-        "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
-        className
-      )}
-      {...props}
-    />
-  );
-});
+    return (
+      <div
+        ref={ref}
+        data-orientation={orientation}
+        className={cn(
+          "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
+          className,
+          classNative
+        )}
+        {...props}
+      />
+    );
+  }
+);
 TabsList.displayName = "TabsList";
 
 const TabsTrigger = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonElement> & { value?: string }>(
-  ({ className, ...props }, ref) => {
+  ({ className, class: classNative, ...props }, ref) => {
     const { value, onValueChange, orientation } = useTabs();
     return (
       <button
@@ -106,7 +119,8 @@ const TabsTrigger = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonEleme
         type="button"
         className={cn(
           "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 font-medium text-sm ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow",
-          className
+          className,
+          classNative
         )}
         {...props}
       />
@@ -116,7 +130,7 @@ const TabsTrigger = forwardRef<HTMLButtonElement, HTMLAttributes<HTMLButtonEleme
 TabsTrigger.displayName = "TabsTrigger";
 
 const TabsContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & { value?: string }>(
-  ({ className, ...props }, ref) => {
+  ({ className, class: classNative, ...props }, ref) => {
     const { value, orientation } = useTabs();
 
     return (
@@ -127,7 +141,8 @@ const TabsContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & 
           data-state="active"
           className={cn(
             "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            className
+            className,
+            classNative
           )}
           {...props}
         />

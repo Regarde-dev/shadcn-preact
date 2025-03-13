@@ -13,7 +13,10 @@ type CheckboxProps = HTMLAttributes<HTMLButtonElement> & {
 };
 
 const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
-  ({ className, checked: controlledChecked, defaultChecked, required, onCheckedChange, ...props }, ref) => {
+  (
+    { className, class: classNative, checked: controlledChecked, defaultChecked, required, onCheckedChange, ...props },
+    ref
+  ) => {
     const [internalIsChecked, setIsChecked] = useState<CheckedState>(
       controlledChecked !== undefined ? controlledChecked : defaultChecked || false
     );
@@ -38,7 +41,8 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
           className={cn(
             "flex h-4 w-4 flex-row items-center justify-center rounded-sm border border-primary shadow disabled:cursor-not-allowed",
             `${internalIsChecked ? "bg-primary text-primary-foreground" : ""}`,
-            className
+            className,
+            classNative
           )}
           type="button"
           ref={ref}

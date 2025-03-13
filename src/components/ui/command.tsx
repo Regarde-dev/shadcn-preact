@@ -6,12 +6,13 @@ import { Dialog, DialogContent, type DialogProviderProps as DialogProps } from "
 import { cn } from "./share/cn";
 
 const Command = forwardRef<ElementRef<typeof CommandPrimitive>, ComponentPropsWithoutRef<typeof CommandPrimitive>>(
-  ({ className, ...props }, ref) => (
+  ({ className, class: classNative, ...props }, ref) => (
     <CommandPrimitive
       ref={ref}
       className={cn(
         "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
-        className
+        className,
+        classNative
       )}
       {...props}
     />
@@ -37,14 +38,15 @@ const CommandDialog = ({
 const CommandInput = forwardRef<
   ElementRef<typeof CommandPrimitive.Input>,
   ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
->(({ className, ...props }, ref) => (
+>(({ className, class: classNative, ...props }, ref) => (
   <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
     <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
         "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-        className
+        className,
+        classNative
       )}
       {...props}
     />
@@ -56,10 +58,10 @@ CommandInput.displayName = CommandPrimitive.Input.displayName;
 const CommandList = forwardRef<
   ElementRef<typeof CommandPrimitive.List>,
   ComponentPropsWithoutRef<typeof CommandPrimitive.List>
->(({ className, ...props }, ref) => (
+>(({ className, class: classNative, ...props }, ref) => (
   <CommandPrimitive.List
     ref={ref}
-    className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className)}
+    className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className, classNative)}
     {...props}
   />
 ));
@@ -76,12 +78,13 @@ CommandEmpty.displayName = CommandPrimitive.Empty.displayName;
 const CommandGroup = forwardRef<
   ElementRef<typeof CommandPrimitive.Group>,
   ComponentPropsWithoutRef<typeof CommandPrimitive.Group>
->(({ className, ...props }, ref) => (
+>(({ className, class: classNative, ...props }, ref) => (
   <CommandPrimitive.Group
     ref={ref}
     className={cn(
       "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group-heading]]:text-xs",
-      className
+      className,
+      classNative
     )}
     {...props}
   />
@@ -92,20 +95,21 @@ CommandGroup.displayName = CommandPrimitive.Group.displayName;
 const CommandSeparator = forwardRef<
   ElementRef<typeof CommandPrimitive.Separator>,
   ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <CommandPrimitive.Separator ref={ref} className={cn("-mx-1 h-px bg-border", className)} {...props} />
+>(({ className, class: classNative, ...props }, ref) => (
+  <CommandPrimitive.Separator ref={ref} className={cn("-mx-1 h-px bg-border", className, classNative)} {...props} />
 ));
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
 const CommandItem = forwardRef<
   ElementRef<typeof CommandPrimitive.Item>,
   ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
->(({ className, ...props }, ref) => (
+>(({ className, class: classNative, ...props }, ref) => (
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-      className
+      className,
+      classNative
     )}
     {...props}
   />
@@ -113,8 +117,10 @@ const CommandItem = forwardRef<
 
 CommandItem.displayName = CommandPrimitive.Item.displayName;
 
-const CommandShortcut = ({ className, ...props }: HTMLAttributes<HTMLSpanElement>) => {
-  return <span className={cn("ml-auto text-muted-foreground text-xs tracking-widest", className)} {...props} />;
+const CommandShortcut = ({ className, class: classNative, ...props }: HTMLAttributes<HTMLSpanElement>) => {
+  return (
+    <span className={cn("ml-auto text-muted-foreground text-xs tracking-widest", className, classNative)} {...props} />
+  );
 };
 CommandShortcut.displayName = "CommandShortcut";
 

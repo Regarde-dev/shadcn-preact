@@ -5,19 +5,27 @@ import { forwardRef } from "preact/compat";
 import { type ButtonProps, buttonVariants } from "./button";
 import { cn } from "./share/cn";
 
-const Pagination = ({ className, ...props }: ComponentProps<"nav">) => (
-  <nav aria-label="pagination" className={cn("mx-auto flex w-full justify-center", className)} {...props} />
+const Pagination = ({ className, class: classNative, ...props }: ComponentProps<"nav">) => (
+  <nav
+    aria-label="pagination"
+    className={cn("mx-auto flex w-full justify-center", className, classNative)}
+    {...props}
+  />
 );
 Pagination.displayName = "Pagination";
 
-const PaginationContent = forwardRef<HTMLUListElement, ComponentProps<"ul">>(({ className, ...props }, ref) => (
-  <ul ref={ref} className={cn("flex flex-row items-center gap-1", className)} {...props} />
-));
+const PaginationContent = forwardRef<HTMLUListElement, ComponentProps<"ul">>(
+  ({ className, class: classNative, ...props }, ref) => (
+    <ul ref={ref} className={cn("flex flex-row items-center gap-1", className, classNative)} {...props} />
+  )
+);
 PaginationContent.displayName = "PaginationContent";
 
-const PaginationItem = forwardRef<HTMLLIElement, ComponentProps<"li">>(({ className, ...props }, ref) => (
-  <li ref={ref} className={cn("", className)} {...props} />
-));
+const PaginationItem = forwardRef<HTMLLIElement, ComponentProps<"li">>(
+  ({ className, class: classNative, ...props }, ref) => (
+    <li ref={ref} className={cn("", className, classNative)} {...props} />
+  )
+);
 PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = {
@@ -25,7 +33,7 @@ type PaginationLinkProps = {
 } & Pick<ButtonProps, "size"> &
   ComponentProps<"a">;
 
-const PaginationLink = ({ className, isActive, size = "icon", ...props }: PaginationLinkProps) => (
+const PaginationLink = ({ className, class: classNative, isActive, size = "icon", ...props }: PaginationLinkProps) => (
   <A
     aria-current={isActive ? "page" : undefined}
     className={cn(
@@ -34,31 +42,42 @@ const PaginationLink = ({ className, isActive, size = "icon", ...props }: Pagina
         variant: isActive ? "outline" : "ghost",
         size,
       }),
-      className
+      className,
+      classNative
     )}
     {...props}
   />
 );
 PaginationLink.displayName = "PaginationLink";
 
-const PaginationPrevious = ({ className, ...props }: ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink aria-label="Go to previous page" size="default" className={cn("gap-1 pl-2.5", className)} {...props}>
+const PaginationPrevious = ({ className, class: classNative, ...props }: ComponentProps<typeof PaginationLink>) => (
+  <PaginationLink
+    aria-label="Go to previous page"
+    size="default"
+    className={cn("gap-1 pl-2.5", className, classNative)}
+    {...props}
+  >
     <ChevronLeft className="h-4 w-4" />
     <span>Previous</span>
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
 
-const PaginationNext = ({ className, ...props }: ComponentProps<typeof PaginationLink>) => (
-  <PaginationLink aria-label="Go to next page" size="default" className={cn("gap-1 pr-2.5", className)} {...props}>
+const PaginationNext = ({ className, class: classNative, ...props }: ComponentProps<typeof PaginationLink>) => (
+  <PaginationLink
+    aria-label="Go to next page"
+    size="default"
+    className={cn("gap-1 pr-2.5", className, classNative)}
+    {...props}
+  >
     <span>Next</span>
     <ChevronRight className="h-4 w-4" />
   </PaginationLink>
 );
 PaginationNext.displayName = "PaginationNext";
 
-const PaginationEllipsis = ({ className, ...props }: ComponentProps<"span">) => (
-  <span aria-hidden className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
+const PaginationEllipsis = ({ className, class: classNative, ...props }: ComponentProps<"span">) => (
+  <span aria-hidden className={cn("flex h-9 w-9 items-center justify-center", className, classNative)} {...props}>
     <MoreHorizontal className="h-4 w-4" />
     <span className="sr-only">More pages</span>
   </span>

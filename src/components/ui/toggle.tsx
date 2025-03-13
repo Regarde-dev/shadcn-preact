@@ -30,32 +30,34 @@ type ToggleProps = ButtonHTMLAttributes &
     onPressedChange?(pressed: boolean): void;
   };
 
-const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(({ className, variant, size, ...props }, ref) => {
-  const [isOn, setIsOn] = useState(props.pressed ? props.pressed : props.defaultPressed || false);
+const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
+  ({ className, class: classNative, variant, size, ...props }, ref) => {
+    const [isOn, setIsOn] = useState(props.pressed ? props.pressed : props.defaultPressed || false);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    if (props.onPressedChange) {
-      props.onPressedChange(isOn);
-    }
-  }, [isOn]);
+    // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+    useEffect(() => {
+      if (props.onPressedChange) {
+        props.onPressedChange(isOn);
+      }
+    }, [isOn]);
 
-  useEffect(() => {
-    if (props.pressed) {
-      setIsOn(props.pressed);
-    }
-  }, [props.pressed]);
+    useEffect(() => {
+      if (props.pressed) {
+        setIsOn(props.pressed);
+      }
+    }, [props.pressed]);
 
-  return (
-    <button
-      ref={ref}
-      data-state={isOn ? "on" : "off"}
-      className={cn(toggleVariants({ variant, size, className }))}
-      {...props}
-      onClick={() => setIsOn(!isOn)}
-    />
-  );
-});
+    return (
+      <button
+        ref={ref}
+        data-state={isOn ? "on" : "off"}
+        className={cn(toggleVariants({ variant, size, className }), classNative)}
+        {...props}
+        onClick={() => setIsOn(!isOn)}
+      />
+    );
+  }
+);
 Toggle.displayName = "Toggle";
 
 export { Toggle, toggleVariants };

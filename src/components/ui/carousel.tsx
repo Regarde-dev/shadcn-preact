@@ -41,7 +41,7 @@ function useCarousel() {
 }
 
 const Carousel = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & CarouselProps>(
-  ({ orientation = "horizontal", opts, setApi, plugins, className, children, ...props }, ref) => {
+  ({ orientation = "horizontal", opts, setApi, plugins, className, class: classNative, children, ...props }, ref) => {
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
@@ -121,7 +121,7 @@ const Carousel = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Car
           // @ts-expect-error ForwardedRef<HTMLDivElement> !=  Ref<HTMLElement>
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative", className)}
+          className={cn("relative", className, classNative)}
           aria-roledescription="carousel"
           {...props}
         >
@@ -133,38 +133,47 @@ const Carousel = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Car
 );
 Carousel.displayName = "Carousel";
 
-const CarouselContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
-  const { carouselRef, orientation } = useCarousel();
+const CarouselContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, class: classNative, ...props }, ref) => {
+    const { carouselRef, orientation } = useCarousel();
 
-  return (
-    <div ref={carouselRef} className="overflow-hidden">
-      <div
-        ref={ref}
-        className={cn("flex", orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className)}
-        {...props}
-      />
-    </div>
-  );
-});
+    return (
+      <div ref={carouselRef} className="overflow-hidden">
+        <div
+          ref={ref}
+          className={cn("flex", orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col", className, classNative)}
+          {...props}
+        />
+      </div>
+    );
+  }
+);
 CarouselContent.displayName = "CarouselContent";
 
-const CarouselItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => {
-  const { orientation } = useCarousel();
+const CarouselItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, class: classNative, ...props }, ref) => {
+    const { orientation } = useCarousel();
 
-  return (
-    <div
-      ref={ref}
-      role="group"
-      aria-roledescription="slide"
-      className={cn("min-w-0 shrink-0 grow-0 basis-full", orientation === "horizontal" ? "pl-4" : "pt-4", className)}
-      {...props}
-    />
-  );
-});
+    return (
+      <div
+        ref={ref}
+        role="group"
+        aria-roledescription="slide"
+        className={cn(
+          "min-w-0 shrink-0 grow-0 basis-full",
+          orientation === "horizontal" ? "pl-4" : "pt-4",
+          className,
+          classNative
+        )}
+        {...props}
+      />
+    );
+  }
+);
 CarouselItem.displayName = "CarouselItem";
 
 const CarouselPrevious = forwardRef<HTMLButtonElement, ComponentProps<typeof Button>>(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  ({ className, class: classNative, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
     return (
@@ -177,7 +186,8 @@ const CarouselPrevious = forwardRef<HTMLButtonElement, ComponentProps<typeof But
           orientation === "horizontal"
             ? "-left-12 -translate-y-1/2 top-1/2"
             : "-top-12 -translate-x-1/2 left-1/2 rotate-90",
-          className
+          className,
+          classNative
         )}
         disabled={!canScrollPrev}
         onClick={scrollPrev}
@@ -192,7 +202,7 @@ const CarouselPrevious = forwardRef<HTMLButtonElement, ComponentProps<typeof But
 CarouselPrevious.displayName = "CarouselPrevious";
 
 const CarouselNext = forwardRef<HTMLButtonElement, ComponentProps<typeof Button>>(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  ({ className, class: classNative, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
 
     return (
@@ -205,7 +215,8 @@ const CarouselNext = forwardRef<HTMLButtonElement, ComponentProps<typeof Button>
           orientation === "horizontal"
             ? "-right-12 -translate-y-1/2 top-1/2"
             : "-bottom-12 -translate-x-1/2 left-1/2 rotate-90",
-          className
+          className,
+          classNative
         )}
         disabled={!canScrollNext}
         onClick={scrollNext}

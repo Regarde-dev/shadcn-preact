@@ -12,7 +12,7 @@ type TokenInputProps = Omit<InputHTMLAttributes, "value"> & {
 const SPLITTER_CHARACTER = " ";
 
 export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
-  ({ className, onInput, onFocus, onFocusOut, value, ...props }, ref) => {
+  ({ className, class: classNative, onInput, onFocus, onFocusOut, value, ...props }, ref) => {
     const [raw, setRaw] = useState(value ? value.join(SPLITTER_CHARACTER) : "");
     const [tokens, setTokens] = useState<string[]>([]);
     const [isFocus, setIsFocus] = useState(false);
@@ -52,7 +52,9 @@ export const TokenInput = forwardRef<HTMLInputElement, TokenInputProps>(
         }}
         className={cn(
           "flex min-h-9 w-full cursor-text flex-row flex-wrap gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-          isFocus ? "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring " : ""
+          isFocus ? "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring " : "",
+          className,
+          classNative
         )}
       >
         {tokens.map((t, i) => (

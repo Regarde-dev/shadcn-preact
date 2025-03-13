@@ -16,19 +16,18 @@ export default function HighlightCode(props: { codeString: string; lang: Bundled
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useLayoutEffect(() => {
     // TODO: add CATCH for not recompute in all initial render
     (async () => {
       const html = await codeToHtml(props.codeString, {
         lang: props.lang,
-        theme: props.theme ?? "github-dark-dimmed",
+        theme: props.theme ?? "github-dark-default",
       });
 
       setHtmlCode(html);
       setIsProcessing(false);
     })();
-  }, []);
+  }, [props.codeString, props.lang, props.theme]);
 
   return (
     <div className="group relative w-full max-w-full overflow-hidden rounded-lg bg-background">
@@ -53,7 +52,7 @@ export default function HighlightCode(props: { codeString: string; lang: Bundled
       <Show when={!isProcessing}>
         <div
           className="max-w-full text-sm *:overflow-auto"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml:
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Is how shiki works
           dangerouslySetInnerHTML={{
             __html: htmlCode,
           }}

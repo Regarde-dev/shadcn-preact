@@ -60,7 +60,7 @@ function ContentLayout(props: PropsWithChildren) {
     if (!link) return;
 
     link.scrollIntoView({
-      behavior: "smooth",
+      behavior: "instant",
       block: "center",
     });
   }, [asideRef.current]);

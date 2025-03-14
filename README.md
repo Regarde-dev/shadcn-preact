@@ -1,4 +1,4 @@
-# `shadcn/ui` port for Preact
+# shadcn/ui-`preact`
 
 An unofficial, `Preact` port of `shadcn/ui`.
 
@@ -21,6 +21,12 @@ Shadcn/ui is built on top of Radix UI and Tailwind CSS. Radix UI is an excellent
 but it's dependency-heavy, and I've tried to move it to Preact for better integration and minimal 
 external dependencies.
 
-## Installation Guide
 
-[See the installation guide](https://shadcn-preact.onrender.com/docs/installation)
+## Documentation
+
+Visit our [documentation](https://shadcn-preact.onrender.com/docs/installation) to learn more.
+
+## License
+
+Licensed under the [MIT license](https://github.com/LiasCode/shadcn-preact/blob/main/LICENSE.md).
+

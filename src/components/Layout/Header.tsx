@@ -5,6 +5,7 @@ import { useTheme } from "@ui/theme";
 import { Moon, Sun } from "lucide-preact";
 import { A } from "preact-hashish-router";
 import { Suspense, lazy } from "preact/compat";
+import { ShadcnIcon } from "./ShadcnIcon";
 
 const MobileSidebarMenu = lazy(() => import("@/components/MobileSidebarMenu"));
 
@@ -87,36 +88,5 @@ function HeaderRightSide() {
         </Button>
       </div>
     </div>
-  );
-}
-
-function ShadcnIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" className="h-6 w-6 text-primary">
-      <title>Shadcn Icon</title>
-      <rect width="256" height="256" fill="none" />
-      <line
-        x1="208"
-        y1="128"
-        x2="128"
-        y2="208"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="32"
-      />
-      <line
-        x1="192"
-        y1="40"
-        x2="40"
-        y2="192"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="32"
-      />
-    </svg>
   );
 }

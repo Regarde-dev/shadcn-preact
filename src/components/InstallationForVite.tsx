@@ -1,58 +1,55 @@
 import HighlightCode from "@/components/CodePreview/HighlightCode";
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
+import { Step, StepContent, StepTitle, Steps } from "@ui/steps";
 import { AlertCircle } from "lucide-preact";
 
 export default function InstallationForVite() {
   return (
     <div className="flex w-full flex-col gap-6">
-      <section className="flex flex-col gap-4">
-        <div className="flex flex-row items-center justify-start gap-2">
-          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">1</span>
-          <h2 className="font-semibold text-lg">Create project</h2>
-        </div>
+      <Steps>
+        <Step>
+          <StepTitle label="1">Create project</StepTitle>
+          <StepContent>
+            <p>Start by creating a new Preact project using Vite:</p>
 
-        <p>Start by creating a new Preact project using Vite:</p>
-
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   bun create vite@latest
 
 `}
-          lang="bash"
-        />
-      </section>
+              lang="bash"
+            />
+          </StepContent>
+        </Step>
 
-      <section className="flex flex-col gap-4">
-        <div className="flex flex-row items-center justify-start gap-2">
-          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">2</span>
-          <h2 className="font-semibold text-lg">Add Tailwind and its configuration</h2>
-        </div>
+        <Step>
+          <StepTitle label="2">Add Tailwind and its configuration</StepTitle>
+          <StepContent>
+            <Alert className="border-yellow-400">
+              <AlertCircle className="h-4 w-4" color="#facc15" />
+              <AlertTitle>TailwindCSS version</AlertTitle>
+              <AlertDescription>
+                For now only supports TailwindCSS 3. In the future will support TailwindCSS 4.
+              </AlertDescription>
+            </Alert>
 
-        <Alert className="border-yellow-400">
-          <AlertCircle className="h-4 w-4" color="#facc15" />
-          <AlertTitle>TailwindCSS version</AlertTitle>
-          <AlertDescription>
-            For now only supports TailwindCSS 3. In the future will support TailwindCSS 4.
-          </AlertDescription>
-        </Alert>
+            <p>Install tailwindcss and its peer dependencies.</p>
 
-        <p>Install tailwindcss and its peer dependencies.</p>
-
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   bun add -D tailwindcss@3.4.17 postcss autoprefixer
 
 `}
-          lang="bash"
-        />
+              lang="bash"
+            />
 
-        <p>
-          Add this import header in your main css file,
-          <code className="mx-2 rounded-sm bg-accent px-2">src/index.css</code> in our case:
-        </p>
+            <p>
+              Add this import header in your main css file,
+              <code className="mx-2 rounded-sm bg-accent px-2">src/index.css</code> in our case:
+            </p>
 
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
@@ -60,15 +57,15 @@ export default function InstallationForVite() {
   /* ... */
 
 `}
-          lang="css"
-        />
+              lang="css"
+            />
 
-        <p>
-          Configure template paths in <code className="mx-2 rounded-sm bg-accent px-2">tailwind.config.js</code>:
-        </p>
+            <p>
+              Configure template paths in <code className="mx-2 rounded-sm bg-accent px-2">tailwind.config.js</code>:
+            </p>
 
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   /** @type {import('tailwindcss').Config} */
   module.exports = {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
@@ -79,13 +76,13 @@ export default function InstallationForVite() {
   };
 
 `}
-          lang="js"
-        />
-        <p>
-          Configure the postcss file <code className="mx-2 rounded-sm bg-accent px-2">postcss.config.js</code>:
-        </p>
-        <HighlightCode
-          codeString={`
+              lang="js"
+            />
+            <p>
+              Configure the postcss file <code className="mx-2 rounded-sm bg-accent px-2">postcss.config.js</code>:
+            </p>
+            <HighlightCode
+              codeString={`
   export default {
     plugins: {
       tailwindcss: {},
@@ -94,20 +91,18 @@ export default function InstallationForVite() {
   };
 
 `}
-          lang="js"
-        />
-      </section>
+              lang="js"
+            />
+          </StepContent>
+        </Step>
 
-      <section className="mt-4 flex flex-col gap-4">
-        <div className="flex flex-row items-center justify-start gap-2">
-          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">3</span>
-          <h2 className="font-semibold text-lg">
+        <Step>
+          <StepTitle label="3">
             Edit <code className="rounded-sm bg-accent px-2">tsconfig.json</code> file
-          </h2>
-        </div>
-
-        <HighlightCode
-          codeString={`
+          </StepTitle>
+          <StepContent>
+            <HighlightCode
+              codeString={`
   {
     "compilerOptions": {
       "baseUrl": "./",
@@ -119,28 +114,26 @@ export default function InstallationForVite() {
   }
 
 `}
-          lang="json"
-        />
-      </section>
+              lang="json"
+            />
+          </StepContent>
+        </Step>
 
-      <section className="mt-4 flex flex-col gap-4">
-        <div className="flex flex-row items-center justify-start gap-2">
-          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">4</span>
-          <h2 className="font-semibold text-lg">
+        <Step>
+          <StepTitle label="4">
             Update <code className="rounded-sm bg-accent px-2">vite.config.ts</code>
-          </h2>
-        </div>
-
-        <HighlightCode
-          codeString={`
+          </StepTitle>
+          <StepContent>
+            <HighlightCode
+              codeString={`
   bun add -D @types/node
 
 `}
-          lang="bash"
-        />
+              lang="bash"
+            />
 
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   import { resolve } from "node:path";
   import preact from "@preact/preset-vite";
   import { defineConfig } from "vite";
@@ -163,48 +156,47 @@ export default function InstallationForVite() {
   });
 
 `}
-          lang="js"
-        />
-      </section>
+              lang="js"
+            />
+          </StepContent>
+        </Step>
 
-      <section className="flex flex-col gap-4">
-        <div className="flex flex-row items-center justify-start gap-2">
-          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">5</span>
-          <h2 className="font-semibold text-lg">Add UI components</h2>
-        </div>
+        <Step>
+          <StepTitle label="5">Add UI components</StepTitle>
+          <StepContent>
+            <p>For now this guide its for the installation of all components at once.</p>
 
-        <p>For now this guide its for the installation of all components at once.</p>
+            <p>Install all components dependencies:</p>
 
-        <p>Install all components dependencies:</p>
-
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   bun add class-variance-authority clsx cmdk date-fns dayjs embla-carousel-react input-otp lucide-preact react-day-picker react-hot-toast recharts tailwind-merge tailwindcss-animate vaul @floating-ui/react-dom  
 
 `}
-          lang="bash"
-        />
+              lang="bash"
+            />
 
-        <p>Copy the folder:</p>
+            <p>Copy the folder:</p>
 
-        <p>
-          Copy the folder of this repo
-          <code className="mx-2 rounded-sm bg-accent px-2">src/components/ui</code> into your ui path If you dont change
-          the config guide should be in <code className="mx-2 rounded-sm bg-accent px-2">src/components/ui</code>
-        </p>
+            <p>
+              Copy the folder of this repo
+              <code className="mx-2 rounded-sm bg-accent px-2">src/components/ui</code> into your ui path If you dont
+              change the config guide should be in{" "}
+              <code className="mx-2 rounded-sm bg-accent px-2">src/components/ui</code>
+            </p>
 
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   bunx degit https://github.com/LiasCode/shadcn-preact/src/components/ui ./src/components/ui  
 
 `}
-          lang="bash"
-        />
+              lang="bash"
+            />
 
-        <p>Adding custom CSS variables:</p>
+            <p>Adding custom CSS variables:</p>
 
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   @layer base {
     :root {
       --background: 0 0% 100%;
@@ -271,15 +263,15 @@ export default function InstallationForVite() {
   }
 
 `}
-          lang="css"
-        />
+              lang="css"
+            />
 
-        <p>
-          Updating <code className="mx-2 rounded-sm bg-accent px-2">tailwind.config.js</code>:
-        </p>
+            <p>
+              Updating <code className="mx-2 rounded-sm bg-accent px-2">tailwind.config.js</code>:
+            </p>
 
-        <HighlightCode
-          codeString={`
+            <HighlightCode
+              codeString={`
   /** @type {import('tailwindcss').Config} */
   export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -343,18 +335,18 @@ export default function InstallationForVite() {
   };
 
 `}
-          lang="js"
-        />
-      </section>
+              lang="js"
+            />
+          </StepContent>
+        </Step>
 
-      <section className="flex flex-col gap-4">
-        <div className="flex flex-row items-center justify-start gap-2">
-          <span className="rounded-[50%] border border-muted-foreground px-2 py-0.5 font-bold text-sm">6</span>
-          <h2 className="font-semibold text-lg">Done</h2>
-        </div>
-
-        <p>Setup is complete, and your environment is ready.</p>
-      </section>
+        <Step>
+          <StepTitle label="6">Done</StepTitle>
+          <StepContent>
+            <p>Setup is complete, and your environment is ready.</p>
+          </StepContent>
+        </Step>
+      </Steps>
     </div>
   );
 }

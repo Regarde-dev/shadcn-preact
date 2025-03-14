@@ -77,7 +77,7 @@ function ContentLayout(props: PropsWithChildren) {
     <div className="flex h-auto w-full flex-col p-0 md:grid md:grid-cols-[1fr,5fr] md:grid-rows-1">
       <aside
         ref={asideRef}
-        className="fixed top-0 z-30 hidden h-[calc(100vh-4.3rem)] w-full shrink-0 overflow-auto border-grid border-r md:sticky md:z-auto md:block"
+        className="fixed top-14 z-30 hidden h-[calc(100vh-4.3rem)] w-full shrink-0 overflow-auto border-grid border-r md:sticky md:z-auto md:block"
       >
         <div className="h-full w-full px-1 py-2 md:p-4 md:px-6">
           <NavRoutesLinks />

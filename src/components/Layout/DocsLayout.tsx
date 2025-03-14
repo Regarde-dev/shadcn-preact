@@ -66,15 +66,11 @@ function ContentLayout(props: PropsWithChildren) {
   }, [asideRef.current]);
 
   useEffect(() => {
-    window.scroll({
-      behavior: "smooth",
-      left: 0,
-      top: 0,
-    });
+    window.scroll(0, 0);
   }, []);
 
   return (
-    <div className="flex h-auto w-full flex-col p-0 md:grid md:grid-cols-[1fr,5fr] md:grid-rows-1">
+    <div className="flex h-auto w-full flex-col p-0 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:grid-rows-1">
       <aside
         ref={asideRef}
         className="fixed top-14 z-30 hidden h-[calc(100vh-4.3rem)] w-full shrink-0 overflow-auto border-grid border-r md:sticky md:z-auto md:block"

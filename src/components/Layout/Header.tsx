@@ -40,7 +40,7 @@ function HeaderLeftSide() {
         <ShadcnIcon />
 
         <A className="flex items-center gap-2" href={AppRoutes.HOME}>
-          <span className="inline-block font-bold text-primary text-sm md:text-base">
+          <span className="inline-block text-nowrap font-bold text-primary text-sm md:text-base">
             shadcn-<span className="text-purple-500">preact</span>
           </span>
         </A>

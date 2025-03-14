@@ -48,7 +48,7 @@ export function CheckboxSection() {
       <HighlightCode
         lang="tsx"
         codeString={`
-  import { Checkbox } from "@/components/ui/checkbox"
+  import { Checkbox } from "@ui/checkbox"
 
 `}
       />

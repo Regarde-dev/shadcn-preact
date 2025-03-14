@@ -6,8 +6,14 @@ const CommandSection = lazy(() => import("./Sections/CommandSection"));
 
 export default function CommandPage() {
   return (
-    <DocsLayout title="Command" description="Fast, composable, unstyled command menu.">
-      <Suspense fallback={<LoadingSpinner />}>
+    <DocsLayout title="Command" description="Fast, composable, unstyled command menu for Preact.">
+      <Suspense
+        fallback={
+          <div className="flex w-full flex-col items-center justify-center">
+            <LoadingSpinner />
+          </div>
+        }
+      >
         <CommandSection />
       </Suspense>
     </DocsLayout>

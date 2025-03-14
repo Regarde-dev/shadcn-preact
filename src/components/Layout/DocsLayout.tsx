@@ -18,7 +18,7 @@ export function DocsLayout(props: DocsLayoutProps) {
       <div className="mt-0 mb-1 flex w-full flex-1 flex-col items-center justify-start border-accent border-b border-dashed p-0">
         <div className="flex w-full max-w-screen-2xl flex-col gap-4 border-accent border-dashed *:max-w-[100vw] md:border-x md:px-1 md:pt-2">
           <ContentLayout>
-            <Card className="flex w-full max-w-screen-md flex-col border border-primary border-none pt-0 shadow-none max-md:*:px-2">
+            <Card className="flex w-full max-w-screen-lg flex-col border border-primary border-none pt-0 shadow-none max-md:*:px-2">
               <CardHeader>
                 {props.breadcrumbs !== undefined ? (
                   props.breadcrumbs
@@ -75,7 +75,7 @@ function ContentLayout(props: PropsWithChildren) {
         ref={asideRef}
         className="fixed top-14 z-30 hidden h-[calc(100vh-4.3rem)] w-full shrink-0 overflow-auto border-grid border-r md:sticky md:z-auto md:block"
       >
-        <div className="h-full w-full px-1 py-2 md:p-4 md:px-6">
+        <div className="no-scrollbar flex h-full w-full flex-col gap-6 px-1 py-2 md:p-4 md:px-6">
           <NavRoutesLinks />
         </div>
       </aside>

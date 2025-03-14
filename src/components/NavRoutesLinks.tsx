@@ -11,9 +11,9 @@ export default function NavRoutesLinks() {
         </span>
         <A href={AppRoutes.DOCS.INTRO} className="group w-full">
           <Button
-            variant="ghost"
+            variant="link"
             size="sm"
-            className="w-full justify-start px-2 py-1 font-normal group-data-[route-active=true]:bg-accent"
+            className="w-full justify-start px-2 py-1 font-normal text-muted-foreground capitalize group-data-[route-active=true]:text-foreground"
           >
             Introduction
           </Button>
@@ -21,9 +21,9 @@ export default function NavRoutesLinks() {
 
         <A href={AppRoutes.DOCS.INSTALLATION} className="group w-full">
           <Button
-            variant="ghost"
+            variant="link"
             size="sm"
-            className="w-full justify-start px-2 py-1 font-normal group-data-[route-active=true]:bg-accent"
+            className="w-full justify-start px-2 py-1 font-normal text-muted-foreground capitalize group-data-[route-active=true]:text-foreground"
           >
             Installation
           </Button>
@@ -31,9 +31,9 @@ export default function NavRoutesLinks() {
 
         <A href={AppRoutes.DOCS.THEMING} className="group w-full">
           <Button
-            variant="ghost"
+            variant="link"
             size="sm"
-            className="w-full justify-start px-2 py-1 font-normal group-data-[route-active=true]:bg-accent"
+            className="w-full justify-start px-2 py-1 font-normal text-muted-foreground capitalize group-data-[route-active=true]:text-foreground"
           >
             Theming
           </Button>
@@ -41,9 +41,9 @@ export default function NavRoutesLinks() {
 
         <A href={AppRoutes.BLOCKS} className="group w-full">
           <Button
-            variant="ghost"
+            variant="link"
             size="sm"
-            className="w-full justify-start px-2 py-1 font-normal group-data-[route-active=true]:bg-accent"
+            className="w-full justify-start px-2 py-1 font-normal text-muted-foreground capitalize group-data-[route-active=true]:text-foreground"
           >
             Blocks
           </Button>
@@ -57,9 +57,9 @@ export default function NavRoutesLinks() {
 
         <A href={AppRoutes.DOCS.INSTALLATION_VITE} className="group w-full">
           <Button
-            variant="ghost"
+            variant="link"
             size="sm"
-            className="w-full justify-start px-2 py-1 font-normal group-data-[route-active=true]:bg-accent"
+            className="w-full justify-start px-2 py-1 font-normal text-muted-foreground capitalize group-data-[route-active=true]:text-foreground"
           >
             Vite
           </Button>
@@ -67,9 +67,9 @@ export default function NavRoutesLinks() {
 
         <A href={AppRoutes.DOCS.INSTALLATION_ASTRO} className="group w-full">
           <Button
-            variant="ghost"
+            variant="link"
             size="sm"
-            className="w-full justify-start px-2 py-1 font-normal group-data-[route-active=true]:bg-accent"
+            className="w-full justify-start px-2 py-1 font-normal text-muted-foreground capitalize group-data-[route-active=true]:text-foreground"
           >
             Astro
           </Button>
@@ -87,9 +87,9 @@ export default function NavRoutesLinks() {
             return (
               <A href={route} className="group w-full" key={name}>
                 <Button
-                  variant="ghost"
+                  variant="link"
                   size="sm"
-                  className="w-full justify-start px-2 py-1 font-normal capitalize group-data-[route-active=true]:bg-accent"
+                  className="w-full justify-start px-2 py-1 font-normal text-muted-foreground capitalize group-data-[route-active=true]:text-foreground"
                 >
                   {name.split("_").join(" ").toLocaleLowerCase()}
                 </Button>

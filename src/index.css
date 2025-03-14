@@ -100,5 +100,4 @@ body {
 * {
   scrollbar-width: thin !important;
   scrollbar-color: hsl(var(--accent)) transparent !important;
-  scroll-behavior: smooth !important;
 }

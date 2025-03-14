@@ -42,7 +42,7 @@ export function useDialog() {
   return context;
 }
 
-export function DialogTrigger({ children }: PropsWithChildren) {
+export function DialogTrigger({ children }: PropsWithChildren & { asChild?: boolean }) {
   const { openDialog } = useDialog();
 
   return (
@@ -140,7 +140,10 @@ export const DialogDescription = forwardRef<HTMLDivElement, HTMLAttributes<HTMLD
 );
 DialogDescription.displayName = "DialogDescription";
 
-export const DialogClose = ({ children, onCancel }: PropsWithChildren<{ onCancel?: () => void }>) => {
+export const DialogClose = ({
+  children,
+  onCancel,
+}: PropsWithChildren<{ onCancel?: () => void; asChild?: boolean }>) => {
   const { closeDialog } = useDialog();
 
   return (

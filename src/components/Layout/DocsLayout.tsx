@@ -66,7 +66,11 @@ function ContentLayout(props: PropsWithChildren) {
   }, [asideRef.current]);
 
   useEffect(() => {
-    window.scroll(0, 0);
+    window.scroll({
+      behavior: "instant",
+      left: 0,
+      top: 0,
+    });
   }, []);
 
   return (

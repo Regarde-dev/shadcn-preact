@@ -7,7 +7,7 @@ import { AppRoutes } from "../AppRoutes";
 
 export default function InstallationPage() {
   return (
-    <DocsLayout title="Theming" description="How to install dependencies and structure your app.">
+    <DocsLayout title="Installation" description="How to install dependencies and structure your app.">
       <div className="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-6">
         <A
           class="flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10"

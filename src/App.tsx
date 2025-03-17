@@ -23,6 +23,7 @@ import DrawerPage from "./routes/Components/Drawer";
 import InputPage from "./routes/Components/Input";
 import LabelPage from "./routes/Components/Label";
 import PopoverPage from "./routes/Components/Popover";
+import SelectPage from "./routes/Components/Select";
 import SheetPage from "./routes/Components/Sheet";
 import SkeletonPage from "./routes/Components/Skeleton";
 import SwitchPage from "./routes/Components/Switch";
@@ -76,6 +77,10 @@ export function App() {
 
           <Route path={AppRoutes.COMPONENTS.BUTTON}>
             <ButtonPage />
+          </Route>
+
+          <Route path={AppRoutes.COMPONENTS.SELECT}>
+            <SelectPage />
           </Route>
 
           <Route path={AppRoutes.COMPONENTS.TOGGLE}>

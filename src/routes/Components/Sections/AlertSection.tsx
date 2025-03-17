@@ -1,4 +1,5 @@
 import { CodePreviewTabs } from "@/components/CodePreview/CodePreviewTabs";
+import HighlightCode from "@/components/CodePreview/HighlightCode";
 import { AppRoutes } from "@/routes/AppRoutes";
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { Button } from "@ui/button";
@@ -40,6 +41,30 @@ export function AlertSection() {
             <AlertDescription>You can add components to your app using the cli.</AlertDescription>
           </Alert>
         }
+      />
+
+      <h2 className="w-full border-b-2 pb-2 font-semibold text-2xl">Usage</h2>
+
+      <HighlightCode
+        codeString={`
+  import { Alert, AlertDescription, AlertTitle } from "@ui/alert"
+
+`}
+        lang="tsx"
+      />
+
+      <HighlightCode
+        codeString={`
+  <Alert>
+    <Terminal className="h-4 w-4" />
+    <AlertTitle>Heads up!</AlertTitle>
+    <AlertDescription>
+      You can add components and dependencies to your app using the cli.
+    </AlertDescription>
+  </Alert>
+
+`}
+        lang="tsx"
       />
 
       <h2 className="w-full border-b-2 pb-2 font-semibold text-2xl">Examples</h2>

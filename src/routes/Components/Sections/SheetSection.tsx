@@ -234,17 +234,17 @@ export function SheetSection() {
       <Pagination className="mt-10">
         <PaginationContent className="flex w-full flex-row justify-between">
           <PaginationItem>
-            <A href={AppRoutes.COMPONENTS.LABEL}>
+            <A href={AppRoutes.COMPONENTS.SELECT}>
               <Button className="gap-1 pl-1" variant="outline">
                 <ChevronLeft />
-                Label
+                Select
               </Button>
             </A>
           </PaginationItem>
           <PaginationItem>
-            <A href={AppRoutes.COMPONENTS.SELECT}>
+            <A href={AppRoutes.COMPONENTS.SKELETON}>
               <Button className="gap-1 pr-1 capitalize" variant="outline">
-                Select
+                Skeleton
                 <ChevronRight />
               </Button>
             </A>

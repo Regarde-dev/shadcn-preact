@@ -3,7 +3,8 @@ import { Show } from "@ui/show";
 import { Skeleton } from "@ui/skeleton";
 import { Check, Copy } from "lucide-preact";
 import { useLayoutEffect, useState } from "preact/hooks";
-import { type BundledLanguage, type BundledTheme, codeToHtml } from "shiki/bundle/web";
+import type { BundledLanguage, BundledTheme } from "shiki";
+import highlightCode from "./highlight";
 
 export default function HighlightCode(props: { codeString: string; lang: BundledLanguage; theme?: BundledTheme }) {
   const [htmlCode, setHtmlCode] = useState("");
@@ -17,14 +18,13 @@ export default function HighlightCode(props: { codeString: string; lang: Bundled
   };
 
   useLayoutEffect(() => {
-    // TODO: add CATCH for not recompute in all initial render
     (async () => {
-      const html = await codeToHtml(props.codeString, {
+      const htmlHighlightCode = await highlightCode({
+        codeString: props.codeString,
         lang: props.lang,
-        theme: props.theme ?? "github-dark-default",
+        theme: props.theme,
       });
-
-      setHtmlCode(html);
+      setHtmlCode(htmlHighlightCode);
       setIsProcessing(false);
     })();
   }, [props.codeString, props.lang, props.theme]);

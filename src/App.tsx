@@ -5,6 +5,8 @@ import { Toaster } from "@ui/toast";
 import { ExternalLink } from "lucide-preact";
 import { A, ErrorRoute, Route, Router, RouterErrorBoundary } from "preact-hashish-router";
 import { AppRoutes } from "./routes/AppRoutes";
+
+// Pages
 import BlocksPage from "./routes/Blocks";
 import AlertPage from "./routes/Components/Alert";
 import AlertDialogPage from "./routes/Components/AlertDialog";

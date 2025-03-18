@@ -1,10 +1,10 @@
 import { DocsLayout } from "@/components/Layout/DocsLayout";
+import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { Button } from "@ui/button";
 import { Pagination, PaginationContent, PaginationItem } from "@ui/pagination";
 import { AlertCircle, ChevronLeft, ChevronRight } from "lucide-preact";
 import { A } from "preact-hashish-router";
 import { AppRoutes } from "../AppRoutes";
-import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 
 export default function ThemingPage() {
   const firstAlphaComponentKey = Object.keys(AppRoutes.COMPONENTS).sort()[0] as keyof typeof AppRoutes.COMPONENTS;

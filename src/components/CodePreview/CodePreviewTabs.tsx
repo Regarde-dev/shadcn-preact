@@ -4,7 +4,7 @@ import type { VNode } from "preact";
 import { Suspense, lazy } from "preact/compat";
 import { LoadingSpinner } from "../LoadingSpinner";
 
-const HighlightCode = lazy(() => import("./HighlightCode"));
+const HighlightCodeInternal = lazy(() => import("./HighlightCodeInternal"));
 
 export function CodePreviewTabs(props: { codeString: string; previewElement: VNode<any> }) {
   return (
@@ -42,7 +42,7 @@ export function CodePreviewTabs(props: { codeString: string; previewElement: VNo
             </Skeleton>
           }
         >
-          <HighlightCode lang="tsx" codeString={props.codeString} />
+          <HighlightCodeInternal lang="tsx" codeString={props.codeString} />
         </Suspense>
       </TabsContent>
     </Tabs>

@@ -1,30 +1,69 @@
+import { CodePreviewTabs } from "@/components/CodePreview/CodePreviewTabs";
+import HighlightCode from "@/components/CodePreview/HighlightCode";
+import { AppRoutes } from "@/routes/AppRoutes";
 import { Button } from "@ui/button";
-import { Label } from "@ui/label";
+import { Pagination, PaginationContent, PaginationItem } from "@ui/pagination";
 import { Textarea } from "@ui/textarea";
+import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { A } from "preact-hashish-router";
 
 export function TextareaSection() {
   return (
-    <div className="flex w-full flex-col items-center justify-start gap-20 *:max-w-[500px]">
-      <Textarea placeholder="Type your message here." />
-      <Textarea placeholder="This textarea are disabled, Type your message here." disabled />
-      <div className="grid w-full gap-1.5">
-        <Label htmlFor="message012">Your message</Label>
-        <Textarea placeholder="Type your message here." id="message012" />
-      </div>
-      <div className="grid w-full gap-2">
-        <Textarea placeholder="Type your message here." />
-        <Button>Send message</Button>
-      </div>
-      <div className="w-full max-w-[500px] space-y-3 rounded-lg border border-border p-4 shadow-md">
-        <h3 className={"font-medium text-sm"}>Bio</h3>
-        <Textarea placeholder="Tell us a little bit about yourself" className="resize-none" />
-        <p className="text-muted-foreground text-sm">
-          You can <span>@mention</span> other users and organizations.
-        </p>
-        <Button type="submit" className="mt-3">
-          Submit
-        </Button>
-      </div>
+    <div className="flex w-full flex-col gap-6">
+      <CodePreviewTabs
+        codeString={`
+  import { Textarea } from "@ui/textarea"
+
+  export function TextareaDemo() {
+    return <Textarea placeholder="Type your message here." />
+  }
+
+`}
+        previewElement={
+          <div className="flex w-full flex-col items-center justify-center space-x-2 *:max-w-screen-md">
+            <Textarea placeholder="Type your message here." />
+          </div>
+        }
+      />
+
+      <h2 className="w-full border-b-2 pb-1 font-semibold text-2xl">Usage</h2>
+
+      <HighlightCode
+        lang="tsx"
+        codeString={`
+  import { Textarea } from "@ui/textarea"
+
+`}
+      />
+
+      <HighlightCode
+        lang="tsx"
+        codeString={`
+  <Textarea />
+
+`}
+      />
+
+      <Pagination className="mt-10">
+        <PaginationContent className="flex w-full flex-row justify-between">
+          <PaginationItem>
+            <A href={AppRoutes.COMPONENTS.TABS}>
+              <Button className="gap-1 pl-1" variant="outline">
+                <ChevronLeft />
+                Tabs
+              </Button>
+            </A>
+          </PaginationItem>
+          <PaginationItem>
+            <A href={AppRoutes.COMPONENTS.TOAST}>
+              <Button className="gap-1 pr-1 capitalize" variant="outline">
+                Toast
+                <ChevronRight />
+              </Button>
+            </A>
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }

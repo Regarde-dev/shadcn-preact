@@ -2,13 +2,13 @@ import { CodePreviewTabs } from "@/components/CodePreview/CodePreviewTabs";
 import HighlightCode from "@/components/CodePreview/HighlightCode";
 import { AppRoutes } from "@/routes/AppRoutes";
 import { Button } from "@ui/button";
-import { Pagination, PaginationContent, PaginationItem } from "@ui/pagination";
-import { ChevronLeft, ChevronRight } from "lucide-preact";
-import { A } from "preact-hashish-router";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@ui/card";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
+import { Pagination, PaginationContent, PaginationItem } from "@ui/pagination";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ui/tabs";
+import { ChevronLeft, ChevronRight } from "lucide-preact";
+import { A } from "preact-hashish-router";
 
 export function TabsSection() {
   return (

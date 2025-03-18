@@ -14,7 +14,7 @@ export function BaseSection() {
 
 `}
         previewElement={
-          <div className="flex w-full flex-col items-center justify-center space-x-2 *:max-w-screen-md"></div>
+          <div className="flex w-full flex-col items-center justify-center space-x-2 *:max-w-screen-md" />
         }
       />
 
@@ -43,7 +43,7 @@ export function BaseSection() {
 
 `}
         previewElement={
-          <div className="flex w-full flex-col items-center justify-center space-x-2 *:max-w-screen-md"></div>
+          <div className="flex w-full flex-col items-center justify-center space-x-2 *:max-w-screen-md" />
         }
       />
 

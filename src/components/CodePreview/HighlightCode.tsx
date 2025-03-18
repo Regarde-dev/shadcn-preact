@@ -1,6 +1,6 @@
+import { Skeleton } from "@ui/skeleton";
 import { Suspense, lazy } from "preact/compat";
 import type { BundledLanguage, BundledTheme } from "shiki";
-import { LoadingSpinner } from "../LoadingSpinner";
 
 const HighlightCodeInternal = lazy(() => import("./HighlightCodeInternal"));
 
@@ -9,7 +9,12 @@ export default function HighlightCode(props: { codeString: string; lang: Bundled
     <Suspense
       fallback={
         <div className="flex w-full flex-col items-center justify-center">
-          <LoadingSpinner />
+          <Skeleton
+            className="w-full"
+            style={{
+              height: `${props.codeString.split("\n").length + 2}em`,
+            }}
+          />
         </div>
       }
     >

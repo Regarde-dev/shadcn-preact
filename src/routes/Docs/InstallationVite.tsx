@@ -48,7 +48,13 @@ export default function InstallationVitePage() {
       title="Vite Installation"
       description="How to install dependencies and structure your app with vite."
     >
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense
+        fallback={
+          <div className="flex w-full flex-col items-center justify-center">
+            <LoadingSpinner />
+          </div>
+        }
+      >
         <InstallationGuideVite />
       </Suspense>
 

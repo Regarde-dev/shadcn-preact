@@ -73,7 +73,7 @@ export function Tooltip({ children }: PropsWithChildren) {
   return children;
 }
 
-export function TooltipTrigger({ children }: PropsWithChildren) {
+export function TooltipTrigger({ children }: PropsWithChildren & { asChild?: boolean }) {
   const { open, close, ref, delay } = useTooltip();
 
   const openDebounced = debounce(open, delay || 300);

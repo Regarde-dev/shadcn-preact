@@ -13,7 +13,9 @@ export function BaseSection() {
         codeString={`
 
 `}
-        previewElement={<div className="flex w-full items-center justify-center space-x-2" />}
+        previewElement={
+          <div className="flex w-full flex-col items-center justify-center space-x-2 *:max-w-screen-md"></div>
+        }
       />
 
       <h2 className="w-full border-b-2 pb-1 font-semibold text-2xl">Usage</h2>
@@ -40,7 +42,9 @@ export function BaseSection() {
         codeString={`
 
 `}
-        previewElement={<div className="flex w-full items-center justify-center space-x-2" />}
+        previewElement={
+          <div className="flex w-full flex-col items-center justify-center space-x-2 *:max-w-screen-md"></div>
+        }
       />
 
       <Pagination className="mt-10">

@@ -34,6 +34,8 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(({ className, class: c
         className,
         classNative
       )}
+      type={"button"}
+      role={"switch"}
       {...props}
       ref={ref}
     >

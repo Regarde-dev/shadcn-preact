@@ -26,7 +26,6 @@ export function SkeletonSection() {
     )
   }
 
-
 `}
         previewElement={
           <div className="flex w-full items-center justify-center space-x-2">

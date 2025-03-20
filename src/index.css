@@ -68,6 +68,7 @@ body {
 }
 
 /* --------------------- */
+
 * {
   @apply underline-offset-4;
 }
@@ -100,4 +101,8 @@ body {
 * {
   scrollbar-width: thin !important;
   scrollbar-color: hsl(var(--accent)) transparent !important;
+}
+
+p {
+  max-width: 75ch;
 }

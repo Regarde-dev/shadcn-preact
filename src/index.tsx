@@ -8,4 +8,6 @@ if ($root === null) {
   throw new Error("Root element not found");
 }
 
+$root.innerHTML = "";
+
 render(<App />, $root);

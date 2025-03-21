@@ -10,11 +10,18 @@ export default function InstallationForVite() {
         <Step>
           <StepTitle label="1">Create project</StepTitle>
           <StepContent>
-            <p>Start by creating a new Preact project using Vite:</p>
+            <p>Start by creating a new Preact project using create-preact:</p>
+
+            <Alert className="border-yellow-400">
+              <AlertTitle className="flex flex-row items-center gap-2">
+                <AlertCircle className="h-4 w-4" color="#facc15" />
+                This guide uses bun as the package manager, but you can also use npm.
+              </AlertTitle>
+            </Alert>
 
             <HighlightCode
               codeString={`
-  bun create vite@latest
+  bun create preact@latest
 
 `}
               lang="bash"
@@ -66,8 +73,8 @@ export default function InstallationForVite() {
 
             <HighlightCode
               codeString={`
-  /** @type {import('tailwindcss').Config} */
-  module.exports = {
+ /** @type {import('tailwindcss').Config} */
+  export default {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
     theme: {
       extend: {},

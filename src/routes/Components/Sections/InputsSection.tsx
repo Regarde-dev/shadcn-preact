@@ -222,9 +222,9 @@ export function InputsSection() {
             </A>
           </PaginationItem>
           <PaginationItem>
-            <A href={AppRoutes.COMPONENTS.LABEL}>
+            <A href={AppRoutes.COMPONENTS.INPUT_OTP}>
               <Button className="gap-1 pr-1 capitalize" variant="outline">
-                Label
+                Input Otp
                 <ChevronRight />
               </Button>
             </A>

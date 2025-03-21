@@ -57,10 +57,10 @@ export function LabelSection() {
       <Pagination className="mt-10">
         <PaginationContent className="flex w-full flex-row justify-between">
           <PaginationItem>
-            <A href={AppRoutes.COMPONENTS.INPUT}>
+            <A href={AppRoutes.COMPONENTS.INPUT_OTP}>
               <Button className="gap-1 pl-1" variant="outline">
                 <ChevronLeft />
-                Input
+                Input Otp
               </Button>
             </A>
           </PaginationItem>

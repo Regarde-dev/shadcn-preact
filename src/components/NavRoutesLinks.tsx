@@ -39,13 +39,13 @@ export default function NavRoutesLinks() {
           </Button>
         </A>
 
-        <A href={AppRoutes.BLOCKS} className="group w-full">
+        <A href={AppRoutes.EXAMPLES} className="group w-full">
           <Button
             variant="link"
             size="sm"
             className="w-full justify-start px-2 py-1 font-normal text-muted-foreground capitalize group-data-[route-active=true]:text-foreground"
           >
-            Blocks
+            Examples
           </Button>
         </A>
       </div>

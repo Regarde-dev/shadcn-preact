@@ -7,7 +7,7 @@ import { A, ErrorRoute, Route, Router, RouterErrorBoundary } from "preact-hashis
 import { AppRoutes } from "./routes/AppRoutes";
 
 // Pages
-import BlocksPage from "./routes/Blocks";
+import ExamplePage from "./routes/Example";
 import AlertPage from "./routes/Components/Alert";
 import AlertDialogPage from "./routes/Components/AlertDialog";
 import AvatarPage from "./routes/Components/Avatar";
@@ -54,8 +54,8 @@ export function App() {
             <HomePage />
           </Route>
 
-          <Route path={AppRoutes.BLOCKS}>
-            <BlocksPage />
+          <Route path={AppRoutes.EXAMPLES}>
+            <ExamplePage />
           </Route>
 
           <Route path={AppRoutes.DOCS.INTRO}>

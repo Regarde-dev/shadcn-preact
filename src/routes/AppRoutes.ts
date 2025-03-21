@@ -1,6 +1,6 @@
 export const AppRoutes = {
   HOME: "/",
-  BLOCKS: "/blocks",
+  EXAMPLES: "/examples",
   DOCS: {
     INTRO: "/docs",
     INSTALLATION: "/docs/installation",

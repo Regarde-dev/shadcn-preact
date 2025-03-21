@@ -59,8 +59,8 @@ function HeaderLeftSide() {
           Components
         </A>
 
-        <A className="flex items-center data-[route-active=true]:text-primary" href={AppRoutes.BLOCKS}>
-          Blocks
+        <A className="flex items-center data-[route-active=true]:text-primary" href={AppRoutes.EXAMPLES}>
+          Examples
         </A>
       </div>
     </div>

@@ -213,6 +213,10 @@ export default {
 Create a CSS file (e.g., `styles.css`) and add the following base styles:
 
 ```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;

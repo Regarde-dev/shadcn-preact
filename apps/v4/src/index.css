@@ -169,6 +169,11 @@
   button:active {
     @apply opacity-60 md:opacity-100;
   }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--accent)) transparent;
+  }
 }
 
 @utility border-grid {

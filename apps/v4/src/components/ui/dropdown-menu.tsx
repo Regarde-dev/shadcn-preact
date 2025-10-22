@@ -1,12 +1,16 @@
+import { autoUpdate, flip, offset, shift, useFloating, type Placement } from "@floating-ui/react-dom";
 import { Check, Circle } from "lucide-preact";
 import type { ButtonHTMLAttributes, HTMLAttributes } from "preact";
-import { type PropsWithChildren, createContext, forwardRef, useEffect, useRef, useState } from "preact/compat";
+import { createContext, forwardRef, useEffect, useMemo, useRef, useState, type PropsWithChildren } from "preact/compat";
 import { useContext } from "preact/hooks";
 import { Portal } from "./portal";
 import { cn } from "./share/cn";
 import { useComposedRefs } from "./share/compose_ref";
 import { Slot } from "./share/slot";
+import { useArrowKeyNavigation } from "./share/useArrowKeyNavigation";
+import { useClickOutside } from "./share/useClickOutside";
 import { useControlledState } from "./share/useControlledState";
+import { useEscapeKeyDown } from "./share/useEscapeKeyDown";
 
 // DropdownMenu Context
 type DropdownMenuContextValue = {
@@ -122,192 +126,133 @@ export const DropdownMenuContent = forwardRef<HTMLDivElement, DropdownMenuConten
     forwardedRef
   ) => {
     const { open, setOpen, triggerRef } = useDropdownMenu();
-    const [position, setPosition] = useState({ top: 0, left: 0 });
     const contentRef = useRef<HTMLDivElement>(null);
-    const [focusedIndex, setFocusedIndex] = useState(-1);
 
-    const composedRefs = useComposedRefs(contentRef, forwardedRef as any);
+    // Build placement based on side and align
+    const placement = useMemo((): Placement => {
+      if (align === "center" || align === "start") {
+        if (side === "bottom" || side === "top") {
+          return align === "start" ? `${side}-start` : side;
+        }
+        return align === "start" ? `${side}-start` : side;
+      }
+      return `${side}-end` as Placement;
+    }, [side, align]);
+
+    // Build fallback placements for flip middleware
+    const fallbackPlacements = useMemo((): Placement[] => {
+      const fallbacks: Placement[] = [];
+
+      if (side === "bottom" || side === "top") {
+        const oppositeSide = side === "bottom" ? "top" : "bottom";
+        if (align === "start") {
+          fallbacks.push(`${oppositeSide}-start`);
+        } else if (align === "end") {
+          fallbacks.push(`${oppositeSide}-end`);
+        } else {
+          fallbacks.push(oppositeSide);
+        }
+      } else {
+        const oppositeSide = side === "left" ? "right" : "left";
+        if (align === "start") {
+          fallbacks.push(`${oppositeSide}-start`);
+        } else if (align === "end") {
+          fallbacks.push(`${oppositeSide}-end`);
+        } else {
+          fallbacks.push(oppositeSide);
+        }
+      }
+
+      return fallbacks;
+    }, [side, align]);
+
+    const {
+      refs,
+      floatingStyles,
+      placement: currentPlacement,
+    } = useFloating({
+      open,
+      strategy: "fixed",
+      placement: placement,
+      middleware: [
+        offset(sideOffset + alignOffset),
+        flip({
+          fallbackPlacements: fallbackPlacements,
+        }),
+        shift(),
+      ],
+      whileElementsMounted: autoUpdate,
+      transform: false,
+    });
+
+    const [maxHeight, setMaxHeight] = useState<number | undefined>();
+
+    // Connect the trigger ref to floating-ui
+    useEffect(() => {
+      if (triggerRef.current) {
+        refs.setReference(triggerRef.current);
+      }
+    }, [refs, triggerRef]);
 
     useEffect(() => {
-      if (!open || !triggerRef.current || !contentRef.current) return;
+      if (!open || !refs.floating.current || !refs.reference.current) {
+        setMaxHeight(undefined);
+        return;
+      }
 
-      const updatePosition = () => {
-        const trigger = triggerRef.current;
-        const content = contentRef.current;
-        if (!trigger || !content) return;
+      const calculateMaxHeight = () => {
+        const referenceRect = refs.reference.current!.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const viewportPadding = 8;
 
-        const triggerRect = trigger.getBoundingClientRect();
-        const contentRect = content.getBoundingClientRect();
+        const actualPlacement = currentPlacement || placement;
+        const isVertical = actualPlacement.startsWith("top") || actualPlacement.startsWith("bottom");
 
-        let top = 0;
-        let left = 0;
+        let availableSpace: number;
 
-        // Calculate based on side
-        switch (side) {
-          case "top":
-            top = triggerRect.top - contentRect.height - sideOffset;
-            break;
-          case "bottom":
-            top = triggerRect.bottom + sideOffset;
-            break;
-          case "left":
-            top = triggerRect.top;
-            left = triggerRect.left - contentRect.width - sideOffset;
-            break;
-          case "right":
-            top = triggerRect.top;
-            left = triggerRect.right + sideOffset;
-            break;
-        }
-
-        // Calculate based on align (for top/bottom)
-        if (side === "top" || side === "bottom") {
-          switch (align) {
-            case "start":
-              left = triggerRect.left + alignOffset;
-              break;
-            case "center":
-              left = triggerRect.left + triggerRect.width / 2 - contentRect.width / 2 + alignOffset;
-              break;
-            case "end":
-              left = triggerRect.right - contentRect.width + alignOffset;
-              break;
+        if (isVertical) {
+          if (actualPlacement.startsWith("bottom")) {
+            availableSpace = viewportHeight - referenceRect.bottom - viewportPadding - sideOffset;
+          } else {
+            availableSpace = referenceRect.top - viewportPadding - sideOffset;
           }
+        } else {
+          // For left/right placements, use full viewport height minus padding
+          // (dropdown extends vertically regardless of horizontal placement)
+          const spaceAbove = referenceRect.top - viewportPadding;
+          const spaceBelow = viewportHeight - referenceRect.bottom - viewportPadding;
+          availableSpace = Math.max(spaceAbove, spaceBelow, viewportHeight - viewportPadding * 2);
         }
 
-        // Calculate based on align (for left/right)
-        if (side === "left" || side === "right") {
-          switch (align) {
-            case "start":
-              top = triggerRect.top + alignOffset;
-              break;
-            case "center":
-              top = triggerRect.top + triggerRect.height / 2 - contentRect.height / 2 + alignOffset;
-              break;
-            case "end":
-              top = triggerRect.bottom - contentRect.height + alignOffset;
-              break;
-          }
-        }
-
-        setPosition({ top, left });
+        const cappedHeight = Math.max(100, Math.min(availableSpace, 384));
+        setMaxHeight(cappedHeight);
       };
 
-      updatePosition();
+      calculateMaxHeight();
+    }, [open, refs, currentPlacement, placement, sideOffset]);
 
-      window.addEventListener("scroll", updatePosition, true);
-      window.addEventListener("resize", updatePosition);
+    const composedRefs = useComposedRefs(contentRef, forwardedRef as any, (node: HTMLDivElement | null) =>
+      refs.setFloating(node)
+    );
 
-      return () => {
-        window.removeEventListener("scroll", updatePosition, true);
-        window.removeEventListener("resize", updatePosition);
-      };
-    }, [open, side, sideOffset, align, alignOffset]);
+    // Handle escape key with focus restoration
+    useEscapeKeyDown(() => setOpen(false), {
+      enabled: open,
+      restoreFocus: triggerRef as any,
+    });
 
-    // Handle escape key and click outside
-    useEffect(() => {
-      if (!open) return;
+    // Handle click outside
+    useClickOutside([contentRef, triggerRef as any], () => setOpen(false), {
+      enabled: open,
+    });
 
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-          setOpen(false);
-          triggerRef.current?.focus();
-        }
-      };
-
-      const handleClickOutside = (e: MouseEvent) => {
-        if (
-          contentRef.current &&
-          !contentRef.current.contains(e.target as Node) &&
-          triggerRef.current &&
-          !triggerRef.current.contains(e.target as Node)
-        ) {
-          setOpen(false);
-        }
-      };
-
-      document.addEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClickOutside);
-
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [open, setOpen]);
-
-    // Consider optional: Auto-focus first item when dropdown opens?
-    // useEffect(() => {
-    //   if (!open || !contentRef.current) return;
-
-    //   const items = Array.from(
-    //     contentRef.current.querySelectorAll(
-    //       '[role="menuitem"]:not([data-disabled="true"]), [role="menuitemcheckbox"]:not([data-disabled="true"]), [role="menuitemradio"]:not([data-disabled="true"])'
-    //     )
-    //   ) as HTMLElement[];
-
-    //   if (items.length > 0) {
-    //     // Auto-focus the first item when dropdown opens
-    //     items[0]?.focus();
-    //     setFocusedIndex(0);
-    //   }
-    // }, [open]);
-
-    // Handle keyboard navigation
-    useEffect(() => {
-      if (!open || !contentRef.current) return;
-
-      const handleKeyDown = (e: KeyboardEvent) => {
-        const items = Array.from(
-          contentRef.current?.querySelectorAll(
-            '[role="menuitem"]:not([data-disabled="true"]), [role="menuitemcheckbox"]:not([data-disabled="true"]), [role="menuitemradio"]:not([data-disabled="true"])'
-          ) || []
-        ) as HTMLElement[];
-
-        if (items.length === 0) return;
-
-        switch (e.key) {
-          case "ArrowDown":
-            e.preventDefault();
-            setFocusedIndex((prev) => {
-              const next = prev === -1 ? 0 : prev + 1 >= items.length ? 0 : prev + 1;
-              items[next]?.focus();
-              return next;
-            });
-            break;
-          case "ArrowUp":
-            e.preventDefault();
-            setFocusedIndex((prev) => {
-              const next = prev === -1 ? items.length - 1 : prev - 1 < 0 ? items.length - 1 : prev - 1;
-              items[next]?.focus();
-              return next;
-            });
-            break;
-          case "Home":
-            e.preventDefault();
-            items[0]?.focus();
-            setFocusedIndex(0);
-            break;
-          case "End":
-            e.preventDefault();
-            items[items.length - 1]?.focus();
-            setFocusedIndex(items.length - 1);
-            break;
-          case "Enter":
-          case " ":
-            e.preventDefault();
-            if (focusedIndex >= 0 && focusedIndex < items.length) {
-              items[focusedIndex]?.click();
-            }
-            break;
-        }
-      };
-
-      document.addEventListener("keydown", handleKeyDown);
-
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-      };
-    }, [open, focusedIndex]);
+    // Handle arrow key navigation
+    useArrowKeyNavigation(contentRef, {
+      enabled: open,
+      selector:
+        '[role="menuitem"]:not([data-disabled="true"]), [role="menuitemcheckbox"]:not([data-disabled="true"]), [role="menuitemradio"]:not([data-disabled="true"])',
+      onSelect: (_index, element) => element.click(),
+    });
 
     if (!open) return null;
 
@@ -319,22 +264,16 @@ export const DropdownMenuContent = forwardRef<HTMLDivElement, DropdownMenuConten
           data-slot="dropdown-menu-content"
           data-side={side}
           data-align={align}
-          data-state="open"
+          data-state={open ? "open" : "closed"}
           role="menu"
           tabIndex={-1}
           style={{
-            position: "fixed",
-            top: `${position.top}px`,
-            left: `${position.left}px`,
-            zIndex: 50,
+            ...floatingStyles,
+            maxHeight: maxHeight ? `${maxHeight}px` : undefined,
           }}
           className={cn(
-            "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
-            "fade-in-0 zoom-in-95 animate-in",
-            side === "top" && "slide-in-from-bottom-2",
-            side === "bottom" && "slide-in-from-top-2",
-            side === "left" && "slide-in-from-right-2",
-            side === "right" && "slide-in-from-left-2",
+            "z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
+            "fade-in-0 zoom-in-95 animate-in data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:animate-out",
             className,
             classNative
           )}
@@ -348,10 +287,7 @@ export const DropdownMenuContent = forwardRef<HTMLDivElement, DropdownMenuConten
 );
 DropdownMenuContent.displayName = "DropdownMenuContent";
 
-// ============================================================================
 // DropdownMenuItem
-// ============================================================================
-
 export type DropdownMenuItemProps = HTMLAttributes<HTMLDivElement> & {
   inset?: boolean;
   disabled?: boolean;
@@ -401,10 +337,7 @@ export const DropdownMenuItem = forwardRef<HTMLDivElement, DropdownMenuItemProps
 );
 DropdownMenuItem.displayName = "DropdownMenuItem";
 
-// ============================================================================
 // DropdownMenuCheckboxItem
-// ============================================================================
-
 export type DropdownMenuCheckboxItemProps = HTMLAttributes<HTMLDivElement> & {
   checked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
@@ -461,10 +394,7 @@ export const DropdownMenuCheckboxItem = forwardRef<HTMLDivElement, DropdownMenuC
 );
 DropdownMenuCheckboxItem.displayName = "DropdownMenuCheckboxItem";
 
-// ============================================================================
 // DropdownMenuRadioGroup
-// ============================================================================
-
 type DropdownMenuRadioGroupContextValue = {
   value?: string;
   onValueChange?: (value: string) => void;
@@ -504,10 +434,7 @@ function useDropdownMenuRadioGroup() {
   return context;
 }
 
-// ============================================================================
 // DropdownMenuRadioItem
-// ============================================================================
-
 export type DropdownMenuRadioItemProps = HTMLAttributes<HTMLDivElement> & {
   value: string;
   disabled?: boolean;
@@ -562,10 +489,7 @@ export const DropdownMenuRadioItem = forwardRef<HTMLDivElement, DropdownMenuRadi
 );
 DropdownMenuRadioItem.displayName = "DropdownMenuRadioItem";
 
-// ============================================================================
 // DropdownMenuLabel
-// ============================================================================
-
 export type DropdownMenuLabelProps = HTMLAttributes<HTMLDivElement> & {
   inset?: boolean;
 };
@@ -584,10 +508,7 @@ export const DropdownMenuLabel = forwardRef<HTMLDivElement, DropdownMenuLabelPro
 );
 DropdownMenuLabel.displayName = "DropdownMenuLabel";
 
-// ============================================================================
 // DropdownMenuSeparator
-// ============================================================================
-
 export type DropdownMenuSeparatorProps = HTMLAttributes<HTMLDivElement>;
 
 export const DropdownMenuSeparator = forwardRef<HTMLDivElement, DropdownMenuSeparatorProps>(
@@ -606,10 +527,7 @@ export const DropdownMenuSeparator = forwardRef<HTMLDivElement, DropdownMenuSepa
 );
 DropdownMenuSeparator.displayName = "DropdownMenuSeparator";
 
-// ============================================================================
 // DropdownMenuShortcut
-// ============================================================================
-
 export type DropdownMenuShortcutProps = HTMLAttributes<HTMLSpanElement>;
 
 export const DropdownMenuShortcut = ({ className, class: classNative, ...props }: DropdownMenuShortcutProps) => {
@@ -623,10 +541,7 @@ export const DropdownMenuShortcut = ({ className, class: classNative, ...props }
 };
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 
-// ============================================================================
 // DropdownMenuGroup
-// ============================================================================
-
 export type DropdownMenuGroupProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>;
 
 export const DropdownMenuGroup = forwardRef<HTMLDivElement, DropdownMenuGroupProps>(

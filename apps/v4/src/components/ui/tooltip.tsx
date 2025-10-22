@@ -1,3 +1,4 @@
+import { autoUpdate, flip, offset, shift, useFloating } from "@floating-ui/react-dom";
 import type { ButtonHTMLAttributes } from "preact";
 import {
   type HTMLAttributes,
@@ -6,13 +7,14 @@ import {
   forwardRef,
   useEffect,
   useRef,
-  useState,
 } from "preact/compat";
 import { useContext } from "preact/hooks";
 import { Portal } from "./portal";
 import { cn } from "./share/cn";
+import { useComposedRefs } from "./share/compose_ref";
 import { Slot } from "./share/slot";
 import { useControlledState } from "./share/useControlledState";
+import { useId } from "./share/useId";
 
 // TooltipProvider Context
 type TooltipProviderContextValue = {
@@ -28,9 +30,7 @@ export type TooltipProviderProps = PropsWithChildren<{
 }>;
 
 export const TooltipProvider = ({ children, delayDuration = 700 }: TooltipProviderProps) => (
-  <TooltipProviderContext.Provider value={{ delayDuration }}>
-    {children}
-  </TooltipProviderContext.Provider>
+  <TooltipProviderContext.Provider value={{ delayDuration }}>{children}</TooltipProviderContext.Provider>
 );
 
 // Tooltip Context
@@ -60,7 +60,7 @@ export const Tooltip = ({
 }: TooltipProps) => {
   const providerContext = useContext(TooltipProviderContext);
   const triggerRef = useRef<HTMLElement | null>(null);
-  const tooltipId = useRef(`tooltip-${Math.random().toString(36).substr(2, 9)}`);
+  const tooltipId = useId("tooltip");
 
   const [open, setOpen] = useControlledState({
     defaultValue: defaultOpen,
@@ -77,7 +77,7 @@ export const Tooltip = ({
         setOpen,
         triggerRef,
         delayDuration,
-        tooltipId: tooltipId.current,
+        tooltipId,
       }}
     >
       {children}
@@ -174,88 +174,43 @@ export type TooltipContentProps = HTMLAttributes<HTMLDivElement> & {
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   ({ className, class: classNative, side = "top", sideOffset = 4, children, ...props }, forwardedRef) => {
     const { open, triggerRef, tooltipId } = useTooltip();
-    const [position, setPosition] = useState({ top: 0, left: 0 });
     const contentRef = useRef<HTMLDivElement>(null);
 
+    const { refs, floatingStyles } = useFloating({
+      open,
+      strategy: "fixed",
+      placement: side,
+      middleware: [offset(sideOffset), flip(), shift({ padding: 8 })],
+      whileElementsMounted: autoUpdate,
+      transform: false,
+    });
+
+    // Connect the trigger ref to floating-ui
     useEffect(() => {
-      if (!open || !triggerRef.current || !contentRef.current) return;
+      if (triggerRef.current) {
+        refs.setReference(triggerRef.current);
+      }
+    }, [refs, triggerRef]);
 
-      const updatePosition = () => {
-        const trigger = triggerRef.current;
-        const content = contentRef.current;
-        if (!trigger || !content) return;
-
-        const triggerRect = trigger.getBoundingClientRect();
-        const contentRect = content.getBoundingClientRect();
-
-        let top = 0;
-        let left = 0;
-
-        switch (side) {
-          case "top":
-            top = triggerRect.top - contentRect.height - sideOffset;
-            left = triggerRect.left + triggerRect.width / 2 - contentRect.width / 2;
-            break;
-          case "bottom":
-            top = triggerRect.bottom + sideOffset;
-            left = triggerRect.left + triggerRect.width / 2 - contentRect.width / 2;
-            break;
-          case "left":
-            top = triggerRect.top + triggerRect.height / 2 - contentRect.height / 2;
-            left = triggerRect.left - contentRect.width - sideOffset;
-            break;
-          case "right":
-            top = triggerRect.top + triggerRect.height / 2 - contentRect.height / 2;
-            left = triggerRect.right + sideOffset;
-            break;
-        }
-
-        setPosition({ top, left });
-      };
-
-      updatePosition();
-
-      // Update position on scroll/resize
-      window.addEventListener("scroll", updatePosition, true);
-      window.addEventListener("resize", updatePosition);
-
-      return () => {
-        window.removeEventListener("scroll", updatePosition, true);
-        window.removeEventListener("resize", updatePosition);
-      };
-    }, [open, side, sideOffset]);
+    const composedRefs = useComposedRefs(contentRef, forwardedRef as any, (node: HTMLDivElement | null) =>
+      refs.setFloating(node)
+    );
 
     if (!open) return null;
 
     return (
       <Portal>
         <div
-          ref={(node) => {
-            (contentRef as any).current = node;
-            if (typeof forwardedRef === "function") {
-              forwardedRef(node);
-            } else if (forwardedRef) {
-              (forwardedRef as any).current = node;
-            }
-          }}
+          ref={composedRefs}
           id={tooltipId}
           data-slot="tooltip-content"
           data-side={side}
-          data-state="open"
+          data-state={open ? "open" : "closed"}
           role="tooltip"
-          style={{
-            position: "fixed",
-            top: `${position.top}px`,
-            left: `${position.left}px`,
-            zIndex: 50,
-          }}
+          style={floatingStyles}
           className={cn(
             "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-popover-foreground text-sm shadow-md",
-            "fade-in-0 zoom-in-95 animate-in",
-            side === "top" && "slide-in-from-bottom-2",
-            side === "bottom" && "slide-in-from-top-2",
-            side === "left" && "slide-in-from-right-2",
-            side === "right" && "slide-in-from-left-2",
+            "fade-in-0 zoom-in-95 animate-in data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:animate-out",
             className,
             classNative
           )}

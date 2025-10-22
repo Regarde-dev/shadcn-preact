@@ -15,10 +15,12 @@ import { Portal } from "./portal";
 import { cn } from "./share/cn";
 import { useComposedRefs } from "./share/compose_ref";
 import { Slot } from "./share/slot";
+import { useArrowKeyNavigation } from "./share/useArrowKeyNavigation";
+import { useClickOutside } from "./share/useClickOutside";
 import { useControlledState } from "./share/useControlledState";
+import { useEscapeKeyDown } from "./share/useEscapeKeyDown";
 
 // Select Context
-
 export type SelectSide = "top" | "right" | "bottom" | "left";
 export type SelectAlign = "start" | "center" | "end";
 
@@ -37,6 +39,7 @@ type SelectContextValue = {
     setFloating: (node: HTMLElement | null) => void;
   };
   floatingStyles: CSSProperties;
+  maxHeight?: number;
 };
 
 const SelectContext = createContext<SelectContextValue | null>(null);
@@ -87,18 +90,16 @@ export const Select = ({
     onChange: onValueChange,
   });
 
-  // Build placement based on side and align
   const placement = useMemo((): Placement => {
     if (align === "center" || align === "start") {
       if (side === "bottom" || side === "top") {
         return align === "start" ? `${side}-start` : side;
       }
-        return align === "start" ? `${side}-start` : side;
+      return align === "start" ? `${side}-start` : side;
     }
-      return `${side}-end` as Placement;
+    return `${side}-end` as Placement;
   }, [side, align]);
 
-  // Build fallback placements for flip middleware
   const fallbackPlacements = useMemo((): Placement[] => {
     const fallbacks: Placement[] = [];
 
@@ -125,7 +126,11 @@ export const Select = ({
     return fallbacks;
   }, [side, align]);
 
-  const { refs, floatingStyles } = useFloating<HTMLElement>({
+  const {
+    refs,
+    floatingStyles,
+    placement: currentPlacement,
+  } = useFloating<HTMLElement>({
     open: open,
     strategy: "fixed",
     placement: placement,
@@ -140,6 +145,44 @@ export const Select = ({
     transform: false,
   });
 
+  const [maxHeight, setMaxHeight] = useState<number | undefined>();
+
+  // Calculate dynamic max-height based on available viewport space
+  useEffect(() => {
+    if (!open || !refs.floating.current || !refs.reference.current) {
+      setMaxHeight(undefined);
+      return;
+    }
+
+    const calculateMaxHeight = () => {
+      const referenceRect = refs.reference.current!.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const viewportPadding = 8;
+
+      const actualPlacement = currentPlacement || placement;
+      const isVertical = actualPlacement.startsWith("top") || actualPlacement.startsWith("bottom");
+
+      let availableSpace: number;
+
+      if (isVertical) {
+        if (actualPlacement.startsWith("bottom")) {
+          availableSpace = viewportHeight - referenceRect.bottom - viewportPadding - sideOffset;
+        } else {
+          availableSpace = referenceRect.top - viewportPadding - sideOffset;
+        }
+      } else {
+        const spaceAbove = referenceRect.top - viewportPadding;
+        const spaceBelow = viewportHeight - referenceRect.bottom - viewportPadding;
+        availableSpace = Math.max(spaceAbove, spaceBelow, viewportHeight - viewportPadding * 2);
+      }
+
+      const cappedHeight = Math.max(100, Math.min(availableSpace, 384));
+      setMaxHeight(cappedHeight);
+    };
+
+    calculateMaxHeight();
+  }, [open, refs, currentPlacement, placement, sideOffset]);
+
   return (
     <SelectContext.Provider
       value={{
@@ -152,6 +195,7 @@ export const Select = ({
         disabled,
         refs,
         floatingStyles,
+        maxHeight,
       }}
     >
       {children}
@@ -184,7 +228,6 @@ function useSelect() {
 }
 
 // SelectTrigger
-
 export type SelectTriggerProps = PropsWithChildren &
   ButtonHTMLAttributes<HTMLButtonElement> & {
     asChild?: boolean;
@@ -195,10 +238,8 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     const { open, setOpen, disabled, value, refs } = useSelect();
     const triggerRef = useRef<HTMLElement>(null);
 
-    const composedRefs = useComposedRefs(
-      triggerRef as any,
-      forwardedRef as any,
-      (node: HTMLElement | null) => refs.setReference(node)
+    const composedRefs = useComposedRefs(triggerRef as any, forwardedRef as any, (node: HTMLElement | null) =>
+      refs.setReference(node)
     );
 
     const handleClick: typeof onClick = (e) => {
@@ -248,7 +289,6 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
 SelectTrigger.displayName = "SelectTrigger";
 
 // SelectValue
-
 export type SelectValueProps = HTMLAttributes<HTMLSpanElement> & {
   placeholder?: string;
 };
@@ -272,22 +312,17 @@ export const SelectValue = forwardRef<HTMLSpanElement, SelectValueProps>(
 SelectValue.displayName = "SelectValue";
 
 // SelectContent
-
 export type SelectContentProps = HTMLAttributes<HTMLDivElement>;
 
 export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
   ({ className, class: classNative, children, ...props }, forwardedRef) => {
-    const { open, setOpen, value, refs, floatingStyles } = useSelect();
-    const [focusedIndex, setFocusedIndex] = useState(-1);
+    const { open, setOpen, value, refs, floatingStyles, maxHeight } = useSelect();
     const contentRef = useRef<HTMLDivElement>(null);
 
-    const composedRefs = useComposedRefs(
-      contentRef,
-      forwardedRef as any,
-      (node: HTMLDivElement | null) => refs.setFloating(node)
+    const composedRefs = useComposedRefs(contentRef, forwardedRef as any, (node: HTMLDivElement | null) =>
+      refs.setFloating(node)
     );
 
-    // Get trigger width for min-width
     const [triggerWidth, setTriggerWidth] = useState(0);
     useEffect(() => {
       if (open && refs.reference.current) {
@@ -295,34 +330,24 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
       }
     }, [open, refs.reference]);
 
-    // Reset focusedIndex when select closes to prevent focus position memory
-    useEffect(() => {
-      if (!open) {
-        setFocusedIndex(-1);
-      }
-    }, [open]);
-
-    // Auto-focus selected item or first item when opened (matches shadcn/ui Radix behavior)
+    // Auto-focus selected item or first item when opened
     useEffect(() => {
       if (!open || !refs.floating.current) return;
 
-      // Small delay to ensure items are rendered
       const timer = setTimeout(() => {
         if (!refs.floating.current) return;
 
-        // Get all non-disabled items
         const items = Array.from(
           refs.floating.current.querySelectorAll<HTMLElement>('[role="option"]:not([data-disabled="true"])')
         );
 
         if (items.length === 0) return;
 
-        // Try to focus the selected item first
+        // Focus the selected item first
         if (value) {
           const selectedIndex = items.findIndex((item) => item.getAttribute("data-state") === "checked");
           if (selectedIndex !== -1 && items[selectedIndex]) {
             items[selectedIndex].focus();
-            setFocusedIndex(selectedIndex);
             return;
           }
         }
@@ -330,97 +355,28 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
         // Otherwise focus the first non-disabled item
         if (items[0]) {
           items[0].focus();
-          setFocusedIndex(0);
         }
       }, 0);
 
       return () => clearTimeout(timer);
     }, [open, value, refs.floating]);
 
-    // Handle escape key and click outside
-    useEffect(() => {
-      if (!open) return;
+    // Handle escape key with focus restoration
+    useEscapeKeyDown(() => setOpen(false), {
+      enabled: open,
+      restoreFocus: refs.reference as any,
+    });
 
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-          setOpen(false);
-          refs.reference.current?.focus();
-        }
-      };
+    // Handle click outside
+    useClickOutside([contentRef, refs.reference as any], () => setOpen(false), {
+      enabled: open,
+    });
 
-      const handleClickOutside = (e: MouseEvent) => {
-        if (
-          contentRef.current &&
-          !contentRef.current.contains(e.target as Node) &&
-          refs.reference.current &&
-          !refs.reference.current.contains(e.target as Node)
-        ) {
-          setOpen(false);
-        }
-      };
-
-      document.addEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClickOutside);
-
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [open, setOpen, refs.reference, contentRef]);
-
-    useEffect(() => {
-      if (!open || !refs.floating.current) return;
-
-      const handleKeyDown = (e: KeyboardEvent) => {
-        const items = Array.from(
-          refs.floating.current?.querySelectorAll('[role="option"]:not([data-disabled="true"])') || []
-        ) as HTMLElement[];
-
-        if (items.length === 0) return;
-
-        switch (e.key) {
-          case "ArrowDown":
-            e.preventDefault();
-            setFocusedIndex((prev) => {
-              const next = prev === -1 ? 0 : prev + 1 >= items.length ? 0 : prev + 1;
-              items[next]?.focus();
-              return next;
-            });
-            break;
-          case "ArrowUp":
-            e.preventDefault();
-            setFocusedIndex((prev) => {
-              const next = prev === -1 ? items.length - 1 : prev - 1 < 0 ? items.length - 1 : prev - 1;
-              items[next]?.focus();
-              return next;
-            });
-            break;
-          case "Home":
-            e.preventDefault();
-            items[0]?.focus();
-            setFocusedIndex(0);
-            break;
-          case "End":
-            e.preventDefault();
-            items[items.length - 1]?.focus();
-            setFocusedIndex(items.length - 1);
-            break;
-          case "Enter":
-          case " ":
-            e.preventDefault();
-            if (focusedIndex >= 0 && focusedIndex < items.length) {
-              items[focusedIndex]?.click();
-            }
-            break;
-        }
-      };
-
-      document.addEventListener("keydown", handleKeyDown);
-
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-      };
-    }, [open, focusedIndex, refs.floating]);
+    // Handle arrow key navigation
+    useArrowKeyNavigation(refs.floating as any, {
+      enabled: open,
+      onSelect: (_index, element) => element.click(),
+    });
 
     if (!open) return null;
 
@@ -435,9 +391,10 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
           style={{
             ...floatingStyles,
             minWidth: `${triggerWidth}px`,
+            maxHeight: maxHeight ? `${maxHeight}px` : undefined,
           }}
           className={cn(
-            "z-50 max-h-96 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
+            "z-50 min-w-[8rem] overflow-y-auto overflow-x-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
             "fade-in-0 zoom-in-95 animate-in",
             "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
             className,
@@ -454,7 +411,6 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
 SelectContent.displayName = "SelectContent";
 
 // SelectGroup
-
 export type SelectGroupProps = HTMLAttributes<HTMLDivElement>;
 
 export const SelectGroup = forwardRef<HTMLDivElement, SelectGroupProps>(
@@ -471,7 +427,6 @@ export const SelectGroup = forwardRef<HTMLDivElement, SelectGroupProps>(
 SelectGroup.displayName = "SelectGroup";
 
 // SelectLabel
-
 export type SelectLabelProps = HTMLAttributes<HTMLDivElement>;
 
 export const SelectLabel = forwardRef<HTMLDivElement, SelectLabelProps>(
@@ -487,7 +442,6 @@ export const SelectLabel = forwardRef<HTMLDivElement, SelectLabelProps>(
 SelectLabel.displayName = "SelectLabel";
 
 // SelectItem
-
 export type SelectItemProps = HTMLAttributes<HTMLDivElement> & {
   value: string;
   disabled?: boolean;
@@ -564,7 +518,6 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
 SelectItem.displayName = "SelectItem";
 
 // SelectSeparator
-
 export type SelectSeparatorProps = HTMLAttributes<HTMLDivElement>;
 
 export const SelectSeparator = forwardRef<HTMLDivElement, SelectSeparatorProps>(

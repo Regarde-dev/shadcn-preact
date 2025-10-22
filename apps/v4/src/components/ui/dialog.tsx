@@ -7,6 +7,9 @@ import { cn } from "./share/cn";
 import { useComposedRefs } from "./share/compose_ref";
 import { Slot } from "./share/slot";
 import { useControlledState } from "./share/useControlledState";
+import { useEscapeKeyDown } from "./share/useEscapeKeyDown";
+import { useFocusTrap } from "./share/useFocusTrap";
+import { useId } from "./share/useId";
 import { Show } from "./show";
 
 const DialogContext = createContext<{
@@ -15,6 +18,8 @@ const DialogContext = createContext<{
   openDialog: () => void;
   closeDialog: () => void;
   triggerRef: { current: HTMLElement | null };
+  titleId: string;
+  descriptionId: string;
 } | null>(null);
 
 export type DialogProviderProps = PropsWithChildren & {
@@ -25,6 +30,8 @@ export type DialogProviderProps = PropsWithChildren & {
 
 export const Dialog = ({ open: controlledOpen, defaultOpen, children, onChange }: DialogProviderProps) => {
   const triggerRef = useRef<HTMLElement | null>(null);
+  const titleId = useId("dialog-title");
+  const descriptionId = useId("dialog-description");
 
   const [open, setOpen] = useControlledState({
     defaultValue: Boolean(defaultOpen),
@@ -44,6 +51,8 @@ export const Dialog = ({ open: controlledOpen, defaultOpen, children, onChange }
         },
         defaultOpen,
         triggerRef,
+        titleId,
+        descriptionId,
       }}
     >
       {children}
@@ -87,7 +96,7 @@ export type DialogContentProps = HTMLAttributes<HTMLDivElement> & { autoSelect?:
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   ({ className, class: classNative, children, ...props }, forwardedRef) => {
-    const { open, closeDialog, triggerRef } = useDialog();
+    const { open, closeDialog, triggerRef, titleId, descriptionId } = useDialog();
     const contentRef = createRef<HTMLDivElement>();
 
     const compose_refs = useComposedRefs(contentRef, forwardedRef);
@@ -103,61 +112,17 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       }
     }, [open, contentRef.current]);
 
-    // Escape key handler and focus restoration
-    useEffect(() => {
-      if (!open) return;
-
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-          closeDialog();
-          triggerRef.current?.focus();
-        }
-      };
-
-      document.addEventListener("keydown", handleKeyDown);
-
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-      };
-    }, [open, closeDialog, triggerRef]);
+    // Escape key handler with focus restoration
+    useEscapeKeyDown(closeDialog, {
+      enabled: open,
+      restoreFocus: triggerRef,
+    });
 
     // Focus trap
-    useEffect(() => {
-      if (!open || !contentRef.current) return;
-
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key !== "Tab") return;
-
-        const focusableElements = contentRef.current?.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
-
-        if (!focusableElements || focusableElements.length === 0) return;
-
-        const firstElement = focusableElements[0] as HTMLElement;
-        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-
-        if (e.shiftKey) {
-          // Shift+Tab: if on first element, move to last
-          if (document.activeElement === firstElement) {
-            e.preventDefault();
-            lastElement.focus();
-          }
-        } else {
-          // Tab: if on last element, move to first
-          if (document.activeElement === lastElement) {
-            e.preventDefault();
-            firstElement.focus();
-          }
-        }
-      };
-
-      document.addEventListener("keydown", handleKeyDown);
-
-      return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-      };
-    }, [open, contentRef.current]);
+    useFocusTrap(contentRef, {
+      enabled: open,
+      restoreFocus: false, // We handle this manually with triggerRef
+    });
 
     return (
       <Show when={open}>
@@ -167,8 +132,8 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               ref={compose_refs}
               role="dialog"
               aria-modal="true"
-              aria-labelledby="dialog-title"
-              aria-describedby="dialog-description"
+              aria-labelledby={titleId}
+              aria-describedby={descriptionId}
               data-slot="dialog-content"
               onMouseDown={(e) => e.stopPropagation()}
               className={cn(
@@ -227,32 +192,38 @@ DialogFooter.displayName = "DialogFooter";
 export type DialogTitleProps = HTMLAttributes<HTMLDivElement>;
 
 export const DialogTitle = forwardRef<HTMLDivElement, DialogTitleProps>(
-  ({ className, class: classNative, ...props }, forwardedRef) => (
-    <div
-      ref={forwardedRef}
-      id="dialog-title"
-      role="heading"
-      aria-level={2}
-      data-slot="dialog-title"
-      className={cn("font-semibold text-lg leading-none tracking-tight", className, classNative)}
-      {...props}
-    />
-  )
+  ({ className, class: classNative, ...props }, forwardedRef) => {
+    const { titleId } = useDialog();
+    return (
+      <div
+        ref={forwardedRef}
+        id={titleId}
+        role="heading"
+        aria-level={2}
+        data-slot="dialog-title"
+        className={cn("font-semibold text-lg leading-none tracking-tight", className, classNative)}
+        {...props}
+      />
+    );
+  }
 );
 DialogTitle.displayName = "DialogTitle";
 
 export type DialogDescriptionProps = HTMLAttributes<HTMLDivElement>;
 
 export const DialogDescription = forwardRef<HTMLDivElement, DialogDescriptionProps>(
-  ({ className, class: classNative, ...props }, forwardedRef) => (
-    <div
-      ref={forwardedRef}
-      id="dialog-description"
-      data-slot="dialog-description"
-      className={cn("text-muted-foreground text-sm", className, classNative)}
-      {...props}
-    />
-  )
+  ({ className, class: classNative, ...props }, forwardedRef) => {
+    const { descriptionId } = useDialog();
+    return (
+      <div
+        ref={forwardedRef}
+        id={descriptionId}
+        data-slot="dialog-description"
+        className={cn("text-muted-foreground text-sm", className, classNative)}
+        {...props}
+      />
+    );
+  }
 );
 DialogDescription.displayName = "DialogDescription";
 

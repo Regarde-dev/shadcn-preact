@@ -1,0 +1,13 @@
+{
+  "name": "portal",
+  "type": "registry:lib",
+  "description": "Renders children into a DOM node that exists outside the DOM hierarchy of the parent component.",
+  "files": [
+    {
+      "path": "portal.tsx",
+      "type": "registry:lib",
+      "content": "import { type HTMLAttributes, createPortal, forwardRef, useLayoutEffect, useState } from \"preact/compat\";\n\nexport type PortalProps = HTMLAttributes<HTMLDivElement> & {\n  /**\n   * An optional container where the portaled content should be appended.\n   */\n  container?: Element | DocumentFragment | null;\n};\n\nexport const Portal = forwardRef<HTMLDivElement, PortalProps>((props, forwardedRef) => {\n  const { container: containerProp, ...portalProps } = props;\n\n  const [mounted, setMounted] = useState(false);\n\n  useLayoutEffect(() => setMounted(true), []);\n\n  const container = containerProp || (mounted && globalThis?.document?.body);\n\n  return container\n    ? createPortal(\n        <div\n          {...portalProps}\n          ref={forwardedRef}\n        />,\n        container\n      )\n    : null;\n\n  // if (typeof window !== \"undefined\") {\n  //   return createPortal(<Show when={show}>{props.children}</Show>, document.body);\n  // }\n  // return null;\n});\n"
+    }
+  ],
+  "category": "lib"
+}

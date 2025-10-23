@@ -7,7 +7,7 @@ This is **NOT** a component library. It’s a collection of re-usable components
 ## Quick Start
 
 ```bash
-npx shadcn@latest add https://shadcn.preact.regarde.dev/button.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
 ```
 
 ## What is this?
@@ -41,19 +41,19 @@ Shadcn/ui is built upon Radix UI and Tailwind CSS. While Radix UI offers robust 
 
 ```bash
 # Add a single component
-npx shadcn@latest add https://shadcn.preact.regarde.dev/button.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
 
 # Add multiple components
-npx shadcn@latest add https://shadcn.preact.regarde.dev/button.json
-npx shadcn@latest add https://shadcn.preact.regarde.dev/dialog.json
-npx shadcn@latest add https://shadcn.preact.regarde.dev/select.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/dialog.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/select.json
 ```
 
 Or create a simple script to add multiple components:
 
 ```bash
 #!/bin/bash
-BASE_URL="https://shadcn.preact.regarde.dev"
+BASE_URL="https://shadcn-preact.regarde.dev"
 for component in button dialog select; do
   npx shadcn@latest add "$BASE_URL/$component.json"
 done
@@ -73,7 +73,7 @@ See [apps/v4/README.md](apps/v4/README.md) for full documentation.
 For detailed setup and usage instructions, see:
 
 - [v4 Documentation](apps/v4/README.md)
-- [Component Registry](https://shadcn.preact.regarde.dev)
+- [Component Registry](https://shadcn-preact.regarde.dev)
 
 ## License
 

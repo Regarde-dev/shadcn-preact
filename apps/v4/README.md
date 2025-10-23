@@ -28,22 +28,22 @@ _Use this as a reference to build your own component libraries._
 Use the shadcn CLI to add components to your project:
 
 ```bash
-npx shadcn@latest add https://shadcn.preact.regarde.dev/button.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
 ```
 
 Add multiple components:
 
 ```bash
-npx shadcn@latest add https://shadcn.preact.regarde.dev/button.json
-npx shadcn@latest add https://shadcn.preact.regarde.dev/dialog.json
-npx shadcn@latest add https://shadcn.preact.regarde.dev/select.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/dialog.json
+npx shadcn@latest add https://shadcn-preact.regarde.dev/select.json
 ```
 
 Or create a helper script:
 
 ```bash
 #!/bin/bash
-BASE_URL="https://shadcn.preact.regarde.dev"
+BASE_URL="https://shadcn-preact.regarde.dev"
 for component in button dialog select; do
   npx shadcn@latest add "$BASE_URL/$component.json"
 done

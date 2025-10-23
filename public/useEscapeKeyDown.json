@@ -1,0 +1,13 @@
+{
+  "name": "useEscapeKeyDown",
+  "type": "registry:lib",
+  "description": "Hook for escape key detection",
+  "files": [
+    {
+      "path": "share/useEscapeKeyDown.tsx",
+      "type": "registry:lib",
+      "content": "import { type RefObject, useEffect } from \"preact/compat\";\n\nexport interface UseEscapeKeyDownOptions {\n  enabled?: boolean;\n  restoreFocus?: RefObject<HTMLElement>;\n}\n\n/**\n * Hook to handle Escape key press with optional focus restoration\n * @param callback - Function to call when Escape is pressed\n * @param options - Configuration options\n */\nexport function useEscapeKeyDown(callback: () => void, options: UseEscapeKeyDownOptions = {}) {\n  const { enabled = true, restoreFocus } = options;\n\n  useEffect(() => {\n    if (!enabled) return;\n\n    const handleKeyDown = (e: KeyboardEvent) => {\n      if (e.key === \"Escape\") {\n        callback();\n        if (restoreFocus?.current) {\n          restoreFocus.current.focus();\n        }\n      }\n    };\n\n    document.addEventListener(\"keydown\", handleKeyDown);\n    return () => document.removeEventListener(\"keydown\", handleKeyDown);\n  }, [enabled, callback, restoreFocus]);\n}\n"
+    }
+  ],
+  "category": "lib"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "useId",
+  "type": "registry:lib",
+  "description": "Hook for generating unique IDs",
+  "files": [
+    {
+      "path": "share/useId.tsx",
+      "type": "registry:lib",
+      "content": "import { useRef } from \"preact/compat\";\n\n/**\n * Hook to generate a unique ID for accessibility attributes\n * @param prefix - Optional prefix for the ID (useful for debugging)\n * @returns Unique ID string\n */\nexport function useId(prefix?: string): string {\n  const idRef = useRef<string>();\n\n  if (!idRef.current) {\n    const randomId = Math.random().toString(36).substring(2, 9);\n    idRef.current = prefix ? `${prefix}-${randomId}` : randomId;\n  }\n\n  return idRef.current;\n}\n"
+    }
+  ],
+  "category": "lib"
+}

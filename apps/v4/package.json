@@ -1,6 +1,33 @@
 {
-  "name": "v4",
+  "name": "shadcn-preact-v4",
+  "version": "4.0.0",
+  "private": true,
+  "description": "Preact port of shadcn/ui - Demo and showcase application for v4 components",
   "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "cleminso",
+    "url": "https://cleminso.xyz"
+  },
+  "original-author": {
+    "name": "LiasCode",
+    "email": "liascode.dev@gmail.com",
+    "url": "https://lias-code.pages.dev"
+  },
+  "extend-author": {
+    "name": "cleminso",
+    "twitter": "@cleminso",
+    "url": "https://cleminso.xyz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/regarde-dev/shadcn-preact",
+    "directory": "apps/v4"
+  },
+  "bugs": {
+    "url": "https://github.com/regarde-dev/shadcn-preact/issues"
+  },
+  "homepage": "https://github.com/regarde-dev/shadcn-preact#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
@@ -10,21 +37,17 @@
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.6",
-    "@preact/signals": "^2.3.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0"
+  },
+  "optionalDependencies": {
+    "@preact/signals": "^2.3.2",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.18",
     "lucide-preact": "^0.474.0",
-    "preact": "^10.27.2",
     "preact-iso": "^2.11.0",
-    "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
-  },
-  "author": {
-    "name": "LiasCode",
-    "email": "liascode.dev@gmail.com",
-    "url": "https://lias-code.pages.dev"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",

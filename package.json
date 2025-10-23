@@ -13,10 +13,15 @@
     "lint": "turbo lint",
     "postinstall": "simple-git-hooks"
   },
-  "author": {
+  "original-author": {
     "name": "LiasCode",
     "email": "liascode.dev@gmail.com",
     "url": "https://lias-code.pages.dev"
+  },
+  "extend-author": {
+    "name": "cleminso",
+    "twitter": "@cleminso",
+    "url": "https://cleminso.xyz"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",

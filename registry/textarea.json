@@ -1,0 +1,16 @@
+{
+  "name": "textarea",
+  "type": "registry:ui",
+  "description": "Displays a form textarea or a component that looks like a textarea.",
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "textarea.tsx",
+      "type": "registry:ui",
+      "content": "import type { TextareaHTMLAttributes } from \"preact\";\nimport { forwardRef } from \"preact/compat\";\nimport { cn } from \"./share/cn\";\n\nexport type TextareaProps = TextareaHTMLAttributes;\n\nexport const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(\n  ({ className, class: classNative, ...props }, forwardedRef) => {\n    return (\n      <textarea\n        ref={forwardedRef}\n        className={cn(\n          \"flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-xs placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm\",\n          className,\n          classNative\n        )}\n        {...props}\n      />\n    );\n  }\n);\nTextarea.displayName = \"Textarea\";\n"
+    }
+  ],
+  "category": "ui"
+}

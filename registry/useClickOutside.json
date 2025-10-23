@@ -1,0 +1,13 @@
+{
+  "name": "useClickOutside",
+  "type": "registry:lib",
+  "description": "Hook for detecting clicks outside an element",
+  "files": [
+    {
+      "path": "share/useClickOutside.tsx",
+      "type": "registry:lib",
+      "content": "import { type RefObject, useEffect } from \"preact/compat\";\n\nexport interface UseClickOutsideOptions {\n  enabled?: boolean;\n}\n\n/**\n * Hook to detect clicks outside of specified elements\n * @param refs - Array of refs to check against\n * @param callback - Function to call when click is outside all refs\n * @param options - Configuration options\n */\nexport function useClickOutside(\n  refs: Array<RefObject<HTMLElement>>,\n  callback: () => void,\n  options: UseClickOutsideOptions = {}\n) {\n  const { enabled = true } = options;\n\n  useEffect(() => {\n    if (!enabled) return;\n\n    const handleClickOutside = (e: MouseEvent) => {\n      const isOutside = refs.every((ref) => {\n        return ref.current && !ref.current.contains(e.target as Node);\n      });\n\n      if (isOutside) {\n        callback();\n      }\n    };\n\n    document.addEventListener(\"mousedown\", handleClickOutside);\n    return () => document.removeEventListener(\"mousedown\", handleClickOutside);\n  }, [enabled, callback, refs]);\n}\n"
+    }
+  ],
+  "category": "lib"
+}

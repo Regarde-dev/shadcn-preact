@@ -1,0 +1,19 @@
+{
+  "name": "badge",
+  "type": "registry:ui",
+  "description": "Displays a badge or a component that looks like a badge.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "cn"
+  ],
+  "files": [
+    {
+      "path": "badge.tsx",
+      "type": "registry:ui",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\nimport { forwardRef, type HTMLAttributes } from \"preact/compat\";\nimport { cn } from \"./share/cn\";\nimport { Slot } from \"./share/slot\";\n\nconst badgeVariants = cva(\n  \"inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden\",\n  {\n    variants: {\n      variant: {\n        default: \"border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90\",\n        secondary: \"border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90\",\n        destructive:\n          \"border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60\",\n        outline: \"text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nexport interface BadgeProps extends HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {\n  asChild?: boolean;\n}\n\nexport const Badge = forwardRef<HTMLSpanElement, BadgeProps>(\n  ({ className, class: classNative, asChild = false, variant, ...props }, forwardedRef) => {\n    const Comp = asChild ? Slot : \"span\";\n\n    return (\n      <Comp\n        ref={forwardedRef}\n        data-slot=\"badge\"\n        className={cn(badgeVariants({ variant }), className, classNative)}\n        {...props}\n      />\n    );\n  }\n);\n"
+    }
+  ],
+  "category": "ui"
+}

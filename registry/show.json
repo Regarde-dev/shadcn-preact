@@ -1,0 +1,13 @@
+{
+  "name": "show",
+  "type": "registry:lib",
+  "description": "Conditionally renders children based on a condition.",
+  "files": [
+    {
+      "path": "show.tsx",
+      "type": "registry:lib",
+      "content": "import { useMemo, type PropsWithChildren } from \"preact/compat\";\n\nexport type ShowProps = PropsWithChildren<{ when: boolean }>;\n\nexport function Show(props: ShowProps) {\n  const show_children = useMemo(() => Boolean(props.when) === true, [props.when]);\n  return show_children ? props.children : null;\n}\n"
+    }
+  ],
+  "category": "lib"
+}

@@ -13,6 +13,7 @@
     "https://shadcn-preact.regarde.dev/useControlledState.json",
     "https://shadcn-preact.regarde.dev/useEscapeKeyDown.json",
     "https://shadcn-preact.regarde.dev/useClickOutside.json",
+    "https://shadcn-preact.regarde.dev/useArrowKeyNavigation.json",
     "https://shadcn-preact.regarde.dev/useId.json"
   ],
   "files": [

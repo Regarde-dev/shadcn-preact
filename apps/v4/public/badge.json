@@ -6,7 +6,8 @@
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "https://shadcn-preact.regarde.dev/cn.json"
+    "https://shadcn-preact.regarde.dev/cn.json",
+    "https://shadcn-preact.regarde.dev/slot.json"
   ],
   "files": [
     {

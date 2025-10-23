@@ -4,8 +4,10 @@
   "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
   "registryDependencies": [
     "https://shadcn-preact.regarde.dev/cn.json",
+    "https://shadcn-preact.regarde.dev/slot.json",
     "https://shadcn-preact.regarde.dev/portal.json",
     "https://shadcn-preact.regarde.dev/compose_ref.json",
+    "https://shadcn-preact.regarde.dev/useControlledState.json",
     "https://shadcn-preact.regarde.dev/useId.json"
   ],
   "files": [

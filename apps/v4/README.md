@@ -23,39 +23,21 @@ _Use this as a reference to build your own component libraries._
 - ✓ TypeScript support
 - ✓ Registry-based distribution (copy source code, not npm packages)
 
-## Installation
-
-Use the shadcn CLI to add components to your project:
-
-```bash
-npx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
-```
-
-Add multiple components:
-
-```bash
-npx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
-npx shadcn@latest add https://shadcn-preact.regarde.dev/dialog.json
-npx shadcn@latest add https://shadcn-preact.regarde.dev/select.json
-```
-
-Or create a helper script:
-
-```bash
-#!/bin/bash
-BASE_URL="https://shadcn-preact.regarde.dev"
-for component in button dialog select; do
-  npx shadcn@latest add "$BASE_URL/$component.json"
-done
-```
-
 ## Requirements
 
 Make sure you have the following installed:
 
 ```bash
-pnpm add preact tailwindcss
+pnpm add preact @preact/preset-vite tailwindcss @tailwindcss/postcss
 ```
+
+Additional optional dependencies:
+
+```bash
+pnpm add clsx tailwind-merge class-variance-authority
+```
+
+This assumes you are using Preact and Vite for your application. Open an issue if you need additional support.
 
 ### Basic Setup
 
@@ -74,7 +56,7 @@ export default config;
 
 2. **Add CSS imports**
 
-In your main CSS file:
+In your main CSS file (e.g., `src/index.css`):
 
 ```css
 @import "tailwindcss";
@@ -106,19 +88,85 @@ export default defineConfig({
 
 In your `tsconfig.json`:
 
-```json
-{
+```jsonc
+  // make sure these values are set
+  {
   "compilerOptions": {
-    "baseUrl": "./",
+    // your config ...
     "paths": {
+      // your paths ...
       "react": ["./node_modules/preact/compat/"],
       "react-dom": ["./node_modules/preact/compat/"],
       "@ui/*": ["./src/components/ui/*"],
       "@/*": ["./src/*"]
-    }
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
+```
+
+4. **Create components.json**
+
+Create a `components.json` file in your project root:
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "src/index.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "lib": "@/components/ui/share",
+    "utils": "@/components/ui/share/cn"
   }
 }
 ```
+
+**Important:** This configuration tells the shadcn CLI where to place components and utilities. The `lib` alias points to `@/components/ui/share` because shadcn-preact stores shared utilities (like `cn`, `slot`, hooks) in the `share/` subdirectory within the UI components folder.
+
+Feel free to update the paths to match your preferences.
+
+## Manual Installation
+
+In your project, you can install the vite CLI using:
+
+```bash
+pnpm add -D vite
+```
+
+Use the shadcn CLI to add components to your project:
+
+```bash
+pnpx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
+```
+
+Add multiple components:
+
+```bash
+pnpx shadcn@latest add https://shadcn-preact.regarde.dev/button.json
+pnpx shadcn@latest add https://shadcn-preact.regarde.dev/dialog.json
+pnpx shadcn@latest add https://shadcn-preact.regarde.dev/select.json
+```
+
+Or create a helper script:
+
+```bash
+#!/bin/bash
+BASE_URL="https://shadcn-preact.regarde.dev"
+for component in button dialog select; do
+  pnpx shadcn@latest add "$BASE_URL/$component.json"
+done
+```
+
+**Note:** If you don't have a `components.json` file when running the CLI, it will prompt you to create one. Make sure to configure it as shown above for proper file placement.
 
 ### Using Components
 

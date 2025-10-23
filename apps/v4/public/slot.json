@@ -2,6 +2,9 @@
   "name": "slot",
   "type": "registry:lib",
   "description": "Slot component for composition",
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/compose_ref.json"
+  ],
   "files": [
     {
       "path": "share/slot.tsx",

@@ -3,7 +3,9 @@
   "type": "registry:ui",
   "description": "A modal overlay component.",
   "registryDependencies": [
-    "https://shadcn-preact.regarde.dev/portal.json"
+    "https://shadcn-preact.regarde.dev/cn.json",
+    "https://shadcn-preact.regarde.dev/portal.json",
+    "https://shadcn-preact.regarde.dev/getScrollBarWidth.json"
   ],
   "files": [
     {

@@ -39,6 +39,7 @@
     "@floating-ui/react-dom": "^2.1.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "preact": "^10.26.1",
     "tailwind-merge": "^2.6.0"
   },
   "optionalDependencies": {

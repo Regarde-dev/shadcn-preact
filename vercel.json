@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
 
-  "outputDirectory": "public/",
+  "outputDirectory": "apps/v4/public/",
   "headers": [
     {
       "source": "/(.*).json",

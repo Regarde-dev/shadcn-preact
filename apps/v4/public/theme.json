@@ -1,13 +1,13 @@
 {
   "name": "theme",
-  "type": "registry:lib",
+  "type": "registry:ui",
   "description": "Theme provider component for managing dark/light mode.",
   "files": [
     {
       "path": "theme.tsx",
-      "type": "registry:lib",
+      "type": "registry:ui",
       "content": "import { createContext, type PropsWithChildren, useContext, useEffect, useState } from \"preact/compat\";\n\ntype Theme = \"dark\" | \"light\" | \"system\";\n\ntype ThemeProviderProps = PropsWithChildren<{\n  defaultTheme?: Theme;\n  storageKey?: string;\n}>;\n\ntype ThemeProviderState = {\n  theme: Theme;\n  setTheme: (theme: Theme) => void;\n};\n\nconst initialState: ThemeProviderState = {\n  theme: \"system\",\n  setTheme: () => null,\n};\n\nconst ThemeProviderContext = createContext<ThemeProviderState>(initialState);\n\nexport function ThemeProvider({\n  children,\n  defaultTheme = \"system\",\n  storageKey = \"vite-ui-theme\",\n  ...props\n}: ThemeProviderProps) {\n  const [theme, setTheme] = useState<Theme>(() => {\n    if (typeof window !== \"undefined\") {\n      return (localStorage.getItem(storageKey) as Theme) || defaultTheme;\n    }\n    return defaultTheme;\n  });\n\n  useEffect(() => {\n    const root = window.document.documentElement;\n\n    root.classList.remove(\"light\", \"dark\");\n\n    if (theme === \"system\") {\n      const systemTheme = window.matchMedia(\"(prefers-color-scheme: dark)\").matches ? \"dark\" : \"light\";\n\n      root.classList.add(systemTheme);\n      return;\n    }\n\n    root.classList.add(theme);\n  }, [theme]);\n\n  const value = {\n    theme,\n    setTheme: (theme: Theme) => {\n      localStorage.setItem(storageKey, theme);\n      setTheme(theme);\n    },\n  };\n\n  return (\n    <ThemeProviderContext.Provider\n      {...props}\n      value={value}\n    >\n      {children}\n    </ThemeProviderContext.Provider>\n  );\n}\n\nexport const useTheme = () => {\n  const context = useContext(ThemeProviderContext);\n\n  if (context === undefined) throw new Error(\"useTheme must be used within a ThemeProvider\");\n\n  return context;\n};\n"
     }
   ],
-  "category": "lib"
+  "category": "ui"
 }

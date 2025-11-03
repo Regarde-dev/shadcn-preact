@@ -8,6 +8,7 @@ import { DialogDemo } from "@/components/DialogDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
 import { InputDemo } from "@/components/InputDemo";
 import { SelectDemo } from "@/components/SelectDemo";
+import { SeparatorDemo } from "@/components/SeparatorDemo";
 import { SpinnerDemo } from "@/components/SpinnerDemo";
 import { TabsDemo } from "@/components/TabsDemo";
 import { TooltipDemo } from "@/components/TooltipDemo";
@@ -107,6 +108,13 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>Checkbox</h1>
             <CheckboxDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Separator</h1>
+            <SeparatorDemo />
           </div>
         </div>
       </div>

@@ -1,0 +1,16 @@
+{
+  "name": "separator",
+  "type": "registry:ui",
+  "description": "Visually or semantically separates content.",
+  "dependencies": [],
+  "registryDependencies": ["https://shadcn-preact.regarde.dev/cn.json"],
+  "files": [
+    {
+      "path": "separator.tsx",
+      "type": "registry:ui",
+      "content": "import type { ComponentProps } from \"preact\";\nimport { forwardRef } from \"preact/compat\";\nimport { cn } from \"./share/cn\";\n\nconst DEFAULT_ORIENTATION = \"horizontal\";\n\nconst ORIENTATIONS = [\"horizontal\", \"vertical\"] as const;\n\ntype Orientation = (typeof ORIENTATIONS)[number];\n\nexport type SeparatorProps = ComponentProps<\"div\"> & {\n  /**\n   * Either `vertical` or `horizontal`. Defaults to `horizontal`.\n   */\n  orientation?: Orientation;\n  /**\n   * Whether or not the component is purely decorative. When true, accessibility-related attributes\n   * are updated so that the rendered element is removed from the accessibility tree.\n   */\n  decorative?: boolean;\n};\n\nexport const Separator = forwardRef<HTMLDivElement, SeparatorProps>(\n  ({ className, orientation: orientationProp = DEFAULT_ORIENTATION, decorative, ...props }, forwardedRef) => {\n    const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;\n\n    const ariaOrientation = orientation === \"vertical\" ? orientation : undefined;\n\n    return (\n      <div\n        ref={forwardedRef}\n        role={decorative ? \"none\" : \"separator\"}\n        aria-orientation={decorative ? undefined : ariaOrientation}\n        data-orientation={orientation}\n        data-slot=\"separator\"\n        className={cn(\n          \"shrink-0 bg-border\",\n          orientation === \"horizontal\" ? \"h-[1px] w-full\" : \"h-full w-[1px]\",\n          className\n        )}\n        {...props}\n      />\n    );\n  }\n);\nSeparator.displayName = \"Separator\";\n\nfunction isValidOrientation(orientation: any): orientation is Orientation {\n  return ORIENTATIONS.includes(orientation);\n}\n"
+    }
+  ],
+  "category": "ui"
+}
+

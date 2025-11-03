@@ -208,6 +208,7 @@ function App() {
 - Modal
 - Portal
 - Select
+- Separator
 - Skeleton
 - Spinner
 - Table

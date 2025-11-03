@@ -3,11 +3,13 @@ import { AvatarDemo } from "@/components/AvatarDemo";
 import { BadgeDemo } from "@/components/BadgeDemo";
 import { ButtonDemo } from "@/components/ButtonDemo";
 import { CardDemo } from "@/components/CardDemo";
+import { CheckboxDemo } from "@/components/CheckboxDemo";
 import { DialogDemo } from "@/components/DialogDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
 import { InputDemo } from "@/components/InputDemo";
 import { SelectDemo } from "@/components/SelectDemo";
 import { SpinnerDemo } from "@/components/SpinnerDemo";
+import { TabsDemo } from "@/components/TabsDemo";
 import { TooltipDemo } from "@/components/TooltipDemo";
 import { Header } from "@/layout/Header";
 
@@ -91,6 +93,20 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>Select</h1>
             <SelectDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Tabs Demo</h1>
+            <TabsDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Checkbox</h1>
+            <CheckboxDemo />
           </div>
         </div>
       </div>

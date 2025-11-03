@@ -200,6 +200,7 @@ function App() {
 - Badge
 - Button
 - Card
+- Checkbox
 - Dialog
 - Dropdown Menu
 - Input
@@ -210,6 +211,7 @@ function App() {
 - Skeleton
 - Spinner
 - Table
+- Tabs
 - Textarea
 - Theme
 - Toggle

@@ -48,7 +48,8 @@
     "dayjs": "^1.11.18",
     "lucide-preact": "^0.474.0",
     "preact-iso": "^2.11.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",

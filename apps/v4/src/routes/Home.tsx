@@ -5,6 +5,7 @@ import { ButtonDemo } from "@/components/ButtonDemo";
 import { CardDemo } from "@/components/CardDemo";
 import { CheckboxDemo } from "@/components/CheckboxDemo";
 import { DialogDemo } from "@/components/DialogDemo";
+import { DrawerDemo } from "@/components/DrawerDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
 import { InputDemo } from "@/components/InputDemo";
 import { SelectDemo } from "@/components/SelectDemo";
@@ -73,6 +74,13 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>Dialog</h1>
             <DialogDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Drawer</h1>
+            <DrawerDemo />
           </div>
 
           <Separator />

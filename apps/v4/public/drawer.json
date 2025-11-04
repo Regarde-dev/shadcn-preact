@@ -1,0 +1,20 @@
+{
+  "name": "drawer",
+  "type": "registry:ui",
+  "description": "A drawer component for mobile devices.",
+  "dependencies": [
+    "vaul"
+  ],
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/cn.json"
+  ],
+  "files": [
+    {
+      "path": "drawer.tsx",
+      "type": "registry:ui",
+      "content": "import {\n  type ComponentProps,\n  type ComponentPropsWithoutRef,\n  type ElementRef,\n  type HTMLAttributes,\n  forwardRef,\n} from \"preact/compat\";\nimport { Drawer as DrawerPrimitive } from \"vaul\";\nimport { cn } from \"./share/cn\";\n\nconst Drawer = ({ shouldScaleBackground = true, ...props }: ComponentProps<typeof DrawerPrimitive.Root>) => (\n  <DrawerPrimitive.Root\n    shouldScaleBackground={shouldScaleBackground}\n    {...props}\n  />\n);\nDrawer.displayName = \"Drawer\";\n\nconst DrawerTrigger = DrawerPrimitive.Trigger;\n\nconst DrawerPortal = DrawerPrimitive.Portal;\n\nconst DrawerClose = DrawerPrimitive.Close;\n\nconst DrawerOverlay = forwardRef<\n  ElementRef<typeof DrawerPrimitive.Overlay>,\n  ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>\n>(({ className, class: classNative, ...props }, forwardedRef) => (\n  <DrawerPrimitive.Overlay\n    ref={forwardedRef}\n    className={cn(\"fixed inset-0 z-50 bg-black/80\", className, classNative)}\n    {...props}\n  />\n));\nDrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;\n\nconst DrawerContent = forwardRef<\n  ElementRef<typeof DrawerPrimitive.Content>,\n  ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>\n>(({ className, class: classNative, children, ...props }, forwardedRef) => (\n  <DrawerPortal>\n    <DrawerOverlay />\n    <DrawerPrimitive.Content\n      ref={forwardedRef}\n      className={cn(\n        \"fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background\",\n        className,\n        classNative\n      )}\n      {...props}\n    >\n      <div className=\"mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted\" />\n      {children}\n    </DrawerPrimitive.Content>\n  </DrawerPortal>\n));\nDrawerContent.displayName = \"DrawerContent\";\n\nconst DrawerHeader = ({ className, class: classNative, ...props }: HTMLAttributes<HTMLDivElement>) => (\n  <div\n    className={cn(\"grid gap-1.5 p-4 text-center sm:text-left\", className, classNative)}\n    {...props}\n  />\n);\nDrawerHeader.displayName = \"DrawerHeader\";\n\nconst DrawerFooter = ({ className, class: classNative, ...props }: HTMLAttributes<HTMLDivElement>) => (\n  <div\n    className={cn(\"mt-auto flex flex-col gap-2 p-4\", className, classNative)}\n    {...props}\n  />\n);\nDrawerFooter.displayName = \"DrawerFooter\";\n\nconst DrawerTitle = forwardRef<\n  ElementRef<typeof DrawerPrimitive.Title>,\n  ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>\n>(({ className, class: classNative, ...props }, forwardedRef) => (\n  <DrawerPrimitive.Title\n    ref={forwardedRef}\n    className={cn(\"font-semibold text-lg leading-none tracking-tight\", className, classNative)}\n    {...props}\n  />\n));\nDrawerTitle.displayName = DrawerPrimitive.Title.displayName;\n\nconst DrawerDescription = forwardRef<\n  ElementRef<typeof DrawerPrimitive.Description>,\n  ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>\n>(({ className, class: classNative, ...props }, forwardedRef) => (\n  <DrawerPrimitive.Description\n    ref={forwardedRef}\n    className={cn(\"text-muted-foreground text-sm\", className, classNative)}\n    {...props}\n  />\n));\nDrawerDescription.displayName = DrawerPrimitive.Description.displayName;\n\nexport {\n  Drawer,\n  DrawerClose,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerOverlay,\n  DrawerPortal,\n  DrawerTitle,\n  DrawerTrigger,\n};\n"
+    }
+  ],
+  "category": "ui"
+}
+

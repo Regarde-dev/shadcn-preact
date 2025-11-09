@@ -13,12 +13,14 @@ import { DialogDemo } from "@/components/DialogDemo";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
 import { InputDemo } from "@/components/InputDemo";
+import { PaginationDemo } from "@/components/PaginationDemo";
 import { PopoverDemo } from "@/components/PopoverDemo";
 import { ProgressDemo } from "@/components/ProgressDemo";
 import { SelectDemo } from "@/components/SelectDemo";
 import { SeparatorDemo } from "@/components/SeparatorDemo";
 import { SheetDemo } from "@/components/SheetDemo";
 import { SpinnerDemo } from "@/components/SpinnerDemo";
+import { StepsDemo } from "@/components/StepsDemo";
 import { SwitchDemo } from "@/components/SwitchDemo";
 import { TabsDemo } from "@/components/TabsDemo";
 import { TooltipDemo } from "@/components/TooltipDemo";
@@ -195,6 +197,20 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>Sheet</h1>
             <SheetDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Steps</h1>
+            <StepsDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Pagination</h1>
+            <PaginationDemo />
           </div>
         </div>
       </div>

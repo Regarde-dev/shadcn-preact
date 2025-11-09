@@ -1,0 +1,20 @@
+{
+  "name": "pagination",
+  "type": "registry:ui",
+  "description": "Pagination with page navigation, built using our Button component.",
+  "dependencies": [
+    "lucide-preact"
+  ],
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/button.json",
+    "https://shadcn-preact.regarde.dev/cn.json"
+  ],
+  "files": [
+    {
+      "path": "pagination.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "category": "ui"
+}
+

@@ -1,0 +1,16 @@
+{
+  "name": "steps",
+  "type": "registry:ui",
+  "description": "A component for displaying a sequence of steps in a process or wizard.",
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/cn.json"
+  ],
+  "files": [
+    {
+      "path": "steps.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "category": "ui"
+}
+

@@ -1,0 +1,13 @@
+{
+  "name": "resizable",
+  "type": "registry:ui",
+  "dependencies": ["react-resizable-panels", "lucide-preact"],
+  "registryDependencies": ["cn"],
+  "files": [
+    {
+      "path": "ui/resizable.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}
+

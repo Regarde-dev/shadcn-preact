@@ -1,5 +1,6 @@
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
 import { Button } from "@ui/button";
+import { Toaster } from "@ui/toast";
 import { ExternalLink } from "lucide-preact";
 import { LocationProvider, Route, Router } from "preact-iso";
 import { AppRoutes } from "./routes/AppRoutes";
@@ -35,6 +36,7 @@ export function App() {
           )}
         />
       </Router>
+      <Toaster />
     </LocationProvider>
   );
 }

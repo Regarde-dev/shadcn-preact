@@ -6,9 +6,11 @@ import { AvatarDemo } from "@/components/AvatarDemo";
 import { BadgeDemo } from "@/components/BadgeDemo";
 import { BreadcrumbDemo } from "@/components/BreadcrumbDemo";
 import { ButtonDemo } from "@/components/ButtonDemo";
+import { CarouselDemo } from "@/components/CarouselDemo";
 import { CardDemo } from "@/components/CardDemo";
 import { CheckboxDemo } from "@/components/CheckboxDemo";
 import { CollapsibleDemo } from "@/components/CollapsibleDemo";
+import { CommandDemo } from "@/components/CommandDemo";
 import { DialogDemo } from "@/components/DialogDemo";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
@@ -16,6 +18,7 @@ import { InputDemo } from "@/components/InputDemo";
 import { PaginationDemo } from "@/components/PaginationDemo";
 import { PopoverDemo } from "@/components/PopoverDemo";
 import { ProgressDemo } from "@/components/ProgressDemo";
+import { ResizableDemo } from "@/components/ResizableDemo";
 import { SelectDemo } from "@/components/SelectDemo";
 import { SeparatorDemo } from "@/components/SeparatorDemo";
 import { SheetDemo } from "@/components/SheetDemo";
@@ -23,6 +26,7 @@ import { SpinnerDemo } from "@/components/SpinnerDemo";
 import { StepsDemo } from "@/components/StepsDemo";
 import { SwitchDemo } from "@/components/SwitchDemo";
 import { TabsDemo } from "@/components/TabsDemo";
+import { ToastDemo } from "@/components/ToastDemo";
 import { TooltipDemo } from "@/components/TooltipDemo";
 import { Header } from "@/layout/Header";
 
@@ -212,6 +216,36 @@ export default function HomePage() {
             <h1>Pagination</h1>
             <PaginationDemo />
           </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Command</h1>
+            <CommandDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Toast</h1>
+            <ToastDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Carousel</h1>
+            <CarouselDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Resizable</h1>
+            <ResizableDemo />
+          </div>
+
+          <Separator />
         </div>
       </div>
     </div>

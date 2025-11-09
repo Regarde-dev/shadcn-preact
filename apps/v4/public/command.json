@@ -1,0 +1,21 @@
+{
+  "name": "command",
+  "type": "registry:ui",
+  "description": "Fast, composable, unstyled command menu for Preact.",
+  "dependencies": [
+    "cmdk",
+    "lucide-preact"
+  ],
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/dialog.json",
+    "https://shadcn-preact.regarde.dev/cn.json"
+  ],
+  "files": [
+    {
+      "path": "command.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "category": "ui"
+}
+

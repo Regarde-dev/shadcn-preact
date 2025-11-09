@@ -1,0 +1,21 @@
+{
+  "name": "toast",
+  "type": "registry:ui",
+  "description": "A succinct message that is displayed temporarily.",
+  "dependencies": [
+    "react-hot-toast",
+    "lucide-preact",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/cn.json"
+  ],
+  "files": [
+    {
+      "path": "toast.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "category": "ui"
+}
+

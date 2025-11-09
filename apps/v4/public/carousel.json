@@ -1,0 +1,13 @@
+{
+  "name": "carousel",
+  "type": "registry:ui",
+  "dependencies": ["embla-carousel-react", "lucide-preact"],
+  "registryDependencies": ["button", "cn"],
+  "files": [
+    {
+      "path": "ui/carousel.tsx",
+      "type": "registry:ui"
+    }
+  ]
+}
+

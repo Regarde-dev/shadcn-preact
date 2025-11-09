@@ -1,6 +1,8 @@
 import { AlertDemo } from "@/components/AlertDemo";
+import { AspectRatioDemo } from "@/components/AspectRatioDemo";
 import { AvatarDemo } from "@/components/AvatarDemo";
 import { BadgeDemo } from "@/components/BadgeDemo";
+import { BreadcrumbDemo } from "@/components/BreadcrumbDemo";
 import { ButtonDemo } from "@/components/ButtonDemo";
 import { CardDemo } from "@/components/CardDemo";
 import { CheckboxDemo } from "@/components/CheckboxDemo";
@@ -8,9 +10,11 @@ import { DialogDemo } from "@/components/DialogDemo";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
 import { InputDemo } from "@/components/InputDemo";
+import { ProgressDemo } from "@/components/ProgressDemo";
 import { SelectDemo } from "@/components/SelectDemo";
 import { SeparatorDemo } from "@/components/SeparatorDemo";
 import { SpinnerDemo } from "@/components/SpinnerDemo";
+import { SwitchDemo } from "@/components/SwitchDemo";
 import { TabsDemo } from "@/components/TabsDemo";
 import { TooltipDemo } from "@/components/TooltipDemo";
 import { Header } from "@/layout/Header";
@@ -123,6 +127,34 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>Separator</h1>
             <SeparatorDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Switch</h1>
+            <SwitchDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Progress</h1>
+            <ProgressDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Aspect Ratio</h1>
+            <AspectRatioDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Breadcrumb</h1>
+            <BreadcrumbDemo />
           </div>
         </div>
       </div>

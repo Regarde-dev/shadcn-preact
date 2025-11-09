@@ -25,10 +25,10 @@ const DialogContext = createContext<{
 export type DialogProviderProps = PropsWithChildren & {
   open?: boolean;
   defaultOpen?: boolean;
-  onChange?: (open: boolean) => void;
+  onOpenChange?: (open: boolean) => void;
 };
 
-export const Dialog = ({ open: controlledOpen, defaultOpen, children, onChange }: DialogProviderProps) => {
+export const Dialog = ({ open: controlledOpen, defaultOpen, children, onOpenChange }: DialogProviderProps) => {
   const triggerRef = useRef<HTMLElement | null>(null);
   const titleId = useId("dialog-title");
   const descriptionId = useId("dialog-description");
@@ -36,7 +36,7 @@ export const Dialog = ({ open: controlledOpen, defaultOpen, children, onChange }
   const [open, setOpen] = useControlledState({
     defaultValue: Boolean(defaultOpen),
     controlledValue: controlledOpen,
-    onChange: onChange,
+    onChange: onOpenChange,
   });
 
   return (

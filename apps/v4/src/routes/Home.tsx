@@ -15,6 +15,7 @@ import { DialogDemo } from "@/components/DialogDemo";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
 import { InputDemo } from "@/components/InputDemo";
+import { InputOTPDemo } from "@/components/InputOTPDemo";
 import { PaginationDemo } from "@/components/PaginationDemo";
 import { PopoverDemo } from "@/components/PopoverDemo";
 import { ProgressDemo } from "@/components/ProgressDemo";
@@ -243,6 +244,13 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>Resizable</h1>
             <ResizableDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Input OTP</h1>
+            <InputOTPDemo />
           </div>
 
           <Separator />

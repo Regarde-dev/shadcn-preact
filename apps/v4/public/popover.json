@@ -1,0 +1,25 @@
+{
+  "name": "popover",
+  "type": "registry:ui",
+  "description": "Displays rich content in a portal, triggered by a button.",
+  "dependencies": [
+    "@floating-ui/react-dom"
+  ],
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/portal.json",
+    "https://shadcn-preact.regarde.dev/cn.json",
+    "https://shadcn-preact.regarde.dev/slot.json",
+    "https://shadcn-preact.regarde.dev/compose_ref.json",
+    "https://shadcn-preact.regarde.dev/useControlledState.json",
+    "https://shadcn-preact.regarde.dev/useEscapeKeyDown.json",
+    "https://shadcn-preact.regarde.dev/useClickOutside.json"
+  ],
+  "files": [
+    {
+      "path": "popover.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "category": "ui"
+}
+

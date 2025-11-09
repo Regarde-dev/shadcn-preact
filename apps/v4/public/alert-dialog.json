@@ -1,0 +1,25 @@
+{
+  "name": "alert-dialog",
+  "type": "registry:ui",
+  "description": "A modal dialog that interrupts the user with important content and expects a response.",
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/button.json",
+    "https://shadcn-preact.regarde.dev/modal.json",
+    "https://shadcn-preact.regarde.dev/cn.json",
+    "https://shadcn-preact.regarde.dev/slot.json",
+    "https://shadcn-preact.regarde.dev/compose_ref.json",
+    "https://shadcn-preact.regarde.dev/useControlledState.json",
+    "https://shadcn-preact.regarde.dev/useEscapeKeyDown.json",
+    "https://shadcn-preact.regarde.dev/useFocusTrap.json",
+    "https://shadcn-preact.regarde.dev/useId.json",
+    "https://shadcn-preact.regarde.dev/show.json"
+  ],
+  "files": [
+    {
+      "path": "alert-dialog.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "category": "ui"
+}
+

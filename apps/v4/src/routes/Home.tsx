@@ -1,5 +1,6 @@
 import { AccordionDemo } from "@/components/AccordionDemo";
 import { AlertDemo } from "@/components/AlertDemo";
+import { AlertDialogDemo } from "@/components/AlertDialogDemo";
 import { AspectRatioDemo } from "@/components/AspectRatioDemo";
 import { AvatarDemo } from "@/components/AvatarDemo";
 import { BadgeDemo } from "@/components/BadgeDemo";
@@ -12,9 +13,11 @@ import { DialogDemo } from "@/components/DialogDemo";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
 import { InputDemo } from "@/components/InputDemo";
+import { PopoverDemo } from "@/components/PopoverDemo";
 import { ProgressDemo } from "@/components/ProgressDemo";
 import { SelectDemo } from "@/components/SelectDemo";
 import { SeparatorDemo } from "@/components/SeparatorDemo";
+import { SheetDemo } from "@/components/SheetDemo";
 import { SpinnerDemo } from "@/components/SpinnerDemo";
 import { SwitchDemo } from "@/components/SwitchDemo";
 import { TabsDemo } from "@/components/TabsDemo";
@@ -171,6 +174,27 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>Accordion</h1>
             <AccordionDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Popover</h1>
+            <PopoverDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Alert Dialog</h1>
+            <AlertDialogDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Sheet</h1>
+            <SheetDemo />
           </div>
         </div>
       </div>

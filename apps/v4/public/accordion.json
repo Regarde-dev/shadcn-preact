@@ -1,0 +1,21 @@
+{
+  "name": "accordion",
+  "type": "registry:ui",
+  "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
+  "dependencies": [
+    "lucide-preact"
+  ],
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/collapsible.json",
+    "https://shadcn-preact.regarde.dev/cn.json",
+    "https://shadcn-preact.regarde.dev/useControlledState.json"
+  ],
+  "files": [
+    {
+      "path": "accordion.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "category": "ui"
+}
+

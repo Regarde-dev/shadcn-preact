@@ -1,3 +1,4 @@
+import { AccordionDemo } from "@/components/AccordionDemo";
 import { AlertDemo } from "@/components/AlertDemo";
 import { AspectRatioDemo } from "@/components/AspectRatioDemo";
 import { AvatarDemo } from "@/components/AvatarDemo";
@@ -6,6 +7,7 @@ import { BreadcrumbDemo } from "@/components/BreadcrumbDemo";
 import { ButtonDemo } from "@/components/ButtonDemo";
 import { CardDemo } from "@/components/CardDemo";
 import { CheckboxDemo } from "@/components/CheckboxDemo";
+import { CollapsibleDemo } from "@/components/CollapsibleDemo";
 import { DialogDemo } from "@/components/DialogDemo";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { DropdownMenuDemo } from "@/components/DropdownMenuDemo";
@@ -155,6 +157,20 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>Breadcrumb</h1>
             <BreadcrumbDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Collapsible</h1>
+            <CollapsibleDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>Accordion</h1>
+            <AccordionDemo />
           </div>
         </div>
       </div>

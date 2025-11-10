@@ -1,0 +1,19 @@
+{
+  "name": "use-chat",
+  "type": "registry:hook",
+  "description": "AI chat hook with streaming, tool calling, and message regeneration support.",
+  "dependencies": [
+    "ai"
+  ],
+  "registryDependencies": [
+    "https://shadcn-preact.regarde.dev/chat-preact.json"
+  ],
+  "files": [
+    {
+      "path": "ai/hooks/useChat.tsx",
+      "type": "registry:hook"
+    }
+  ],
+  "category": "ai"
+}
+

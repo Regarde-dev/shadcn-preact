@@ -1,0 +1,17 @@
+{
+  "name": "use-completion",
+  "type": "registry:hook",
+  "description": "AI completion hook for single-turn text generation with streaming.",
+  "dependencies": [
+    "ai"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ai/hooks/useCompletion.tsx",
+      "type": "registry:hook"
+    }
+  ],
+  "category": "ai"
+}
+

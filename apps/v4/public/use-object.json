@@ -1,0 +1,21 @@
+{
+  "name": "use-object",
+  "type": "registry:hook",
+  "description": "AI structured data generation hook with Zod or JSON Schema validation.",
+  "dependencies": [
+    "ai"
+  ],
+  "devDependencies": [
+    "zod",
+    "@types/json-schema"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ai/hooks/useObject.tsx",
+      "type": "registry:hook"
+    }
+  ],
+  "category": "ai"
+}
+

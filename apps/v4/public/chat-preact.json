@@ -1,0 +1,17 @@
+{
+  "name": "chat-preact",
+  "type": "registry:lib",
+  "description": "Preact-specific Chat class for shared state across components.",
+  "dependencies": [
+    "ai"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ai/share/chat.preact.ts",
+      "type": "registry:lib"
+    }
+  ],
+  "category": "ai"
+}
+

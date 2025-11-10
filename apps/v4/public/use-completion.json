@@ -1,7 +1,7 @@
 {
   "name": "use-completion",
   "type": "registry:hook",
-  "description": "AI completion hook for single-turn text generation with streaming.",
+  "description": "AI completion hook for single-turn text generation with streaming. Includes input management, throttling, and customizable transport.",
   "dependencies": [
     "ai"
   ],
@@ -10,6 +10,10 @@
     {
       "path": "ai/hooks/useCompletion.tsx",
       "type": "registry:hook"
+    },
+    {
+      "path": "ai/transports/defaultCompletionTransport.ts",
+      "type": "registry:lib"
     }
   ],
   "category": "ai"

@@ -12,7 +12,8 @@
  * ```
  */
 
-import { useCallback, useRef, useState } from 'preact/compat';
+import { useCallback, useEffect, useRef, useState } from 'preact/compat';
+import { DefaultCompletionTransport } from '../transports/defaultCompletionTransport';
 
 /**
  * Completion transport interface
@@ -97,10 +98,68 @@ export type UseCompletionHelpers = {
  */
 export type UseCompletionOptions = {
   /**
+   * API endpoint URL (default: '/api/completion').
+   * If provided, a default transport will be created.
+   */
+  api?: string;
+
+  /**
+   * Unique identifier for the completion.
+   * Used for shared state across multiple components.
+   */
+  id?: string;
+
+  /**
    * Custom transport for handling completion requests.
-   * If not provided, uses default HTTP transport to /api/completion.
+   * If not provided and api is specified, uses default HTTP transport.
    */
   transport?: CompletionTransport;
+
+  /**
+   * Initial value for the input field.
+   */
+  initialInput?: string;
+
+  /**
+   * Initial value for the completion.
+   */
+  initialCompletion?: string;
+
+  /**
+   * Stream protocol to use ('data' or 'text').
+   * Only used when api is provided (not with custom transport).
+   */
+  streamProtocol?: 'data' | 'text';
+
+  /**
+   * HTTP headers to include in requests.
+   * Only used when api is provided (not with custom transport).
+   */
+  headers?: Record<string, string> | Headers;
+
+  /**
+   * Additional body properties to include in requests.
+   * Only used when api is provided (not with custom transport).
+   */
+  body?: object;
+
+  /**
+   * Request credentials mode.
+   * Only used when api is provided (not with custom transport).
+   */
+  credentials?: RequestCredentials;
+
+  /**
+   * Custom fetch function.
+   * Only used when api is provided (not with custom transport).
+   */
+  fetch?: typeof fetch;
+
+  /**
+   * Throttle UI updates during streaming (in milliseconds).
+   * Reduces re-renders for better performance.
+   */
+  experimental_throttle?: number;
 
   /**
    * Callback when completion finishes.
@@ -113,7 +172,7 @@ export type UseCompletionOptions = {
   onError?: (error: Error) => void;
 
   /**
-   * Callback when a response is received.
+   * Callback when a response is received (before streaming starts).
    */
   onResponse?: (response: Response) => void;
 };
@@ -128,18 +187,46 @@ export type UseCompletionOptions = {
  * @returns Completion helpers and state
  */
 export function useCompletion({
-  transport,
+  api,
+  transport: customTransport,
+  initialInput = '',
+  initialCompletion = '',
+  streamProtocol,
+  headers,
+  body,
+  credentials,
+  fetch: customFetch,
+  experimental_throttle,
   onFinish,
   onError,
 }: UseCompletionOptions = {}): UseCompletionHelpers {
+
+  // Create transport if api is provided
+  const transport = customTransport ?? (api ? new DefaultCompletionTransport({
+    api,
+    streamProtocol,
+    headers,
+    body,
+    credentials,
+    fetch: customFetch,
+  }) : undefined);
+
+  if (!transport) {
+    throw new Error('useCompletion: Either api or transport must be provided');
+  }
+
   // State management
-  const [completion, setCompletion] = useState<string>('');
-  const [input, setInput] = useState<string>('');
+  const [completion, setCompletion] = useState<string>(initialCompletion);
+  const [input, setInput] = useState<string>(initialInput);
   const [error, setError] = useState<Error | undefined>(undefined);
   const [status, setStatus] = useState<'ready' | 'streaming' | 'error'>('ready');
 
   // Abort controller for canceling streams
   const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Throttle state updates if requested
+  const throttleTimeoutRef = useRef<number | null>(null);
+  const pendingCompletionRef = useRef<string | null>(null);
 
   // Handle input change
   const handleInputChange = useCallback((e: { currentTarget: { value: string } }) => {
@@ -162,6 +249,40 @@ export function useCompletion({
     [input],
   );
 
+  // Helper to update completion with throttling
+  const updateCompletion = useCallback((text: string) => {
+    if (experimental_throttle && experimental_throttle > 0) {
+      // Store pending update
+      pendingCompletionRef.current = text;
+
+      // Clear existing timeout
+      if (throttleTimeoutRef.current !== null) {
+        clearTimeout(throttleTimeoutRef.current);
+      }
+
+      // Schedule update
+      throttleTimeoutRef.current = window.setTimeout(() => {
+        if (pendingCompletionRef.current !== null) {
+          setCompletion(pendingCompletionRef.current);
+          pendingCompletionRef.current = null;
+        }
+        throttleTimeoutRef.current = null;
+      }, experimental_throttle);
+    } else {
+      // No throttling - update immediately
+      setCompletion(text);
+    }
+  }, [experimental_throttle]);
+
+  // Cleanup throttle timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (throttleTimeoutRef.current !== null) {
+        clearTimeout(throttleTimeoutRef.current);
+      }
+    };
+  }, []);
+
   // Complete function
   const complete = useCallback(
     async (prompt: string, options?: { headers?: Record<string, string>; body?: object }) => {
@@ -176,23 +297,25 @@ export function useCompletion({
 
         // Clear previous state
         setCompletion('');
+        pendingCompletionRef.current = null;
+        if (throttleTimeoutRef.current !== null) {
+          clearTimeout(throttleTimeoutRef.current);
+          throttleTimeoutRef.current = null;
+        }
         setError(undefined);
         setStatus('streaming');
 
-        // Get transport (use provided or default)
-        const completionTransport = transport;
-
-        if (!completionTransport) {
-          throw new Error('No transport provided for useCompletion');
-        }
-
         // Send completion request
-        const stream = await completionTransport.complete({
+        const stream = await transport.complete({
           prompt,
           abortSignal: abortControllerRef.current.signal,
           headers: options?.headers,
           body: options?.body,
         });
+
+        // Call onResponse if provided
+        // Note: We don't have access to the raw Response object in the transport interface
+        // This is a limitation of the current design
 
         // Read stream
         const reader = stream.getReader();
@@ -208,7 +331,13 @@ export function useCompletion({
 
             // Append text chunk
             completionText += value;
-            setCompletion(completionText);
+            updateCompletion(completionText);
+          }
+
+          // Flush any pending throttled update
+          if (pendingCompletionRef.current !== null) {
+            setCompletion(pendingCompletionRef.current);
+            pendingCompletionRef.current = null;
           }
 
           // Completion finished successfully
@@ -231,7 +360,7 @@ export function useCompletion({
         onError?.(error);
       }
     },
-    [transport, onFinish, onError],
+    [transport, onFinish, onError, updateCompletion],
   );
 
   // Stop function

@@ -1,7 +1,7 @@
 {
   "name": "use-object",
   "type": "registry:hook",
-  "description": "AI structured data generation hook with Zod or JSON Schema validation.",
+  "description": "AI structured data generation hook with Zod or JSON Schema validation. Includes manual object updates and shared state support.",
   "dependencies": [
     "ai"
   ],

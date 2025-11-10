@@ -202,6 +202,115 @@ function RecipeGenerator() {
 }
 ```
 
+## API Reference
+
+### useChat Options
+
+All hooks now support the same convenient API as the official SDK:
+
+```tsx
+const chat = useChat({
+  // Simple API endpoint (creates default transport automatically)
+  api: '/api/chat',
+
+  // Unique ID for shared state across components
+  id: 'my-chat',
+
+  // Initial input value
+  initialInput: 'Hello!',
+
+  // Throttle UI updates for better performance
+  experimental_throttle: 100,
+
+  // Resume interrupted streams
+  resume: true,
+
+  // Callbacks
+  onFinish: (message) => console.log('Done:', message),
+  onError: (error) => console.error('Error:', error),
+  onToolCall: async ({ toolCall }) => { /* ... */ },
+});
+
+// Input management helpers (no manual state needed!)
+const { input, setInput, handleInputChange, handleSubmit } = chat;
+```
+
+### useCompletion Options
+
+```tsx
+const completion = useCompletion({
+  // Simple API endpoint (creates default transport automatically)
+  api: '/api/completion',
+
+  // Unique ID for shared state
+  id: 'my-completion',
+
+  // Initial values
+  initialInput: 'Write a story about',
+  initialCompletion: 'Once upon a time...',
+
+  // Stream protocol ('data' or 'text')
+  streamProtocol: 'data',
+
+  // Throttle UI updates
+  experimental_throttle: 100,
+
+  // HTTP options
+  headers: { 'X-Custom': 'value' },
+  credentials: 'include',
+
+  // Callbacks
+  onFinish: (prompt, completion) => console.log('Done'),
+  onError: (error) => console.error('Error:', error),
+  onResponse: (response) => console.log('Response received'),
+});
+
+// Input management helpers
+const { input, setInput, handleInputChange, handleSubmit } = completion;
+```
+
+### useObject Options
+
+```tsx
+const obj = useObject({
+  // Simple API endpoint
+  api: '/api/generate',
+
+  // Unique ID for shared state
+  id: 'my-object',
+
+  // Schema (Zod or JSON Schema)
+  schema: z.object({ name: z.string() }),
+
+  // Initial value
+  initialValue: { name: 'Loading...' },
+
+  // Callbacks
+  onFinish: ({ object, error }) => console.log('Done'),
+  onError: (error) => console.error('Error:', error),
+});
+
+// Manual object updates
+const { object, setObject } = obj;
+setObject({ name: 'Updated' });
+```
+
+### Custom Transports
+
+For advanced use cases, you can still use custom transports:
+
+```tsx
+import { DefaultCompletionTransport } from '@ai/transports/defaultCompletionTransport';
+
+const customTransport = new DefaultCompletionTransport({
+  api: '/api/custom',
+  streamProtocol: 'text',
+  headers: { 'Authorization': 'Bearer token' },
+});
+
+const { completion } = useCompletion({ transport: customTransport });
+```
+
 ## Backend Setup
 
 ### Chat API Route

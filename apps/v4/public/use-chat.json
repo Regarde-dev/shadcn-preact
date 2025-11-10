@@ -1,7 +1,7 @@
 {
   "name": "use-chat",
   "type": "registry:hook",
-  "description": "AI chat hook with streaming, tool calling, and message regeneration support.",
+  "description": "AI chat hook with streaming, tool calling, message regeneration, and input management. Includes shared state support and throttling.",
   "dependencies": [
     "ai"
   ],

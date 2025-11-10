@@ -14,7 +14,7 @@
  */
 
 import type { ChatInit, CreateUIMessage, UIMessage } from 'ai';
-import { useCallback, useEffect, useRef, useSyncExternalStore } from 'preact/compat';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'preact/compat';
 import { Chat } from '../share/chat.preact';
 
 // Re-export types
@@ -37,6 +37,26 @@ export type UseChatHelpers<UI_MESSAGE extends UIMessage> = {
   setMessages: (
     messages: UI_MESSAGE[] | ((messages: UI_MESSAGE[]) => UI_MESSAGE[]),
   ) => void;
+
+  /**
+   * The current input value.
+   */
+  input: string;
+
+  /**
+   * Update the input value.
+   */
+  setInput: (input: string | ((input: string) => string)) => void;
+
+  /**
+   * Handler for input change events.
+   */
+  handleInputChange: (e: { currentTarget: { value: string } }) => void;
+
+  /**
+   * Form submission handler that automatically sends the input as a message.
+   */
+  handleSubmit: (e?: { preventDefault?: () => void }, options?: { data?: Record<string, unknown> }) => void;
 
   error: Error | undefined;
 } & Pick<
@@ -66,6 +86,11 @@ export type UseChatOptions<UI_MESSAGE extends UIMessage> = ChatInit<UI_MESSAGE> 
    * Whether to resume an ongoing chat generation stream.
    */
   resume?: boolean;
+
+  /**
+   * Initial value for the input field.
+   */
+  initialInput?: string;
 };
 
 /**
@@ -80,6 +105,7 @@ export type UseChatOptions<UI_MESSAGE extends UIMessage> = ChatInit<UI_MESSAGE> 
 export function useChat<UI_MESSAGE extends UIMessage = UIMessage>({
   experimental_throttle: throttleWaitMs,
   resume = false,
+  initialInput = '',
   ...options
 }: UseChatOptions<UI_MESSAGE> = {}): UseChatHelpers<UI_MESSAGE> {
   // Create Chat instance (Preact-specific wrapper)
@@ -93,6 +119,9 @@ export function useChat<UI_MESSAGE extends UIMessage = UIMessage>({
   }
 
   const optionsId = 'id' in options ? options.id : null;
+
+  // Input state management
+  const [input, setInput] = useState<string>(initialInput);
 
   // Subscribe to messages updates with throttling
   const subscribeToMessages = useCallback(
@@ -131,6 +160,30 @@ export function useChat<UI_MESSAGE extends UIMessage = UIMessage>({
     [chatRef],
   );
 
+  // Input change handler
+  const handleInputChange = useCallback((e: { currentTarget: { value: string } }) => {
+    setInput(e.currentTarget.value);
+  }, []);
+
+  // Form submit handler
+  const handleSubmit = useCallback(
+    (e?: { preventDefault?: () => void }, options?: { data?: Record<string, unknown> }) => {
+      e?.preventDefault?.();
+      const trimmedInput = input.trim();
+      if (!trimmedInput) return;
+
+      // Send message
+      chatRef.current.sendMessage({
+        text: trimmedInput,
+        ...(options?.data ? { data: options.data } : {}),
+      } as unknown as CreateUIMessage<UI_MESSAGE>);
+
+      // Clear input
+      setInput('');
+    },
+    [input, chatRef],
+  );
+
   // Resume stream on mount if requested
   useEffect(() => {
     if (resume) {
@@ -143,6 +196,10 @@ export function useChat<UI_MESSAGE extends UIMessage = UIMessage>({
     id: chatRef.current.id,
     messages,
     setMessages,
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
     sendMessage: chatRef.current.sendMessage,
     regenerate: chatRef.current.regenerate,
     clearError: chatRef.current.clearError,

@@ -128,6 +128,12 @@ export interface UseObjectOptions<SCHEMA> {
   api?: string | ObjectTransport<SCHEMA>;
 
   /**
+   * Unique identifier for the object generation.
+   * Used for shared state across multiple components.
+   */
+  id?: string;
+
+  /**
    * Schema that defines the shape of the object.
    * Can be either a Zod schema or a JSON Schema.
    *
@@ -179,6 +185,11 @@ export type UseObjectHelpers<SCHEMA> = {
    * The current partial object. Updated as the stream progresses.
    */
   object: DeepPartial<SCHEMA> | undefined;
+
+  /**
+   * Manually update the object state.
+   */
+  setObject: (object: DeepPartial<SCHEMA> | undefined | ((prev: DeepPartial<SCHEMA> | undefined) => DeepPartial<SCHEMA> | undefined)) => void;
 
   /**
    * Submit input to generate an object.
@@ -401,6 +412,7 @@ export function useObject<SCHEMA = unknown>(
 
   return {
     object,
+    setObject,
     submit,
     error,
     isLoading: status === 'streaming',

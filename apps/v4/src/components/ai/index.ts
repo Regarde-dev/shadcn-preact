@@ -35,11 +35,12 @@ export type {
   FormSubmitHandler,
 } from './types';
 
-// Transport
+// Transports
 export { DefaultChatTransport } from './types';
+export { DefaultCompletionTransport } from './transports/defaultCompletionTransport';
 
 // Hook-specific types (will be defined in hook files)
 export type { UseChatOptions, UseChatHelpers } from './hooks/useChat';
-export type { UseCompletionOptions, UseCompletionHelpers } from './hooks/useCompletion';
+export type { UseCompletionOptions, UseCompletionHelpers, CompletionTransport } from './hooks/useCompletion';
 export type { UseObjectOptions, UseObjectHelpers } from './hooks/useObject';
 

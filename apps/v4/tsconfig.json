@@ -22,6 +22,7 @@
       "react": ["./node_modules/preact/compat/"],
       "react-dom": ["./node_modules/preact/compat/"],
       "@ui/*": ["./src/components/ui/*"],
+      "@ai/*": ["./src/components/ai/*"],
       "@/*": ["./src/*"]
     }
   },

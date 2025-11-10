@@ -21,6 +21,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@ui": resolve(resolve(__dirname), "./src/components/ui/"),
+      "@ai": resolve(resolve(__dirname), "./src/components/ai/"),
       "@": resolve(resolve(__dirname), "./src/"),
     },
   },

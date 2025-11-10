@@ -39,8 +39,25 @@ export type {
 export { DefaultChatTransport } from './types';
 export { DefaultCompletionTransport } from './transports/defaultCompletionTransport';
 
+// Helper functions
+export { convertToModelMessages } from './helpers/convertToModelMessages';
+export { pruneMessages } from './helpers/pruneMessages';
+
 // Hook-specific types (will be defined in hook files)
 export type { UseChatOptions, UseChatHelpers } from './hooks/useChat';
 export type { UseCompletionOptions, UseCompletionHelpers, CompletionTransport } from './hooks/useCompletion';
 export type { UseObjectOptions, UseObjectHelpers } from './hooks/useObject';
+
+// Helper types
+export type {
+  ModelMessage,
+  TextPart,
+  ImagePart,
+  FilePart,
+  ToolCallPart,
+  ToolResultPart,
+  DataUIPart,
+  ConvertToModelMessagesOptions,
+} from './helpers/convertToModelMessages';
+export type { PruneMessagesOptions, PruneToolCallsOption } from './helpers/pruneMessages';
 

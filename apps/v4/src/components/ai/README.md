@@ -14,6 +14,11 @@ This is a complete Preact implementation of the AI SDK UI hooks, providing clien
 - **useCompletion** - Single-turn text generation
 - **useObject** - Structured data generation with Zod or JSON Schema
 
+### Helper Functions
+
+- **convertToModelMessages** - Convert UI messages to AI SDK Core format
+- **pruneMessages** - Reduce message context to save tokens
+
 ### Advanced Features
 
 - **Tool Calling** - AI can invoke functions during conversation
@@ -454,6 +459,105 @@ function ChatInput() {
 }
 ```
 
+## Helper Functions
+
+### convertToModelMessages
+
+Converts UI messages from `useChat` into `ModelMessage` objects compatible with AI SDK Core functions like `streamText`.
+
+**Use Case:** Bridge between UI hooks and AI SDK Core for custom backend logic.
+
+```tsx
+import { convertToModelMessages } from "@ai/helpers/convertToModelMessages";
+import { streamText } from "ai";
+import { openai } from "@ai-sdk/openai";
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+
+  const result = streamText({
+    model: openai("gpt-4o"),
+    messages: convertToModelMessages(messages),
+  });
+
+  return result.toUIMessageStreamResponse();
+}
+```
+
+**Custom Data Parts:** Convert custom data attached to user messages:
+
+```tsx
+import type { UIMessage } from "ai";
+
+type CustomUIMessage = UIMessage<
+  never,
+  {
+    url: { url: string; title: string; content: string };
+    "code-file": { filename: string; code: string; language: string };
+  }
+>;
+
+const result = streamText({
+  model: openai("gpt-4o"),
+  messages: convertToModelMessages<CustomUIMessage>(messages, {
+    convertDataPart: (part) => {
+      // Convert URL attachments to text
+      if (part.type === "data-url") {
+        return {
+          type: "text",
+          text: `[Reference: ${part.data.title}](${part.data.url})\n\n${part.data.content}`,
+        };
+      }
+
+      // Convert code file attachments
+      if (part.type === "data-code-file") {
+        return {
+          type: "text",
+          text: `\`\`\`${part.data.language}\n// ${part.data.filename}\n${part.data.code}\n\`\`\``,
+        };
+      }
+
+      // Other data parts are ignored
+    },
+  }),
+});
+```
+
+### pruneMessages
+
+Prunes or filters messages to reduce context size, remove intermediate reasoning, or trim tool calls before sending to an LLM.
+
+**Use Case:** Save tokens by removing old messages or tool calls from conversation history.
+
+```tsx
+import { pruneMessages } from "@ai/helpers/pruneMessages";
+import { streamText } from "ai";
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+
+  const prunedMessages = pruneMessages({
+    messages,
+    reasoning: "before-last-message", // Keep reasoning only in last message
+    toolCalls: "before-last-2-messages", // Keep tool calls in last 2 messages
+    emptyMessages: "remove", // Remove empty messages
+  });
+
+  const result = streamText({
+    model: openai("gpt-4o"),
+    messages: prunedMessages,
+  });
+
+  return result.toUIMessageStreamResponse();
+}
+```
+
+**Options:**
+
+- `reasoning`: `'all'` | `'before-last-message'` | `'none'` - Remove reasoning content
+- `toolCalls`: `'all'` | `'before-last-message'` | `'before-last-N-messages'` | `'none'` - Prune tool calls
+- `emptyMessages`: `'keep'` | `'remove'` - Handle empty messages after pruning
+
 ## Documentation
 
 For complete documentation, examples, and API reference, see:
@@ -470,6 +574,11 @@ apps/v4/src/components/ai/
 │   ├── useChat.tsx           # Chat hook
 │   ├── useCompletion.tsx     # Completion hook
 │   └── useObject.tsx         # Object hook
+├── helpers/
+│   ├── convertToModelMessages.ts  # Convert UI messages to ModelMessage
+│   └── pruneMessages.ts      # Prune messages to reduce context
+├── transports/
+│   └── defaultCompletionTransport.ts  # Default completion transport
 ├── share/
 │   ├── chat.preact.ts        # Preact Chat class
 │   └── *.ts                  # Utilities and mock transports

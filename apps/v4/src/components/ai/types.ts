@@ -15,6 +15,8 @@ export type {
   ToolExecuteFunction,
 } from 'ai';
 
+export { DefaultChatTransport } from 'ai';
+
 // Preact-specific event types (using preact/compat for React compatibility)
 import type { ChangeEvent, FormEvent } from 'preact/compat';
 

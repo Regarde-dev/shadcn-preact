@@ -61,9 +61,19 @@ export function ChatDemo() {
           >
             <div className="mb-1 font-semibold text-xs uppercase">{msg.role}</div>
             <div className="text-sm">
-              {msg.parts.map((part, i) => (
-                <span key={i}>{part.type === 'text' ? part.text : '[non-text part]'}</span>
-              ))}
+              {msg.parts.map((part, i) => {
+                switch (part.type) {
+                  case 'text':
+                    return <span key={i}>{part.text}</span>;
+                  default:
+                    // Handle tool calls and other part types
+                    return (
+                      <div key={i} className="mt-2 rounded bg-muted-foreground/10 p-2 font-mono text-xs">
+                        {JSON.stringify(part, null, 2)}
+                      </div>
+                    );
+                }
+              })}
             </div>
           </div>
         ))}

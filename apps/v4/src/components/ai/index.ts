@@ -20,15 +20,23 @@ export { useChat } from './hooks/useChat';
 export { useCompletion } from './hooks/useCompletion';
 export { useObject } from './hooks/useObject';
 
+// Chat class for shared state
+export { Chat } from './share/chat.preact';
+
 // Types
 export type {
   CreateUIMessage,
   UIMessage,
   ChatInit,
   UIToolInvocation,
+  ToolCallOptions,
+  ToolExecuteFunction,
   InputChangeHandler,
   FormSubmitHandler,
 } from './types';
+
+// Transport
+export { DefaultChatTransport } from './types';
 
 // Hook-specific types (will be defined in hook files)
 export type { UseChatOptions, UseChatHelpers } from './hooks/useChat';

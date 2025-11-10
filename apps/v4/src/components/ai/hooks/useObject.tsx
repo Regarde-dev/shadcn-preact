@@ -2,21 +2,36 @@
  * useObject Hook for Preact
  *
  * Preact port of @ai-sdk/react useObject hook.
- * Provides structured data generation with Zod schema validation.
+ * Provides structured data generation with Zod or JSON Schema validation.
  *
  * @example
  * ```tsx
+ * // With Zod
  * import { z } from 'zod';
  *
  * const { object, submit } = useObject({
  *   api: '/api/object',
  *   schema: z.object({ name: z.string(), age: z.number() }),
  * });
+ *
+ * // With JSON Schema
+ * const { object, submit } = useObject({
+ *   api: '/api/object',
+ *   schema: {
+ *     type: 'object',
+ *     properties: {
+ *       name: { type: 'string' },
+ *       age: { type: 'number' },
+ *     },
+ *     required: ['name', 'age'],
+ *   },
+ * });
  * ```
  */
 
 import { useCallback, useRef, useState } from 'preact/compat';
 import type { z } from 'zod';
+import type { JSONSchema7 } from 'json-schema';
 
 /**
  * Deep partial type - makes all properties optional recursively
@@ -26,6 +41,69 @@ export type DeepPartial<T> = T extends object
       [P in keyof T]?: DeepPartial<T[P]>;
     }
   : T;
+
+/**
+ * Schema type - supports both Zod and JSON Schema
+ */
+export type Schema<T> = z.ZodType<T> | JSONSchema7;
+
+/**
+ * Type guard to check if schema is a Zod schema
+ */
+function isZodSchema<T>(schema: Schema<T>): schema is z.ZodType<T> {
+  return typeof schema === 'object' && schema !== null && 'parse' in schema && typeof schema.parse === 'function';
+}
+
+/**
+ * Simple JSON Schema validator
+ * Note: This is a basic implementation. For production use, consider using a library like Ajv.
+ */
+function validateJSONSchema<T>(data: unknown, schema: JSONSchema7): { success: true; data: T } | { success: false; error: Error } {
+  // Basic type checking
+  if (schema.type === 'object' && typeof data === 'object' && data !== null) {
+    const obj = data as Record<string, unknown>;
+
+    // Check required properties
+    if (schema.required && Array.isArray(schema.required)) {
+      for (const key of schema.required) {
+        if (!(key in obj)) {
+          return { success: false, error: new Error(`Missing required property: ${key}`) };
+        }
+      }
+    }
+
+    // Basic property type validation
+    if (schema.properties) {
+      for (const [key, propSchema] of Object.entries(schema.properties)) {
+        if (key in obj && typeof propSchema === 'object' && propSchema !== null) {
+          const value = obj[key];
+          const expectedType = (propSchema as JSONSchema7).type;
+
+          if (expectedType === 'string' && typeof value !== 'string') {
+            return { success: false, error: new Error(`Property ${key} should be string, got ${typeof value}`) };
+          }
+          if (expectedType === 'number' && typeof value !== 'number') {
+            return { success: false, error: new Error(`Property ${key} should be number, got ${typeof value}`) };
+          }
+          if (expectedType === 'boolean' && typeof value !== 'boolean') {
+            return { success: false, error: new Error(`Property ${key} should be boolean, got ${typeof value}`) };
+          }
+          if (expectedType === 'array' && !Array.isArray(value)) {
+            return { success: false, error: new Error(`Property ${key} should be array, got ${typeof value}`) };
+          }
+        }
+      }
+    }
+
+    return { success: true, data: data as T };
+  }
+
+  if (schema.type === 'array' && Array.isArray(data)) {
+    return { success: true, data: data as T };
+  }
+
+  return { success: false, error: new Error(`Data does not match schema type: ${schema.type}`) };
+}
 
 /**
  * Object transport interface
@@ -50,9 +128,17 @@ export interface UseObjectOptions<SCHEMA> {
   api?: string | ObjectTransport<SCHEMA>;
 
   /**
-   * Zod schema that defines the shape of the object.
+   * Schema that defines the shape of the object.
+   * Can be either a Zod schema or a JSON Schema.
+   *
+   * @example
+   * // With Zod
+   * schema: z.object({ name: z.string() })
+   *
+   * // With JSON Schema
+   * schema: { type: 'object', properties: { name: { type: 'string' } } }
    */
-  schema: z.ZodType<SCHEMA>;
+  schema: Schema<SCHEMA>;
 
   /**
    * Optional initial value for the object.
@@ -270,10 +356,21 @@ export function useObject<SCHEMA = unknown>(
           let validatedObject: SCHEMA | undefined;
           let validationError: unknown | undefined;
 
-          try {
-            validatedObject = schema.parse(finalObject);
-          } catch (e) {
-            validationError = e;
+          if (isZodSchema(schema)) {
+            // Zod validation
+            try {
+              validatedObject = schema.parse(finalObject) as SCHEMA;
+            } catch (e) {
+              validationError = e;
+            }
+          } else {
+            // JSON Schema validation
+            const result = validateJSONSchema<SCHEMA>(finalObject, schema);
+            if (result.success) {
+              validatedObject = result.data;
+            } else {
+              validationError = result.error;
+            }
           }
 
           // Call onFinish callback

@@ -49,16 +49,17 @@ export function useEnterKeySubmit(
   useEffect(() => {
     if (!enabled || !inputRef.current) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: Event) => {
+      const keyboardEvent = e as KeyboardEvent;
       // Check if Enter key is pressed
-      if (e.key === "Enter") {
+      if (keyboardEvent.key === "Enter") {
         // If Shift+Enter is allowed and Shift is pressed, don't submit
-        if (allowShiftEnter && e.shiftKey) {
+        if (allowShiftEnter && keyboardEvent.shiftKey) {
           return;
         }
 
         if (preventDefault) {
-          e.preventDefault();
+          keyboardEvent.preventDefault();
         }
 
         callback();

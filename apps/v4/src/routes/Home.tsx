@@ -32,6 +32,7 @@ import { TooltipDemo } from "@/components/TooltipDemo";
 import { Header } from "@/layout/Header";
 import { ChatDemo } from "@/components/ai/examples/chat-demo";
 import { CompletionDemo } from "@/components/ai/examples/completion-demo";
+import { ObjectDemo } from "@/components/ai/examples/object-demo";
 
 export default function HomePage() {
   return (
@@ -267,6 +268,13 @@ export default function HomePage() {
           <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
             <h1>AI Completion Demo (useCompletion hook)</h1>
             <CompletionDemo />
+          </div>
+
+          <Separator />
+
+          <div className="flex h-auto w-full flex-col gap-4 rounded p-2">
+            <h1>AI Object Demo (useObject hook)</h1>
+            <ObjectDemo />
           </div>
 
           <Separator />

@@ -32,6 +32,12 @@ export function useArrowKeyNavigation(
     if (!enabled || !containerRef.current) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle keyboard events if the focus is within the container
+      // This prevents global interception of keys like Space in input fields
+      if (!containerRef.current?.contains(document.activeElement)) {
+        return;
+      }
+
       const items = Array.from(containerRef.current?.querySelectorAll<HTMLElement>(selector) || []);
 
       if (items.length === 0) return;

@@ -274,14 +274,14 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
         data-disabled={disabled ? "true" : undefined}
         data-placeholder={!value ? "" : undefined}
         className={cn(
-          "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+          "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 [&_svg:not([class*='size-'])]:size-4",
           className,
           classNative
         )}
         {...props}
       >
         {children}
-        <ChevronDown className="h-4 w-4 opacity-50" />
+        <ChevronDown className="opacity-50" />
       </Comp>
     );
   }

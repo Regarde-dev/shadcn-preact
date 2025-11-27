@@ -103,7 +103,7 @@ export const BreadcrumbSeparator = forwardRef<HTMLLIElement, BreadcrumbSeparator
       role="presentation"
       aria-hidden="true"
       data-slot="breadcrumb-separator"
-      className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className, classNative)}
+      className={cn("[&>svg:not([class*='size-'])]:h-3.5 [&>svg:not([class*='size-'])]:w-3.5", className, classNative)}
       {...props}
     >
       {children ?? <ChevronRight />}
@@ -130,4 +130,3 @@ export const BreadcrumbEllipsis = forwardRef<HTMLSpanElement, BreadcrumbEllipsis
   )
 );
 BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis";
-

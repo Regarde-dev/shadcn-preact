@@ -5,7 +5,7 @@ import { cn } from "./share/cn";
 import { useControlledState } from "./share/useControlledState";
 
 export const toggleVariants = cva(
-  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors md:hover:bg-muted md:hover:text-muted-foreground md:focus-visible:outline-hidden md:focus-visible:ring-1 md:focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors md:hover:bg-muted md:hover:text-muted-foreground md:focus-visible:outline-hidden md:focus-visible:ring-1 md:focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
